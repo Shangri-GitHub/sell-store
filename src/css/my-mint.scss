@@ -1,20 +1,20 @@
-//$background-black: #000000;
-//$default-text: #ffffff;
+$background-black: #000000;
+$default-text: #ffffff;
 
 .mint-search {
   height: 100%;
 }
 
-//.mint-searchbar {
-//  background-color: $background-black;
-//}
-//
-//.mint-searchbar-cancel {
-//  color: $default-text
-//}
-//
-//.mint-searchbar-inner, .mint-searchbar-core {
-//  background-color: #333333;
-//  color: $default-text
-//}
-//
+.mint-searchbar {
+  background-color: $background-black;
+}
+
+.mint-searchbar-cancel {
+  color: $default-text
+}
+
+.mint-searchbar-inner, .mint-searchbar-core {
+  background-color: #333333;
+  color: $default-text
+}
+

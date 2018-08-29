@@ -8,7 +8,7 @@ import MintUI from 'mint-ui'
 import App from './App'
 import router from './router'
 import LyTab from 'ly-tab'
-// import './assets/css/my-mint.scss';
+import './css/my-mint.scss';
 
 
 
