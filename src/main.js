@@ -7,7 +7,7 @@ import Vue from 'vue'
 import MintUI from 'mint-ui'
 import App from './App'
 import router from './router'
-
+import LyTab from 'ly-tab'
 // import './assets/css/my-mint.scss';
 
 
@@ -15,6 +15,7 @@ import router from './router'
 
 Vue.config.productionTip = false
 Vue.use(MintUI)
+Vue.use(LyTab)
 
 new Vue({
   el: '#app',

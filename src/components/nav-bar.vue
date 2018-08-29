@@ -1,19 +1,19 @@
 <template>
   <div class="home">
     <div>
-      <mt-search
-        fixed
-        v-model="value"
-        :result="filterResult"
-        cancel-text="取消"
-        placeholder="搜索">
-      </mt-search>
-      <!--<ly-tab-->
-        <!--v-model="selectedId"-->
-        <!--:items="items"-->
-        <!--@change="handleChange"-->
-        <!--:options="options">-->
-      <!--</ly-tab>-->
+      <!--<mt-search-->
+        <!--fixed-->
+        <!--v-model="value"-->
+        <!--:result="filterResult"-->
+        <!--cancel-text="取消"-->
+        <!--placeholder="搜索">-->
+      <!--</mt-search>-->
+      <ly-tab
+        v-model="selectedId"
+        :items="items"
+        @change="handleChange"
+        :options="options">
+      </ly-tab>
     </div>
     <router-view></router-view>
   </div>
