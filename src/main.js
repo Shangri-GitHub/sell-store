@@ -8,6 +8,9 @@ import MintUI from 'mint-ui'
 import App from './App'
 import router from './router'
 
+// import './assets/css/my-mint.scss';
+
+
 
 
 Vue.config.productionTip = false
