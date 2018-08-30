@@ -38,7 +38,7 @@
         if (n == "Home") {
           this.$router.push('/navbar/home');
         } else if (n == "Discover") {
-          this.$router.push('/discover');
+          this.$router.push('/discover/detail');
         } else if (n == "Cart") {
           this.$router.push('/cart');
         } else if (n == "Me") {

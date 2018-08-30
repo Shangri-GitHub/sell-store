@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <div>
+  <div>
+    <div class="nav-bar">
       <mt-search
         fixed
         v-model="value"
@@ -15,7 +15,7 @@
         :options="options">
       </ly-tab>
     </div>
-    <router-view></router-view>
+    <router-view class="view"></router-view>
   </div>
 </template>
 
@@ -72,13 +72,14 @@
           }
         ],
         options: {
-          activeColor: '#1d98bd'
+          activeColor: '#ffffff',
         },
 
       }
     },
     methods: {
       handleChange(item, index){
+        this.selectedId = index;
         this.$router.push(item.id);
       }
     },
@@ -94,8 +95,16 @@
 </script>
 
 <style lang="scss" scoped>
-  .home {
+  .nav-bar {
     width: 100%;
     position: fixed;
+    z-index: 1;
+  }
+  .ly-tab{
+    background-color:#000000;
+    color: #ffffff;
+  }
+  .view{
+    position: relative;top: 14vh;margin-bottom: 8vh;
   }
 </style>

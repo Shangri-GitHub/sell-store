@@ -4,7 +4,7 @@
       <img class="logo" :src="showWrapGoodsDatas.logo" alt="">
     </div>
     <div style="display: flex;flex-wrap: wrap">
-      <div class="goods-items" v-for="goodsList in showWrapGoodsDatas.goodsLists">
+      <div class="goods-items" v-for="goodsList in showWrapGoodsDatas.goodsLists" @click="handleClick(goodsList)">
         <div class="goods-items-photo">
           <img class="photo" :src="goodsList.photo" alt="">
         </div>
@@ -25,9 +25,14 @@
     data() {
       return {}
     },
-    methods: {},
+    methods: {
+      handleClick(goodsList){
+        this.$router.push("/detailsofgoods");
+      }
+    },
     props: ['showWrapGoodsDatas'],
     mounted: function () {
+
     }
   }
 </script>
@@ -38,7 +43,6 @@
     background: #ffffff;
     .photo {
       height: 20vh;
-      background: red;
       .logo {
         width: 100%;
         height: 20vh;
@@ -54,7 +58,6 @@
         font-size: .9rem;
       }
       .goods-items-price {
-        color: #cc1d18;
         font-size: .8rem;
         font-weight: 500;
         .text-through {

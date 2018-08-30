@@ -1,13 +1,15 @@
 <template>
   <div class="home">
-    <!--轮播图-->
     <swipper :imgDatas="imgDatas"></swipper>
     <!--热图榜-->
     <hot4-panel :hot4PanelDatas="hot4PanelDatas"></hot4-panel>
     <!--商品列表-->
     <show-wrap-goods :showWrapGoodsDatas="showWrapGoodsDatas"></show-wrap-goods>
+    <show-wrap-goods :showWrapGoodsDatas="showWrapGoodsDatas"></show-wrap-goods>
+    <show-wrap-goods :showWrapGoodsDatas="showWrapGoodsDatas"></show-wrap-goods>
   </div>
 </template>
+
 <script>
   import Swipper from '../../components/swipper.vue'
   import Hot4Panel from '../../components/Hot4Panel.vue'
@@ -21,6 +23,7 @@
     },
     data() {
       return {
+        value: "",
         showWrapGoodsDatas: {
           "logo": require('../../assets/images/home/logo.png'),
           goodsLists: [{
@@ -72,15 +75,20 @@
           },],
       }
     },
-    methods: {},
+    methods: {
+      fun(){
+        this.$router.push("/detailsofgoods")
+      }
+    },
     mounted: function () {
 
-    },
-
+    }
   }
 </script>
-<style lang="scss" scoped>
-  .home {
 
+<style lang="css" scoped>
+  .home {
+    /*height: 78vh;*/
+    /*overflow: auto;*/
   }
 </style>
