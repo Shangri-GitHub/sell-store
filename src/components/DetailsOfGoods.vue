@@ -18,7 +18,8 @@
     },
     methods: {
       back(){
-        this.$router.go(-1);//返回上一层
+
+        this.$router.back();//返回上一层
 //        this.$router.push("/navbar/clothes");//返回上一层
       }
     },

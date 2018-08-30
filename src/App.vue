@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="content-div">
+    <div class="content-div" >
       <router-view/>
     </div>
     <footer-bar></footer-bar>
@@ -11,8 +11,18 @@
   import FooterBar from './components/footer-bar.vue'
   export default {
     name: 'App',
+    data(){
+      return {
+      }
+    },
+    methods: {
+
+    },
     components: {
       FooterBar
+    },
+    mounted: function () {
+
     },
   }
 </script>
@@ -22,6 +32,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   .content-div {
     margin-bottom: 55px;
     background: #f3f3f3;

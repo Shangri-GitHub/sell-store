@@ -1,6 +1,8 @@
 <template>
     <div>
       clothes
+
+
       <!--商品列表-->
       <show-wrap-goods :showWrapGoodsDatas="showWrapGoodsDatas"></show-wrap-goods>
       <show-wrap-goods :showWrapGoodsDatas="showWrapGoodsDatas"></show-wrap-goods>

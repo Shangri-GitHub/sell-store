@@ -25,9 +25,10 @@ export default new Router({
   // },
   routes: [
     {
-      path: '/',
+      path: '*',
       redirect: '/navbar/home' //重定向
     },
+
     {
       path: '/navbar',
       component: navbar,

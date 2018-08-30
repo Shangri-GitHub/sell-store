@@ -73,14 +73,38 @@
       }
     },
     methods: {},
-    mounted: function () {
 
+    mounted: function () {
+//      console.log(1)
     },
+    created:function () {
+      // 加载视图前让nav-tab显示出来，离开隐藏标题
+//      this.$parent.isShow = true;
+    },
+    destroyed: function () {
+    },
+
+
+//    beforeRouteLeave (to, from, next) {
+//      console.log(to)
+//      console.log(from)
+//      if(to.path.indexOf("navbar")==-1){
+//        console.log(1)
+//        this.$parent.isShow = false;
+//      }else {
+//        console.log(2)
+//        this.$parent.isShow = true;
+//      }
+//      console.log(this.$parent.isShow)
+//      next()
+//    }
 
   }
 </script>
 <style lang="scss" scoped>
   .home {
-
+    position: relative;
+    top: 14vh;
+    margin-bottom: 8vh;
   }
 </style>

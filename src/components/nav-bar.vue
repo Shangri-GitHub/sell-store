@@ -74,23 +74,28 @@
         options: {
           activeColor: '#ffffff',
         },
-
       }
     },
     methods: {
       handleChange(item, index){
-        this.selectedId = index;
+        this.$store.state.index = index;
         this.$router.push(item.id);
       }
     },
-    mounted: function () {
-
+    beforeMount: function () {
+      this.selectedId = this.$store.state.index;
     },
     computed: {
       filterResult() {
         return this.defaultResult.filter(value => new RegExp(this.value, 'i').test(value));
       }
+    },
+    updated:function () {
+
+
+
     }
+
   }
 </script>
 
