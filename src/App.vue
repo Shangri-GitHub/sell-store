@@ -32,9 +32,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
   .content-div {
-    margin-bottom: 55px;
+    /*margin-bottom: 55px;*/
     background: #f3f3f3;
     height: 92vh;
   }
