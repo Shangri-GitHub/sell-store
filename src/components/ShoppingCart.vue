@@ -15,10 +15,10 @@
         </div>
         <mt-badge size="small" type="error">10</mt-badge>
       </div>
-      <div class="cart-item2" @click="getPopupVisible">
+      <div class="cart-item2" @click="getPopupVisible(1)">
         加入购物车
       </div>
-      <div class="cart-item2" style="background: #f31b19">立即购买</div>
+      <div class="cart-item2" style="background: #f31b19" @click="getPopupVisible(2)">立即购买</div>
     </div>
     <!--弹框-->
     <mt-popup
@@ -66,9 +66,8 @@
           </div>
         </div>
         <div style="padding:  10px;">
-          <div class="button" @click="ToShoppingCart">加入购物袋</div>
+          <div class="button" @click="ToShoppingCart">{{popupButtonText}}</div>
         </div>
-
 
       </div>
     </mt-popup>
@@ -115,7 +114,7 @@
           label: 'XXL',
           value: 3
         }],
-
+        popupButtonText: "加入购物车"
       }
     },
     methods: {
@@ -124,8 +123,16 @@
         // this.getPrice()
 //        console.log(this[attr], attr)
       },
-      getPopupVisible(){
+      getPopupVisible(e){
+        /**
+         * 1 是加入购物车 2 是立即购买
+         * @type {boolean}
+         */
         this.popupVisible = !this.popupVisible;
+        if (e == 1) {
+        } else if (e == 2) {
+          this.popupButtonText = "确定";
+        }
       },
       ToShoppingCart(){
         this.popupVisible = false;
