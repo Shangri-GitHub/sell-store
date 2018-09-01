@@ -66,7 +66,7 @@
           </div>
         </div>
         <div style="padding:  10px;">
-          <div class="button" @click="ToShoppingCart">{{popupButtonText}}</div>
+          <div class="button" @click="shoppingCartHandler(popupButtonText.id)">{{popupButtonText.label}}</div>
         </div>
 
       </div>
@@ -114,8 +114,11 @@
           label: 'XXL',
           value: 3
         }],
-        popupButtonText: "加入购物车"
-      }
+        popupButtonText: {
+          id: "1",
+          label: "加入购物车"
+        }
+    }
     },
     methods: {
       onParamChange (attr, val) {
@@ -130,12 +133,30 @@
          */
         this.popupVisible = !this.popupVisible;
         if (e == 1) {
+          this.popupButtonText = {
+            id: "1",
+            label: "加入购物车"
+          };
         } else if (e == 2) {
-          this.popupButtonText = "确定";
+          this.popupButtonText = {
+            id: "2",
+            label: "确定"
+          };
         }
       },
-      ToShoppingCart(){
+      shoppingCartHandler(id){
         this.popupVisible = false;
+        /**
+         * 1 点的购物车，显示加入成功
+         * 2 是确定 跳转到 订单详情页去支付
+         */
+        if (id == "1") {
+            // TODO 购物车实现
+        } else if (id == "2") {
+          this.$router.push("/orderlistpage")
+        }
+
+
       }
     },
     mounted: function () {
@@ -154,6 +175,7 @@
   .popup {
     width: 100vw;
     background: white;
+    font-size: 0.8rem;
     .button {
       display: flex;
       align-items: center;

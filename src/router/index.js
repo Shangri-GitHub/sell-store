@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import navbar from '../components/nav-bar.vue'
 import detailsofgoods from '../components/DetailsOfGoods.vue'
+import orderListPage from '../components/orderListPage.vue'
 import discover from '../pages/discover/discover.vue'
 import cart from '../pages/cart/cart.vue'
 import me from '../pages/me/me.vue'
@@ -70,6 +71,10 @@ export default new Router({
     {
       path: '/detailsofgoods',
       component: detailsofgoods
+    },
+    {
+      path: '/orderlistpage',
+      component: orderListPage
     }
   ]
 })
