@@ -28,15 +28,15 @@
       <!--优惠券-->
       <div class="couponing"><i class="fa fa-archive" aria-hidden="true"></i>您有一张20元的优惠券，下单即可使用</div>
       <!--描述-->
-      <describe class="describe">
+      <div class="describe">
         热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子
-      </describe>
+      </div>
       <!--图片-->
-      <photo class="photo">
+      <div class="photo">
         <img src="../assets/images/banner/clothes.jpg" alt="">
         <img src="../assets/images/banner/clothes.jpg" alt="">
         <img src="../assets/images/banner/clothes.jpg" alt="">
-      </photo>
+      </div>
       <footer>
         <div style="">温馨提示</div>
         <p class="footer">由于<span>部分品牌商品</span>由于包装<span>更新较为频繁</span>，因此您收到的商品<span>可能与商品详情页面不完全一致，</span>
@@ -51,9 +51,7 @@
         </p>
       </footer>
     </div>
-
     <shopping-cart></shopping-cart>
-
   </div>
 </template>
 
