@@ -9,6 +9,8 @@ import me from '../pages/me/me.vue'
 import home from '../pages/home/home.vue'
 import relaxfood from '../pages/home/relax-food.vue'
 import clothes from '../pages/home/clothes.vue'
+import shoppingcart from '../pages/home/shopping-cart.vue'
+
 import detail from '../pages/discover/detail.vue'
 
 
@@ -75,6 +77,12 @@ export default new Router({
     {
       path: '/orderlistpage',
       component: orderListPage
+    },
+    {
+      name:"shoppingcart",
+      path: '/shoppingcart',
+      component: shoppingcart
     }
+
   ]
 })

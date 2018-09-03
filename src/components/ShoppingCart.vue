@@ -8,7 +8,7 @@
           关注
         </div>
       </div>
-      <div class="cart-item1">
+      <div class="cart-item1" @click="shopingCartCount">
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         <div>
           购物车
@@ -121,6 +121,9 @@
     }
     },
     methods: {
+      shopingCartCount(){
+        this.$router.push("/shoppingcart");
+      },
       onParamChange (attr, val) {
 //        this[attr] = val
         // this.getPrice()
