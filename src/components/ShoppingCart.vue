@@ -2,8 +2,8 @@
   <div>
     <!--购物车底部条-->
     <div class="cart">
-      <div class="cart-item1">
-        <i class="fa fa-heart-o" aria-hidden="true"></i>
+      <div class="cart-item1" @click="heartFlag=!heartFlag">
+        <i :class="[heartFlag?'fa fa-heart-o':'fa fa-heart red']" aria-hidden="true"></i>
         <div>
           关注
         </div>
@@ -25,7 +25,7 @@
       v-model="popupVisible"
       position="bottom">
       <div class="popup">
-        <div style="display: flex;border-bottom: 1px solid #c7c7c7;height: 13vh">
+        <div style="display: flex;border-bottom: 1px solid #efeeee;height: 13vh">
           <img class="popup-photo"/>
           <div>
             <div class="pupop-price"> ¥ 632～3333</div>
@@ -34,7 +34,7 @@
             <div><i @click="popupVisible=false" class="fa fa-times close" aria-hidden="true"></i></div>
           </div>
         </div>
-        <div style="border-bottom: 1px solid #c7c7c7;">
+        <div style="border-bottom: 1px solid #f5f5f5;">
           <div style="padding: 10px;color: #6b6b6b">
             颜色
           </div>
@@ -45,7 +45,7 @@
             </chooser>
           </div>
         </div>
-        <div style="border-bottom: 1px solid #c7c7c7;">
+        <div style="border-bottom: 1px solid #f5f5f5;">
           <div style="padding: 10px;color: #6b6b6b">
             尺码
           </div>
@@ -57,7 +57,7 @@
           </div>
         </div>
         <div
-          style="border-bottom: 1px solid #c7c7c7;display: flex;justify-content: space-between;align-items: center;height: 8vh;">
+          style="border-bottom: 1px solid #f5f5f5;display: flex;justify-content: space-between;align-items: center;height: 8vh;">
           <div style="padding-left: 10px;color: #6b6b6b">
             数量
           </div>
@@ -87,6 +87,7 @@
     },
     data() {
       return {
+        heartFlag: true,
         popupVisible: false,
         colorLists: [{
           label: '188A-05&12337B-05【礼品套盒】',
@@ -118,7 +119,7 @@
           id: "1",
           label: "加入购物车"
         }
-    }
+      }
     },
     methods: {
       shopingCartCount(){
@@ -154,7 +155,7 @@
          * 2 是确定 跳转到 订单详情页去支付
          */
         if (id == "1") {
-            // TODO 购物车实现
+          // TODO 购物车实现
         } else if (id == "2") {
           this.$router.push("/orderlistpage")
         }
@@ -240,7 +241,12 @@
       i {
         font-size: 1.6rem;
       }
+      .red{
+        color: red;
+      }
+
     }
+
     .cart-item2 {
       width: 35%;
       color: white;

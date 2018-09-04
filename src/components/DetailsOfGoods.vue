@@ -104,10 +104,6 @@
       background: #f3f3f3;
       margin: 0 auto;
     }
-
-    .mint-header {
-      background-color: #000000;
-    }
     .show-big-photo {
       height: 50vh;
       background-color: wheat;
