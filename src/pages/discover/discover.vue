@@ -8,9 +8,8 @@
         <mt-button slot="right">
         </mt-button>
       </mt-header>
-      <!--内容-->
       <div class="contain">
-
+        <!--内容-->
         <div style="background: white;margin-bottom: 10px">
 
 
@@ -129,6 +128,7 @@
 </template>
 
 <script>
+
   export default {
     name: '',
     components: {},
