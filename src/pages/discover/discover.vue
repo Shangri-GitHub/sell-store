@@ -137,7 +137,8 @@
     },
     methods: {},
     mounted: function () {
-
+      // 跳转到页面的顶端
+      window.scroll(0, 0);
     },
     computed: {}
   }
