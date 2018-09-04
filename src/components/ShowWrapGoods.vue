@@ -27,7 +27,7 @@
     },
     methods: {
       handleClick(goodsList){
-        this.$router.push({name:"detailsofgoods",params:goodsList});
+        this.$router.push({name:"detailsofgoods",params:{id:goodsList.id}});
       }
     },
     props: ['showWrapGoodsDatas'],

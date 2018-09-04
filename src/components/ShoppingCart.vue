@@ -25,34 +25,34 @@
       v-model="popupVisible"
       position="bottom">
       <div class="popup">
-        <div style="display: flex;border-bottom: 1px solid #efeeee;height: 13vh">
-          <img class="popup-photo"/>
+        <div style="display: flex;border-bottom: 1px solid #efeeee;height: 16vh">
+          <img class="popup-photo" :src="shoppingCartData.photo.smallmodelPhoto"/>
           <div>
-            <div class="pupop-price"> ¥ 632～3333</div>
-            <div class="pupop-store">库存 1002件</div>
-            <div class="pupop-select">请选择分类 尺码</div>
+            <div class="pupop-price"> ¥ {{shoppingCartData.price}}</div>
+            <div class="pupop-store">库存 {{shoppingCartData.stock}}件</div>
+            <div class="pupop-select">{{selectedText}}</div>
             <div><i @click="popupVisible=false" class="fa fa-times close" aria-hidden="true"></i></div>
           </div>
         </div>
-        <div style="border-bottom: 1px solid #f5f5f5;">
+        <div v-if="colorLists.length>0" style="border-bottom: 1px solid #f5f5f5;">
           <div style="padding: 10px;color: #6b6b6b">
             颜色
           </div>
           <div>
             <chooser
               :selections="colorLists"
-              @on-change="onParamChange('period', $event)">
+              @on-change="onParamChange('color', $event)">
             </chooser>
           </div>
         </div>
-        <div style="border-bottom: 1px solid #f5f5f5;">
+        <div v-if="sizeLists.length>0" style="border-bottom: 1px solid #f5f5f5;">
           <div style="padding: 10px;color: #6b6b6b">
             尺码
           </div>
           <div>
             <chooser
               :selections="sizeLists"
-              @on-change="onParamChange('period', $event)">
+              @on-change="onParamChange('size', $event)">
             </chooser>
           </div>
         </div>
@@ -66,7 +66,8 @@
           </div>
         </div>
         <div style="padding:  10px;">
-          <div class="button" @click="shoppingCartHandler(popupButtonText.id)">{{popupButtonText.label}}</div>
+          <div class="button" @click="shoppingCartHandler(popupButtonText)">{{popupButtonText == 1 ? "加入购物车" : "确定"}}
+          </div>
         </div>
 
       </div>
@@ -79,6 +80,7 @@
 <script>
   import Counter from '../components/base/counter'
   import Chooser from '../components/base/chooser'
+  import { Toast } from 'mint-ui';
   export default {
     name: '',
     components: {
@@ -89,6 +91,7 @@
       return {
         heartFlag: true,
         popupVisible: false,
+        popupButtonText: 1,
         colorLists: [{
           label: '188A-05&12337B-05【礼品套盒】',
           value: 0
@@ -115,10 +118,11 @@
           label: 'XXL',
           value: 3
         }],
-        popupButtonText: {
-          id: "1",
-          label: "加入购物车"
-        }
+        selectedText: "请选择颜色 尺码",
+        selectedColor: {},
+        selectedSize: {},
+        selectedNum:1
+
       }
     },
     methods: {
@@ -126,30 +130,35 @@
         this.$router.push("/shoppingcart");
       },
       onParamChange (attr, val) {
-//        this[attr] = val
-        // this.getPrice()
-//        console.log(this[attr], attr)
+        if (attr == "color") {
+          this.selectedColor = val;
+        } else if (attr == "size") {
+          this.selectedSize = val;
+        }else if(attr == "buyNum"){
+          this.selectedNum = val;
+        }
+        // 提示用户选择商品
+        if (this.selectedColor.label && !this.selectedSize.label) {
+          this.selectedText = "请选择尺码";
+        } else if (!this.selectedColor.label && this.selectedSize.label) {
+          this.selectedText = "请选择颜色";
+        } else if (this.selectedColor.label && this.selectedSize.label) {
+          this.selectedText = "已选择" + this.selectedColor.label + " " + this.selectedSize.label;
+        } else {
+          this.selectedText = "请选择颜色 尺码";
+        }
       },
-      getPopupVisible(e){
+      getPopupVisible(index){
         /**
          * 1 是加入购物车 2 是立即购买
          * @type {boolean}
          */
         this.popupVisible = !this.popupVisible;
-        if (e == 1) {
-          this.popupButtonText = {
-            id: "1",
-            label: "加入购物车"
-          };
-        } else if (e == 2) {
-          this.popupButtonText = {
-            id: "2",
-            label: "确定"
-          };
-        }
+        this.popupButtonText = index;
       },
       shoppingCartHandler(id){
-        this.popupVisible = false;
+
+//        this.popupVisible = false;
         /**
          * 1 点的购物车，显示加入成功
          * 2 是确定 跳转到 订单详情页去支付
@@ -157,14 +166,20 @@
         if (id == "1") {
           // TODO 购物车实现
         } else if (id == "2") {
-          this.$router.push("/orderlistpage")
+          // 跳转到订单
+          if(!this.selectedColor.label ||  !this.selectedSize.label){
+            Toast(this.selectedText);
+            return;
+          }
+          this.shoppingCartData.selectedColor = this.selectedColor;
+          this.shoppingCartData.selectedSize = this.selectedSize;
+          this.shoppingCartData.selectedNum = this.selectedNum;
+          this.$router.push({name:"orderlistpage",params:{shoppingCartData:[this.shoppingCartData]}})
         }
-
-
       }
     },
+    props: ['shoppingCartData'],
     mounted: function () {
-
     }
   }
 </script>
@@ -201,6 +216,7 @@
       position: relative;
       left: 11vw;
       font-size: 1.4rem;
+      margin-top: 10px;
       color: red;
     }
     .pupop-store {
@@ -212,8 +228,10 @@
     .pupop-select {
       position: relative;
       left: 10vw;
-      font-size: .9rem;
+      font-size: .8rem;
       color: #3c3c3c;
+      width: 53vw;
+
     }
     .close {
       position: absolute;
@@ -241,7 +259,7 @@
       i {
         font-size: 1.6rem;
       }
-      .red{
+      .red {
         color: red;
       }
 

@@ -72,10 +72,11 @@ export default new Router({
     },
     {
       name:"detailsofgoods",
-      path: '/detailsofgoods',
+      path: '/detailsofgoods/:id',
       component: detailsofgoods
     },
     {
+      name:"orderlistpage",
       path: '/orderlistpage',
       component: orderListPage
     },

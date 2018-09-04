@@ -26,7 +26,7 @@
           goodsLists: [{
             id: "1",
             name: "阿迪达斯三叶草短袖",
-            price: "100.88",
+            price: "100.00",
             marketPrice: "120.00",
             stock: "10",
             description:"热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
@@ -47,7 +47,7 @@
                 src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
               }]
             },
-          }, {
+          },/* {
             id: "2",
             name: "阿迪达斯三叶草短袖",
             price: "100.88",
@@ -119,7 +119,7 @@
                 src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
               }]
             },
-          }]
+          }*/]
         },
         hot4PanelDatas: {
           "1": require('../../assets/images/hot4Panel/mac.jpg'),

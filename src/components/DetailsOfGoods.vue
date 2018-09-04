@@ -49,7 +49,7 @@
         </p>
       </footer>
     </div>
-    <shopping-cart></shopping-cart>
+    <shopping-cart :shoppingCartData=detailsOfGoodslistData></shopping-cart>
   </div>
 </template>
 
@@ -62,7 +62,12 @@
     },
     data() {
       return {
-        detailsOfGoodslistData: '',
+        detailsOfGoodslistData: {
+          photo: {
+            supermodelPhoto: "",
+            detailphoto: ""
+          }
+        },
       }
     },
     methods: {
@@ -74,11 +79,43 @@
       // 跳转到页面的顶端
       window.scroll(0, 0);
       // 详情参数
-      this.detailsOfGoodslistData = this.$route.params;
-
 
     },
+    beforeMount: function () {
 
+
+      // TODO 根据商品的id查看详情
+
+      var goodsList = {
+        "1": {
+          id: "1",
+          name: "阿迪达斯三叶草短袖",
+          price: "100.00",
+          marketPrice: "120.00",
+          stock: "10",
+          description: "热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
+          photo: {
+            smallmodelPhoto: require('../assets/images/home/1.png'),
+            supermodelPhoto: "http://peidwdhmp.bkt.clouddn.com/adidas.jpg",
+            detailphoto: [{
+              id: 0,
+              name: "",
+              src: "http://peidwdhmp.bkt.clouddn.com/T1.jpg"
+            }, {
+              id: 1,
+              name: "",
+              src: "http://peidwdhmp.bkt.clouddn.com/T2.jpg"
+            }, {
+              id: 2,
+              name: "",
+              src: "http://peidwdhmp.bkt.clouddn.com/bottom.png"
+            }]
+          }
+        }
+      }
+      this.detailsOfGoodslistData = goodsList[this.$route.params.id];
+
+    }
   }
 </script>
 

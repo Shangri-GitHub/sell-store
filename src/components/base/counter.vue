@@ -13,7 +13,7 @@
     props: {
       max: {
         type: Number,
-        default: 5
+        default: 100
       },
       min: {
         type: Number,

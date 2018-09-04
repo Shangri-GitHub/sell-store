@@ -23,7 +23,7 @@
     },
     data () {
       return {
-        nowIndex: 0
+        nowIndex: ""
       }
     },
     methods: {

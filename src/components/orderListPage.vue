@@ -21,21 +21,22 @@
     <!--信封线-->
     <div class="envelope"></div>
     <!--订单-->
-    <div style="background: white;margin: 10px 0;">
+    <div style="background: white;margin: 10px 0;" v-for="(item, index) in shoppingCartDatas">
       <div style="padding: 10px">
-        众和小本买卖旗舰店
+        商品{{ index + 1 }}
       </div>
       <div style="display: flex;background: #fafafa">
         <div style="">
-          <img style="width: 120px;height: 120px;margin: 10px" src="../assets/logo.png" alt="">
+          <img style="width: 120px;height: 120px;margin: 10px" :src="item.photo.smallmodelPhoto" alt="">
         </div>
         <div style="padding: 10px">
-          <div style="font-size: .9rem">馨帮帮自制2018新款韩版复古牛仔裤缺口学生高腰显瘦直筒九分裤女 [交易快照]</div>
-          <div style="color:#a2a2a2;font-size: .8rem">颜色分类：洗水蓝尺寸：M</div>
+          <div style="font-size: .9rem">{{item.description}}[交易快照]</div>
+          <div style="color:#a2a2a2;font-size: .8rem">颜色分类：{{item.selectedColor.label}} 尺寸：{{item.selectedSize.label}}
+          </div>
           <div style="color:#f7a755;font-size: .8rem">发货时间：卖家承诺72小时</div>
           <div style="display: flex;justify-content: space-between;align-items: center">
-            <div style="color:red;font-size: 1.2rem">¥175.00</div>
-            <div>x2</div>
+            <div style="color:red;font-size: 1.2rem">¥{{item.price}}</div>
+            <div>x{{item.selectedNum}}</div>
           </div>
         </div>
       </div>
@@ -46,47 +47,16 @@
         </mt-cell>
         <mt-cell title="买家留言" value="选填：填写内容已和卖家协商确认"></mt-cell>
         <mt-cell title="">
-          <span style="color: #000;font-size: .8rem">共2件商品 小记：<span
-            style="color: red;font-size: 1rem">¥300.00元</span></span>
+          <span style="color: #000;font-size: .8rem">共{{item.selectedNum}}件商品 小记：<span
+            style="color: red;font-size: 1rem">¥{{(item.selectedNum * item.price).toFixed(2)}}元</span></span>
         </mt-cell>
       </div>
+
     </div>
 
-    <div style="background: white;margin-top:10px">
-      <div style="padding: 10px">
-        众和小本买卖旗舰店
-      </div>
-      <div style="display: flex;background: #fafafa">
-        <div style="">
-          <img style="width: 120px;height: 120px;margin: 10px" src="../assets/logo.png" alt="">
-        </div>
-        <div style="padding: 10px">
-          <div style="font-size: .9rem">馨帮帮自制2018新款韩版复古牛仔裤缺口学生高腰显瘦直筒九分裤女 [交易快照]</div>
-          <div style="color:#a2a2a2;font-size: .8rem">颜色分类：洗水蓝尺寸：M</div>
-          <div style="color:#f7a755;font-size: .8rem">发货时间：卖家承诺72小时</div>
-          <div style="display: flex;justify-content: space-between;align-items: center">
-            <div style="color:red;font-size: 1.2rem">¥175.00</div>
-            <div>x2</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <mt-cell title="配送方式" is-link value="快递免邮"></mt-cell>
-        <mt-cell title="运费险投保须知">
-          <span><i style="font-size: 1.4rem;" class="fa fa-question-circle" aria-hidden="true"></i></span>
-        </mt-cell>
-        <mt-cell title="买家留言" value="选填：填写内容已和卖家协商确认"></mt-cell>
-        <mt-cell title="">
-          <span style="color: #000;font-size: .8rem">共2件商品 小记：<span
-            style="color: red;font-size: 1rem">¥300.00元</span></span>
-        </mt-cell>
-      </div>
-
-
-    </div>
     <!--去付款-->
     <div class="pay">
-      <div>合计金额:<span style="margin:0 10px;color: red;font-size: 1.2rem">¥139.00</span></div>
+      <div>合计金额:<span style="margin:0 10px;color: red;font-size: 1.2rem">¥{{total}}</span></div>
       <div class="btn">
         去付款
       </div>
@@ -99,7 +69,10 @@
   export default {
     name: '',
     data() {
-      return {}
+      return {
+        shoppingCartDatas: "",
+        total: 0,
+      }
     },
     methods: {
       back(){
@@ -108,6 +81,13 @@
     },
     mounted: function () {
       window.scroll(0, 0);
+      this.shoppingCartDatas = this.$route.params.shoppingCartData;
+      var total = 0
+      this.shoppingCartDatas.forEach(function (ele) {
+        total += ele.selectedNum * ele.price;
+      })
+      this.total = total.toFixed(2);
+
     }
   }
 </script>
