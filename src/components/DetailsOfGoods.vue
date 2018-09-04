@@ -11,31 +11,29 @@
     </mt-header>
     <!--详情-->
     <div class="show-big-photo">
-      <img class="item" src="">
+      <img class="item" :src="detailsOfGoodslistData.photo.supermodelPhoto">
     </div>
     <!--价格-->
     <div style="width: 96%;margin:0 auto">
       <div class="detail-price">
-        <div style="font-size: 1.8rem">¥123.89</div>
+        <div style="font-size: 1.8rem">¥{{detailsOfGoodslistData.price}}</div>
         <div class="sale">
-          <span>限时直降</span>
+          <span>优惠促销</span>
         </div>
         <div class="vip">
-          ¥123.89
-          <span class="sign"><span style="color: white">会员价</span></span>
+          ¥{{detailsOfGoodslistData.marketPrice}}
+          <span class="sign"><span style="color: white">市场价</span></span>
         </div>
       </div>
       <!--优惠券-->
       <div class="couponing"><i class="fa fa-archive" aria-hidden="true"></i>您有一张20元的优惠券，下单即可使用</div>
       <!--描述-->
       <div class="describe">
-        热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子
+        {{detailsOfGoodslistData.description}}
       </div>
       <!--图片-->
       <div class="photo">
-        <img src="../assets/images/banner/clothes.jpg" alt="">
-        <img src="../assets/images/banner/clothes.jpg" alt="">
-        <img src="../assets/images/banner/clothes.jpg" alt="">
+        <img :src="item.src" alt="" v-for="item in detailsOfGoodslistData.photo.detailphoto">
       </div>
       <footer>
         <div style="">温馨提示</div>
@@ -63,7 +61,9 @@
       ShoppingCart
     },
     data() {
-      return {}
+      return {
+        detailsOfGoodslistData: '',
+      }
     },
     methods: {
       back(){
@@ -73,6 +73,10 @@
     mounted: function () {
       // 跳转到页面的顶端
       window.scroll(0, 0);
+      // 详情参数
+      this.detailsOfGoodslistData = this.$route.params;
+
+
     },
 
   }
@@ -105,8 +109,11 @@
       margin: 0 auto;
     }
     .show-big-photo {
-      height: 50vh;
-      background-color: wheat;
+      margin-top: 40px;
+      .item {
+        width: 100vw;
+        height: 50vh;
+      }
     }
     .detail-price {
       padding: 15px 10px;

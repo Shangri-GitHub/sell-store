@@ -6,7 +6,7 @@
     <div style="display: flex;flex-wrap: wrap">
       <div class="goods-items" v-for="goodsList in showWrapGoodsDatas.goodsLists" @click="handleClick(goodsList)">
         <div class="goods-items-photo">
-          <img class="photo" :src="goodsList.photo" alt="">
+          <img class="photo" :src="goodsList.photo.smallmodelPhoto" alt="">
         </div>
         <div class="goods-items-label">
           {{goodsList.name}}
@@ -27,7 +27,7 @@
     },
     methods: {
       handleClick(goodsList){
-        this.$router.push("/detailsofgoods");
+        this.$router.push({name:"detailsofgoods",params:goodsList});
       }
     },
     props: ['showWrapGoodsDatas'],

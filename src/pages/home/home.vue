@@ -25,32 +25,100 @@
           "logo": require('../../assets/images/home/logo.png'),
           goodsLists: [{
             id: "1",
-            photo: require('../../assets/images/home/1.png'),
             name: "阿迪达斯三叶草短袖",
             price: "100.88",
             marketPrice: "120.00",
-            stock: "10"
+            stock: "10",
+            description:"热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
+            photo:{
+              smallmodelPhoto: require('../../assets/images/home/1.png'),
+              supermodelPhoto:"http://peidwdhmp.bkt.clouddn.com/adidas.jpg",
+              detailphoto:[{
+                id:0,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/T1.jpg"
+              },{
+                id:1,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/T2.jpg"
+              },{
+                id:2,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
+              }]
+            },
           }, {
             id: "2",
-            photo: require('../../assets/images/home/2.png'),
             name: "阿迪达斯三叶草短袖",
             price: "100.88",
             marketPrice: "120.00",
-            stock: "10"
+            stock: "10",
+            description:"热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
+            photo:{
+              smallmodelPhoto: require('../../assets/images/home/2.png'),
+              supermodelPhoto:"http://peidwdhmp.bkt.clouddn.com/adidas.jpg",
+              detailphoto:[{
+                id:0,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/T1.jpg"
+              },{
+                id:1,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/T2.jpg"
+              },{
+                id:2,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
+              }]
+            },
           }, {
             id: "3",
-            photo: require('../../assets/images/home/3.png'),
             name: "阿迪达斯三叶草短袖",
             price: "100.88",
             marketPrice: "120.00",
-            stock: "10"
+            stock: "10",
+            description:"热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
+            photo:{
+              smallmodelPhoto: require('../../assets/images/home/3.png'),
+              supermodelPhoto:"http://peidwdhmp.bkt.clouddn.com/adidas.jpg",
+              detailphoto:[{
+                id:0,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/T1.jpg"
+              },{
+                id:1,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/T2.jpg"
+              },{
+                id:2,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
+              }]
+            },
           }, {
             id: "4",
-            photo: require('../../assets/images/home/4.png'),
             name: "阿迪达斯三叶草短袖",
             price: "100.88",
             marketPrice: "120.00",
-            stock: "10"
+            stock: "10",
+            description:"热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
+            photo:{
+              smallmodelPhoto: require('../../assets/images/home/4.png'),
+              supermodelPhoto:"http://peidwdhmp.bkt.clouddn.com/adidas.jpg",
+              detailphoto:[{
+                id:0,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/T1.jpg"
+              },{
+                id:1,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/T2.jpg"
+              },{
+                id:2,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
+              }]
+            },
           }]
         },
         hot4PanelDatas: {
@@ -84,20 +152,6 @@
     destroyed: function () {
     },
 
-
-//    beforeRouteLeave (to, from, next) {
-//      console.log(to)
-//      console.log(from)
-//      if(to.path.indexOf("navbar")==-1){
-//        console.log(1)
-//        this.$parent.isShow = false;
-//      }else {
-//        console.log(2)
-//        this.$parent.isShow = true;
-//      }
-//      console.log(this.$parent.isShow)
-//      next()
-//    }
 
   }
 </script>

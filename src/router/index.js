@@ -71,6 +71,7 @@ export default new Router({
       component: me
     },
     {
+      name:"detailsofgoods",
       path: '/detailsofgoods',
       component: detailsofgoods
     },
