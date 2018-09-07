@@ -28,7 +28,7 @@
             {{item.name}}
           </div>
           <div style="color: #8a8a8a;font-size: .8rem">
-            {{item.color + "-" + item.size}}
+            {{item.selectedColor + "-" + item.selectedSize}}
           </div>
           <div style="display: flex;justify-content: space-between;align-items: center">
             <div style="color: red;font-size: 1.2rem">¥{{item.price}}<span
@@ -74,7 +74,8 @@
 </template>
 
 <script>
-  import Counter from '../../components/base/counter'
+  import Counter from '../../components/base/counter';
+  import {Toast} from 'mint-ui';
   export default {
     name: '',
     components: {
@@ -90,18 +91,18 @@
           selectValue: false,
           photo: require('../../assets/images/home/adidas-shirt/small.png'),
           name: " 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
-          color: "黑色",
-          size: "XXL",
+          selectedColor: "黑色",
+          selectedSize: "XXL",
           price: "155",
-          quantity: "1"
+          selectedNum: "1"
         }, {
           selectValue: false,
           photo: require('../../assets/images/home/yoga/yogasmall.jpg'),
           name: " 奥氏 春夏季新款专业健身房背心女性感显瘦跑步运动瑜伽服套装",
-          color: "黑色",
-          size: "S",
+          selectedColor: "黑色",
+          selectedSize: "S",
           price: "40",
-          quantity: "1"
+          selectedNum: "1"
         }]
       }
     },
@@ -111,31 +112,38 @@
         var money = 0;
         this.items.forEach(function (ele) {
           if (ele.selectValue) {
-            money += ele.price * ele.quantity;
+            money += ele.price * ele.selectedNum;
           }
         });
         this.total = money;
       },
       selectAll(){
         this.items.forEach(ele => ele.selectValue = this.selecAll);
+        this.selectOne();
       },
       edit(){
         this.popupVisible = true;
         this.textFlag = !this.textFlag;
       },
       shoppingCartHandler(){
+        var arr = [],arr1=[];
+        this.items.forEach(function (ele) {
+            if (!ele.selectValue) {
+              arr.push(ele);
+            }else {
+              arr1.push(ele);
+            }
+          }
+        );
+        this.items = arr;
         if (this.textFlag) {
-          this.$router.push("/orderlistpage");
+          if(arr1.length==0){
+            Toast("请选择需要结算的商品");
+            return
+          }
+          this.$router.push({name: "orderlistpage", params: {shoppingCartData: arr1}})
         } else {
           // 删除商品操作
-          var arr = [];
-          this.items.forEach(function (ele) {
-              if (!ele.selectValue) {
-                arr.push(ele);
-              }
-            }
-          );
-          this.items = arr;
           if (this.items.length == 0) {
             this.selecAll = false;
           }
@@ -144,7 +152,7 @@
 
       },
       onParamChange (item, val) {
-        item.quantity = val;
+        item.selectedNum = val;
         this.selectOne();
       },
 

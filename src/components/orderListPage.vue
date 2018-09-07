@@ -27,11 +27,11 @@
       </div>
       <div style="display: flex;background: #fafafa">
         <div style="">
-          <img style="width: 120px;height: 120px;margin: 10px" :src="item.photo.smallmodelPhoto" alt="">
+          <img style="width: 120px;height: 120px;margin: 10px" :src="item.photo" alt="">
         </div>
         <div style="padding: 10px">
-          <div style="font-size: .9rem">{{item.description}}[交易快照]</div>
-          <div style="color:#a2a2a2;font-size: .8rem">颜色分类：{{item.selectedColor.label}} 尺寸：{{item.selectedSize.label}}
+          <div style="font-size: .9rem">{{item.name}}[交易快照]</div>
+          <div style="color:#a2a2a2;font-size: .8rem">颜色分类：{{item.selectedColor}} 尺寸：{{item.selectedSize}}
           </div>
           <div style="color:#f7a755;font-size: .8rem">发货时间：卖家承诺72小时</div>
           <div style="display: flex;justify-content: space-between;align-items: center">
@@ -81,7 +81,9 @@
     },
     mounted: function () {
       window.scroll(0, 0);
+
       this.shoppingCartDatas = this.$route.params.shoppingCartData;
+
       var total = 0
       this.shoppingCartDatas.forEach(function (ele) {
         total += ele.selectedNum * ele.price;

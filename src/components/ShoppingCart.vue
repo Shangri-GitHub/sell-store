@@ -163,8 +163,9 @@
          * 2 是确定 跳转到 订单详情页去支付
          */
 
-        this.shoppingCartData.selectedColor = this.selectedColor;
-        this.shoppingCartData.selectedSize = this.selectedSize;
+        this.shoppingCartData.selectedColor = this.selectedColor.label;
+        this.shoppingCartData.selectedSize = this.selectedSize.label;
+        this.shoppingCartData.photo = this.shoppingCartData.photo.smallmodelPhoto;
         this.shoppingCartData.selectedNum = this.selectedNum;
         // 跳转到订单
         if (!this.selectedColor.label || !this.selectedSize.label) {
