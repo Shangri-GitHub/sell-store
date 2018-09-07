@@ -13,7 +13,7 @@
         <div>
           购物车
         </div>
-        <mt-badge size="small" type="error">10</mt-badge>
+        <mt-badge v-if="cartNum>0" size="small" type="error">{{cartNum}}</mt-badge>
       </div>
       <div class="cart-item2" @click="getPopupVisible(1)">
         加入购物车
@@ -80,7 +80,7 @@
 <script>
   import Counter from '../components/base/counter'
   import Chooser from '../components/base/chooser'
-  import { Toast } from 'mint-ui';
+  import {Toast} from 'mint-ui';
   export default {
     name: '',
     components: {
@@ -89,6 +89,7 @@
     },
     data() {
       return {
+        cartNum:0,
         heartFlag: true,
         popupVisible: false,
         popupButtonText: 1,
@@ -121,7 +122,7 @@
         selectedText: "请选择颜色 尺码",
         selectedColor: {},
         selectedSize: {},
-        selectedNum:1
+        selectedNum: 1
 
       }
     },
@@ -134,7 +135,7 @@
           this.selectedColor = val;
         } else if (attr == "size") {
           this.selectedSize = val;
-        }else if(attr == "buyNum"){
+        } else if (attr == "buyNum") {
           this.selectedNum = val;
         }
         // 提示用户选择商品
@@ -157,24 +158,26 @@
         this.popupButtonText = index;
       },
       shoppingCartHandler(id){
-
-//        this.popupVisible = false;
         /**
          * 1 点的购物车，显示加入成功
          * 2 是确定 跳转到 订单详情页去支付
          */
+
+        this.shoppingCartData.selectedColor = this.selectedColor;
+        this.shoppingCartData.selectedSize = this.selectedSize;
+        this.shoppingCartData.selectedNum = this.selectedNum;
+        // 跳转到订单
+        if (!this.selectedColor.label || !this.selectedSize.label) {
+          Toast(this.selectedText);
+          return;
+        }
         if (id == "1") {
-          // TODO 购物车实现
+          // TODO 购物车实现 这里是调用接口
+          this.cartNum++;
+//          console.log(this.shoppingCartData)
+          this.popupVisible = false;
         } else if (id == "2") {
-          // 跳转到订单
-          if(!this.selectedColor.label ||  !this.selectedSize.label){
-            Toast(this.selectedText);
-            return;
-          }
-          this.shoppingCartData.selectedColor = this.selectedColor;
-          this.shoppingCartData.selectedSize = this.selectedSize;
-          this.shoppingCartData.selectedNum = this.selectedNum;
-          this.$router.push({name:"orderlistpage",params:{shoppingCartData:[this.shoppingCartData]}})
+          this.$router.push({name: "orderlistpage", params: {shoppingCartData: [this.shoppingCartData]}})
         }
       }
     },

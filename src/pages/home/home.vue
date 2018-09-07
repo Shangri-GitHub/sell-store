@@ -25,11 +25,11 @@
           "logo": require('../../assets/images/home/logo.png'),
           goodsLists: [{
             id: "1",
-            name: "阿迪达斯三叶草短袖",
+            name: "阿迪达斯2018新夏天男阿尔法椰子上衣",
             price: "100.00",
             marketPrice: "120.00",
             stock: "10",
-            description:"热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
+            description:"热价 阿迪达斯2018新夏天男阿尔法椰子上衣",
             photo:{
               smallmodelPhoto: require('../../assets/images/home/adidas-shirt/small.png'),
               supermodelPhoto:require('../../assets/images/home/adidas-shirt/adidas.jpg'),
@@ -71,44 +71,20 @@
                 src:require('../../assets/images/home/yoga/yoga3.jpg')
               }]
             },
-          }, /*{
-            id: "3",
-            name: "阿迪达斯三叶草短袖",
-            price: "100.88",
-            marketPrice: "120.00",
-            stock: "10",
-            description:"热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
-            photo:{
-              smallmodelPhoto: require('../../assets/images/home/3.png'),
-              supermodelPhoto:"http://peidwdhmp.bkt.clouddn.com/adidas.jpg",
-              detailphoto:[{
-                id:0,
-                name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/T1.jpg"
-              },{
-                id:1,
-                name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/T2.jpg"
-              },{
-                id:2,
-                name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
-              }]
-            },
           }, {
-            id: "4",
-            name: "阿迪达斯三叶草短袖",
-            price: "100.88",
-            marketPrice: "120.00",
+            id: "1",
+            name: "阿迪达斯2018新夏天男阿尔法椰子350白跑步鞋CG4762AC8273 CG4563",
+            price: "458.00",
+            marketPrice: "568.00",
             stock: "10",
-            description:"热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
+            description:"阿迪达斯2018新夏天男阿尔法椰子350白跑步鞋CG4762AC8273 CG4563",
             photo:{
-              smallmodelPhoto: require('../../assets/images/home/4.png'),
-              supermodelPhoto:"http://peidwdhmp.bkt.clouddn.com/adidas.jpg",
+              smallmodelPhoto: require('../../assets/images/home/shoes/shoes.png'),
+              supermodelPhoto:require('../../assets/images/home/adidas-shirt/adidas.jpg'),
               detailphoto:[{
                 id:0,
                 name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/T1.jpg"
+                src: require('../../assets/images/home/adidas-shirt/1.jpg'),
               },{
                 id:1,
                 name:"",
@@ -119,7 +95,31 @@
                 src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
               }]
             },
-          }*/]
+          },{
+            id: "1",
+            name: "阿迪达斯2018新夏天男阿尔法椰子350白跑步鞋CG4762AC8273 CG4563",
+            price: "458.00",
+            marketPrice: "568.00",
+            stock: "10",
+            description:"阿迪达斯2018新夏天男阿尔法椰子350白跑步鞋CG4762AC8273 CG4563",
+            photo:{
+              smallmodelPhoto: require('../../assets/images/home/shoes/slipper.png'),
+              supermodelPhoto:require('../../assets/images/home/adidas-shirt/adidas.jpg'),
+              detailphoto:[{
+                id:0,
+                name:"",
+                src: require('../../assets/images/home/adidas-shirt/1.jpg'),
+              },{
+                id:1,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/T2.jpg"
+              },{
+                id:2,
+                name:"",
+                src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
+              }]
+            },
+          }]
         },
         hot4PanelDatas: {
           "1": require('../../assets/images/hot4Panel/1.jpg'),

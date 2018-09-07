@@ -9,67 +9,37 @@
     </mt-header>
     <div style="top: 40px;position: absolute">
       <!--购物车商品-->
-      <div style="background: white;display: flex;margin: 5px 0">
+      <div style="background: white;display: flex;margin: 5px 0" v-for="item in items">
         <!--复选框-->
         <div style="align-items: center;display: flex">
           <label class="mint-checklist-label">
-          <span class="mint-checkbox">
-            <input type="checkbox" class="mint-checkbox-input" v-model="value"/>
+          <span class="mint-checkbox" @change="selectOne">
+            <input type="checkbox" class="mint-checkbox-input" v-model="item.selectValue"/>
                 <span class="mint-checkbox-core"></span>
           </span>
           </label>
         </div>
         <!--图片-->
         <div style="display:flex;align-items: center">
-          <img class="item" src="">
+          <img class="item" :src="item.photo">
         </div>
         <div style="padding: 10px 10px 10px 0 ">
           <div>
-            中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子
+            {{item.name}}
           </div>
           <div style="color: #8a8a8a;font-size: .8rem">
-            黑色-41码
+            {{item.color + "-" + item.size}}
           </div>
           <div style="display: flex;justify-content: space-between;align-items: center">
-            <div style="color: red;font-size: 1.2rem">¥55<span style="color: #8a8a8a;margin-left: 8px;font-size: .9rem">¥155</span>
+            <div style="color: red;font-size: 1.2rem">¥{{item.price}}<span
+              style="color: #8a8a8a;margin-left: 8px;font-size: .9rem">¥{{item.price * 1.2}}</span>
             </div>
             <div>
-              <counter @on-change="onParamChange('buyNum', $event)"></counter>
+              <counter @on-change="onParamChange(item, $event)"></counter>
             </div>
           </div>
         </div>
       </div>
-      <div style="background: white;display: flex;margin: 5px 0">
-        <!--复选框-->
-        <div style="align-items: center;display: flex">
-          <label class="mint-checklist-label">
-          <span class="mint-checkbox">
-            <input type="checkbox" class="mint-checkbox-input">
-                <span class="mint-checkbox-core"></span>
-          </span>
-          </label>
-        </div>
-        <!--图片-->
-        <div style="display:flex;align-items: center">
-          <img class="item" src="">
-        </div>
-        <div style="padding: 10px 10px 10px 0 ">
-          <div>
-            中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子
-          </div>
-          <div style="color: #8a8a8a;font-size: .8rem">
-            黑色-41码
-          </div>
-          <div style="display: flex;justify-content: space-between;align-items: center">
-            <div style="color: red;font-size: 1.2rem">¥55<span style="color: #8a8a8a;margin-left: 8px;font-size: .9rem">¥155</span>
-            </div>
-            <div>
-              <counter @on-change="onParamChange('buyNum', $event)"></counter>
-            </div>
-          </div>
-        </div>
-      </div>
-
 
       <!--去结算-->
       <mt-popup
@@ -77,20 +47,20 @@
         :modal="false"
         position="bottom">
         <div class="popup">
-          <div style="display: flex;height: 7vh;align-items: center">
+          <div style="display: flex;height: 7vh;align-items: center" @change="selectAll">
             <label class="mint-checklist-label">
-          <span class="mint-checkbox">
-            <input type="checkbox" class="mint-checkbox-input"/>
-                <span class="mint-checkbox-core"></span>
-          </span>
+              <span class="mint-checkbox">
+                 <input type="checkbox" class="mint-checkbox-input" v-model="selecAll"/>
+                 <span class="mint-checkbox-core"></span>
+               </span>
             </label>
             全选
           </div>
           <div style="display: flex;height: 7vh;align-items: center">
             <div v-show="textFlag" style="display: flex;color: red;margin-right: 10px">
-              总计 ¥0
+              总计 ¥{{total}}
             </div>
-            <div class="btn"  @click="shoppingCartHandler">
+            <div class="btn" @click="shoppingCartHandler">
               {{textFlag ? "去结算" : "删除商品"}}
             </div>
           </div>
@@ -113,12 +83,42 @@
     data() {
       return {
         textFlag: true,
-        value: true,
+        selecAll: false,
         popupVisible: true,
+        total: 0,
+        items: [{
+          selectValue: false,
+          photo: require('../../assets/images/home/adidas-shirt/small.png'),
+          name: " 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
+          color: "黑色",
+          size: "XXL",
+          price: "155",
+          quantity: "1"
+        }, {
+          selectValue: false,
+          photo: require('../../assets/images/home/yoga/yogasmall.jpg'),
+          name: " 奥氏 春夏季新款专业健身房背心女性感显瘦跑步运动瑜伽服套装",
+          color: "黑色",
+          size: "S",
+          price: "40",
+          quantity: "1"
+        }]
       }
     },
     props: ['sourceData'],
     methods: {
+      selectOne(){
+        var money = 0;
+        this.items.forEach(function (ele) {
+          if (ele.selectValue) {
+            money += ele.price * ele.quantity;
+          }
+        });
+        this.total = money;
+      },
+      selectAll(){
+        this.items.forEach(ele => ele.selectValue = this.selecAll);
+      },
       edit(){
         this.popupVisible = true;
         this.textFlag = !this.textFlag;
@@ -128,14 +128,24 @@
           this.$router.push("/orderlistpage");
         } else {
           // 删除商品操作
+          var arr = [];
+          this.items.forEach(function (ele) {
+              if (!ele.selectValue) {
+                arr.push(ele);
+              }
+            }
+          );
+          this.items = arr;
+          if (this.items.length == 0) {
+            this.selecAll = false;
+          }
         }
 
 
       },
-      onParamChange (attr, val) {
-//        this[attr] = val
-        // this.getPrice()
-//        console.log(this[attr], attr)
+      onParamChange (item, val) {
+        item.quantity = val;
+        this.selectOne();
       },
 
       back(){
@@ -149,10 +159,12 @@
        */
       if (this.sourceData == 1) {
         document.getElementsByClassName("mint-popup-bottom")[0].style.zIndex = 2000;
-        document.getElementsByClassName("popup")[0].style.height = 7 +"vh";
+        document.getElementsByClassName("popup")[0].style.height = 7 + "vh";
       } else {
         document.getElementsByClassName("mint-popup-bottom")[0].style.zIndex = 0;
       }
+
+
     }
   }
 </script>
