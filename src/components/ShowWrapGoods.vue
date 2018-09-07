@@ -8,7 +8,7 @@
         <div class="goods-items-photo">
           <img class="photo" :src="goodsList.photo.smallmodelPhoto" alt="">
         </div>
-        <div class="goods-items-label">
+        <div class="goods-items-label" style="-webkit-box-orient: vertical">
           {{goodsList.name}}
         </div>
         <div class="goods-items-price">
