@@ -1,6 +1,6 @@
 <template>
     <div>
-      relax-food
+      <div style="width: 100%;text-align: center">敬请开发...</div>
     </div>
 </template>
 

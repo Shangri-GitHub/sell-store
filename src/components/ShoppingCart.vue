@@ -93,10 +93,10 @@
         popupVisible: false,
         popupButtonText: 1,
         colorLists: [{
-          label: '188A-05&12337B-05【礼品套盒】',
+          label: '188A-05&12337B-05【黑色】',
           value: 0
         }, {
-          label: '188A-05&12337B-05【礼品套盒】',
+          label: '188A-05&12337B-05【白色】',
           value: 1
         }, {
           label: '【男款礼品套盒】',

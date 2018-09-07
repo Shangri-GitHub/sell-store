@@ -3,7 +3,7 @@
     <div class="photo">
       <img class="logo" :src="showWrapGoodsDatas.logo" alt="">
     </div>
-    <div style="display: flex;flex-wrap: wrap">
+    <div style="display: flex;flex-wrap: wrap;margin-top: 4px;">
       <div class="goods-items" v-for="goodsList in showWrapGoodsDatas.goodsLists" @click="handleClick(goodsList)">
         <div class="goods-items-photo">
           <img class="photo" :src="goodsList.photo.smallmodelPhoto" alt="">

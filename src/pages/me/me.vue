@@ -8,9 +8,7 @@
         <i style="color: #ffffff;font-size: 3vh" class="fa fa-cog setting" aria-hidden="true"></i>
       </div>
       <div style="display: flex;height:20vh;align-items: center;">
-        <div class="photo">
-          <img src=""/>
-        </div>
+          <img class="photo" src="../../assets/images/discover/red/red.jpg" alt="">
         <div style="color: #ffcb73;right: 10%;position: absolute">
           <img src=""/>
           黄金会员

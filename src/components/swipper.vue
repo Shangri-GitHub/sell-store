@@ -25,10 +25,10 @@
 <style lang="scss" scoped>
   .swipe-wrapper {
     width: 100%;
-    height: 20vh;
+    height: 23vh;
     .item {
       width: 100%;
-      height: 20vh;
+      height: 23vh;
       background-size: 100% 100%;
     }
 

@@ -31,12 +31,12 @@
             stock: "10",
             description:"热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
             photo:{
-              smallmodelPhoto: require('../../assets/images/home/1.png'),
-              supermodelPhoto:"http://peidwdhmp.bkt.clouddn.com/adidas.jpg",
+              smallmodelPhoto: require('../../assets/images/home/adidas-shirt/small.png'),
+              supermodelPhoto:require('../../assets/images/home/adidas-shirt/adidas.jpg'),
               detailphoto:[{
                 id:0,
                 name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/T1.jpg"
+                src: require('../../assets/images/home/adidas-shirt/1.jpg'),
               },{
                 id:1,
                 name:"",
@@ -47,31 +47,31 @@
                 src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
               }]
             },
-          },/* {
+          },{
             id: "2",
-            name: "阿迪达斯三叶草短袖",
-            price: "100.88",
-            marketPrice: "120.00",
+            name: "奥氏 春夏季新款专业健身房背心女性感显瘦跑步运动瑜伽服套装",
+            price: "49.00",
+            marketPrice: "59.00",
             stock: "10",
-            description:"热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
+            description:"奥氏 春夏季新款专业健身房背心女性感显瘦跑步运动瑜伽服套装",
             photo:{
-              smallmodelPhoto: require('../../assets/images/home/2.png'),
-              supermodelPhoto:"http://peidwdhmp.bkt.clouddn.com/adidas.jpg",
+              smallmodelPhoto: require('../../assets/images/home/yoga/yogasmall.jpg'),
+              supermodelPhoto:require('../../assets/images/home/yoga/bigyoga.jpg'),
               detailphoto:[{
                 id:0,
                 name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/T1.jpg"
+                src:require('../../assets/images/home/yoga/yoga1.jpg')
               },{
                 id:1,
                 name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/T2.jpg"
+                src:require('../../assets/images/home/yoga/yoga2.jpg')
               },{
                 id:2,
                 name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
+                src:require('../../assets/images/home/yoga/yoga3.jpg')
               }]
             },
-          }, {
+          }, /*{
             id: "3",
             name: "阿迪达斯三叶草短袖",
             price: "100.88",
@@ -122,15 +122,15 @@
           }*/]
         },
         hot4PanelDatas: {
-          "1": require('../../assets/images/hot4Panel/mac.jpg'),
-          "2": require('../../assets/images/hot4Panel/food.jpg'),
-          "3": require('../../assets/images/hot4Panel/cup.jpg'),
-          "4": require('../../assets/images/hot4Panel/girl.jpg')
+          "1": require('../../assets/images/hot4Panel/1.jpg'),
+          "2": require('../../assets/images/hot4Panel/2.jpg'),
+          "3": require('../../assets/images/hot4Panel/3.jpg'),
+          "4": require('../../assets/images/hot4Panel/4.jpg')
         },
         imgDatas: [
           {
             id: '2',
-            path: require('../../assets/images/banner/clothes.jpg')
+            path: require('../../assets/images/banner/1.jpg')
           }, {
             id: '0',
             path: require('../../assets/images/banner/water.png')
