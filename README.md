@@ -38,6 +38,7 @@ _____
 * html5 css3 内容与装饰
 * font-awesome 引入字体图标
 * 引入scss的loader
+* ly-tab 移动端滑动导航
 
 # 组件库
 * mint-ui element-ui下的一款产品，打理移动端的UI特别好用，提供丰富的组件
@@ -49,6 +50,7 @@ _____
   用户进入App会有两种状态，登录和未登录。当你未登录的时候，你查看的界面是有效的，在必要的时候，会提醒你进行登录，所以，这就会产生状态的切换，
   那我们要怎样来登记这个状态呢？`Localstorage`?可以。但是这里我使用了`vuex`来实现状态的共享，因为我需要保存的状态有太多了，当你的页面超过了十几个，你就可以考虑使用vuex.
 * **发布商品**<br>
+  [七牛云](https://www.qiniu.com)
   用户可以发布制定的商品，这里的核心就是在移动端设备上调用相机，调用相册，现在科技发展的太快，移动设备像素越来越高，随便一张照片2M+，因此解决移动端图片上传问题，把照片传到七牛云服务器上，然后把返回来的路径传给后端，后端把地址保存起来。
 * **删除发布**<br>
   删除发布的难点在于我们怎么去实现绑定在v-for渲染出来的模板上的方法，这么说可能有点绕口，简单的说，怎么知道你就是要删除某个发布。其实，解决这个疑惑，我们就要用好v-for这个指令，它可以有index这个参数来标识当前的索引，而刚刚好，这个标识就是我们用户选中项的索引值，所以，只要我们把
@@ -81,7 +83,77 @@ _____
 * **图片轮播**<br>
   借助mint-ui组件里的mt-swiper,配置一些相关的变量即可轻松实现，赠上[mint-ui](http://mint-ui.github.io/docs/#/)文档
   
+# 入过的坑
 
+**搭建项目完成后，npm run build 页面无内容**
+```
+build: {
+    // Template for index.html
+    index: path.resolve(__dirname, '../dist/index.html'),
+
+    // Paths
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: 'static',
+    assetsPublicPath: './', //此处修改成'./'
+}
+```
+**Vue mint搭建的项目引入fontawesome不显示字体图标解决办法？
+
+在webpack.prod.conf中设置,把原来的new ExtractTextPlugin()注释掉
+```
+   // 不需要提到static/css 中
+    //new ExtractTextPlugin(utils.assetsPath('css/[name].  [contenthash].css')),  
+    new ExtractTextPlugin('[name].[contenthash].css'),
+```
+**使用less，这个真尼玛的坑，各种试
+```
+npm install node-sass sass-loader scss scss-loader --save-dev
++ node-sass@4.9.3
++ sass-loader@7.1.0
++ scss@0.2.4
++ scss-loader@0.0.1
+```
+
+**vue.js+webpack 为 img src 赋值的路径问题？
+```
+data () {
+    return {
+        img: require('path/to/your/source')
+    }
+}
+
+然后在template中
+
+<img :src="img" />
+```
+
+
+* **跨域操作**<br>
+  在实现搜索功能的时候，我企图调用闲鱼官网的接口来获取数据，但是很不幸，他告诉我跨域。但是没关系，CORS来应付，我们只需在后端领域里配置一下响应头就行，`header("Access-Control-Allow-Origin：*")` 当然这种方法必须开启cors才能成功。还有另外一种方法就是在config文件夹的index.js
+  中设置代理来解决跨域问题。形如：
+  ```
+  proxyTable: {
+        '/api': {
+              target: 'https://s.2.taobao.com/list/list.htm?q=',
+              changeOrigin: true,
+              pathRewrite: { //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
+               '^/api': ''
+              }
+        }
+   ```
+ * **设备适配**<br>
+  市面上充斥着各式各样的手机，设备适配问题成了web开发的一个大挑战，现在也提出了各种解决方案，我采用的是css3的rem单位来解决适配问题，rem就是将根节点html的font-size的值作为整个页面的基准尺寸，默认html的font-size是16px，即1rem=16px，在未来的css样式里将你所有的px都按这样的比例换算成rem(字体的大小除外)，如果选择了这种方式，请rem一路到底，不然页面就会炸。
+ * **vue组件通信**<br>
+  vue由许多的组件组成，那么各组件之间的通信就成了一个问题。vue中组件之间传值有这么几种方式。如果是页面较少，就可以考虑使用props传值，父传子，子传孙，一直传下去···但是，使用Props，会有些麻烦，状态的改变要往回传，页面一多就有些烦人。所以如果你的页面超过了10个以上，就要考虑vuex了，vuex就是专门为vue.js开发的状态管理模式，能够实现组件之间的组件共享。
+ * **vue组件通信**<br>
+  vue由许多的组件组成，那么各组件之间的通信就成了一个问题。vue中组件之间传值有这么几种方式。如果是页面较少，就可以考虑使用props传值，父传子，子传孙，一直传下去···但是，使用Props，会有些麻烦，状态的改变要往回传，页面一多就有些烦人。所以如果你的页面超过了10个以上，就要考虑vuex了，vuex就是专门为vue.js开发的状态管理模式，能够实现组件之间的组件共享。 
+  
+  
+# 总结<br>
+   未来不会停止这个项目，会保持更新，逐步细化完善更多功能，如果有帮助可以fork和star,希望聆听你们的建议和更正~<br>
+ 
+ 
+ 
 # sell-store
 
 > a mint vue app project
