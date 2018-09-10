@@ -1,11 +1,11 @@
-# vue全家桶手撸闲鱼移动端App
+# vue全家桶搭建商城移动端App
 ### mint-ui element-ui下的一款产品，打理移动端的UI特别好用，提供丰富的组件
 ### 官方文档介绍：Vue.js，一套渐进式的JavaScript框架，拥有简单小巧的核心，却足以应付任何规模的应用。因此，想通过仿闲鱼移动端App这个项目来感受vue带来的灵活与轻盈。
 话不多说，来看看效果吧！
 
 **首页** <br>
 
-![Image text](https://github.com/Shangri-GitHub/sell-store/tree/master/doc/home.png) <br>
+![](https://github.com/Shangri-GitHub/sell-store/doc/home.png) <br>
  
 **购买闲置**<br>
 
