@@ -21,7 +21,7 @@
 
 ### 在线预览
 _____
-**线上体验**： [demo](http://hanxing.freekj.men) PC浏览器打开请切换成移动端模式效果更佳<br>
+**线上体验**： [商城首页](http://hanxing.freekj.men) PC浏览器打开请切换成移动端模式效果更佳<br>
 **源码**： [源码](https://github.com/Shangri-GitHub/sell-store/) <br>
 
 
