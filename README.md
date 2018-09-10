@@ -9,7 +9,7 @@
  
 **发现**<br>
 
-![](https://github.com/Shangri-GitHub/sell-store/blob/master/doc/discover.png) <br>
+![](https://github.com/Shangri-GitHub/sell-store/blob/master/doc/discover.gif) <br>
 
 **购物车**<br>
 
