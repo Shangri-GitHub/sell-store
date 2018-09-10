@@ -5,7 +5,7 @@
 
 **首页** <br>
 
-![](https://github.com/Shangri-GitHub/sell-store/doc/home.png) <br>
+![](https://github.com/Shangri-GitHub/sell-store/blob/master/doc/cart.png) <br>
  
 **购买闲置**<br>
 
