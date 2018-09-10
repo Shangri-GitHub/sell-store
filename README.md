@@ -5,19 +5,19 @@
 
 **首页** <br>
 
-![](https://github.com/Shangri-GitHub/sell-store/blob/master/doc/cart.png) <br>
+![](https://github.com/Shangri-GitHub/sell-store/blob/master/doc/home.png) <br>
  
-**购买闲置**<br>
+**发现**<br>
 
-![Image text](https://github.com/Sukura7/vue-ali-xianyu/blob/master/demoimg/buy.gif) <br>
+![](https://github.com/Shangri-GitHub/sell-store/blob/master/doc/discover.png) <br>
 
-**发布闲置**<br>
+**购物车**<br>
 
-![Image text](https://github.com/Sukura7/vue-ali-xianyu/blob/master/demoimg/fabu.gif) <br>
+![Image text](https://github.com/Sukura7/vue-ali-xianyu/blob/master/demoimg/cart.png) <br>
 
-**搜索功能**<br>
+**我的**<br>
 
-![Image text](https://github.com/Sukura7/vue-ali-xianyu/blob/master/demoimg/search.gif) <br>
+![Image text](https://github.com/Sukura7/vue-ali-xianyu/blob/master/demoimg/me.png) <br>
 
 
 
