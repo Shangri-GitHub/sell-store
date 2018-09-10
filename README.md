@@ -13,12 +13,16 @@
 
 **购物车**<br>
 
-![Image text](https://github.com/Sukura7/vue-ali-xianyu/blob/master/demoimg/cart.png) <br>
+![](https://github.com/Shangri-GitHub/sell-store/blob/master/doc/cart.png) <br>
 
 **我的**<br>
 
-![Image text](https://github.com/Sukura7/vue-ali-xianyu/blob/master/demoimg/me.png) <br>
+![](https://github.com/Shangri-GitHub/sell-store/blob/master/doc/me.png) <br>
 
+### 在线预览
+_____
+**线上体验**： [demo](http://hanxing.freekj.men) PC浏览器打开请切换成移动端模式效果更佳<br>
+**源码**： [源码](https://github.com/Shangri-GitHub/sell-store/) <br>
 
 
 
