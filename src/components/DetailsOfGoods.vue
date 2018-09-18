@@ -11,17 +11,17 @@
     </mt-header>
     <!--详情-->
     <div class="show-big-photo">
-      <img class="item" :src="detailsOfGoodslistData.photo.supermodelPhoto">
+      <img class="item" :src="item.url" v-for="item in detailsOfGoodslistData.superModelPhoto">
     </div>
     <!--价格-->
     <div style="width: 96%;margin:0 auto">
       <div class="detail-price">
-        <div style="font-size: 1.8rem">¥{{detailsOfGoodslistData.price}}</div>
+        <div style="font-size: 1.8rem">¥{{detailsOfGoodslistData.productPrice * detailsOfGoodslistData.productRate}}</div>
         <div class="sale">
           <span>优惠促销</span>
         </div>
         <div class="vip">
-          ¥{{detailsOfGoodslistData.marketPrice}}
+          ¥{{detailsOfGoodslistData.productPrice}}
           <span class="sign"><span style="color: white">市场价</span></span>
         </div>
       </div>
@@ -29,11 +29,11 @@
       <div class="couponing"><i class="fa fa-archive" aria-hidden="true"></i>您有一张20元的优惠券，下单即可使用</div>
       <!--描述-->
       <div class="describe">
-        {{detailsOfGoodslistData.description}}
+        {{detailsOfGoodslistData.productDescription}}
       </div>
       <!--图片-->
       <div class="photo">
-        <img :src="item.src" alt="" v-for="item in detailsOfGoodslistData.photo.detailphoto">
+        <img :src="item.url" alt="" v-for="item in detailsOfGoodslistData.detailPhoto">
       </div>
       <footer>
         <div style="">温馨提示</div>
@@ -62,12 +62,7 @@
     },
     data() {
       return {
-        detailsOfGoodslistData: {
-          photo: {
-            supermodelPhoto: "",
-            detailphoto: ""
-          }
-        },
+        detailsOfGoodslistData: {},
       }
     },
     methods: {
@@ -82,68 +77,15 @@
 
     },
     beforeMount: function () {
-
-
-      // TODO 根据商品的id查看详情
-
-      var goodsList = {
-        "1": {
-          id: "1",
-          name: "阿迪达斯三叶草短袖",
-          price: "100.00",
-          marketPrice: "120.00",
-          stock: "10",
-          description: "热价 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
-          photo: {
-            smallmodelPhoto: require('../assets/images/home/adidas-shirt/small.png'),
-            supermodelPhoto: require('../assets/images/home/adidas-shirt/adidas.jpg'),
-            detailphoto: [{
-              id: 0,
-              name: "",
-              src: require('../assets/images/home/adidas-shirt/1.jpg'),
-            }, {
-              id: 1,
-              name: "",
-              src: require('../assets/images/home/adidas-shirt/2.jpg'),
-            }, {
-              id: 2,
-              name: "",
-              src: require('../assets/images/home/adidas-shirt/bottom.png')
-            }]
-          }
-        },
-        "2": {
-          id: "2",
-          name: "奥氏 春夏季新款专业健身房背心女性感显瘦跑步运动瑜伽服套装",
-          price: "49.00",
-          marketPrice: "59.00",
-          stock: "10",
-          description: "奥氏 春夏季新款专业健身房背心女性感显瘦跑步运动瑜伽服套装",
-          photo: {
-            smallmodelPhoto: require('../assets/images/home/yoga/yogasmall.jpg'),
-            supermodelPhoto: require('../assets/images/home/yoga/bigyoga.jpg'),
-            detailphoto: [{
-              id: 0,
-              name: "",
-              src: require('../assets/images/home/yoga/yoga1.jpg')
-            }, {
-              id: 1,
-              name: "",
-              src: require('../assets/images/home/yoga/yoga2.jpg')
-            }, {
-              id: 2,
-              name: "",
-              src: require('../assets/images/home/yoga/yoga3.jpg')
-            },{
-              id: 2,
-              name: "",
-              src: require('../assets/images/home/adidas-shirt/bottom.png')
-            }]
-          }
-        }
-      }
-      this.detailsOfGoodslistData = goodsList[this.$route.params.id];
-
+      var that = this;
+      /**
+       * 根据商品的id查看详情
+       */
+      that.$http.post('seller/product/findProductById', {
+        productId:this.$route.params.id,
+      }).then(function (res) {
+        that.detailsOfGoodslistData = res.data.data;
+      })
     }
   }
 </script>
@@ -162,7 +104,6 @@
     }
     .photo img {
       width: 100%;
-      background: wheat
     }
     .describe {
       font-weight: 700;
@@ -197,7 +138,6 @@
         .sign {
           width: 100px;
           height: 20px;
-          background: #cca354;
         }
       }
       .time {

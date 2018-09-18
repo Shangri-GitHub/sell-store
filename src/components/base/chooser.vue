@@ -1,7 +1,7 @@
 <template>
   <div class="chooser">
     <div class="color"
-         v-for="(item, index) in selections"
+         v-for="(item, index) in selectionsData"
          @click="chosenSelection(index)"
          :title="item.label"
          :class="{active:index === nowIndex}">
@@ -12,18 +12,13 @@
 
 <script>
   export default {
-    props: {
-      selections: {
-        type: Array,
-        default: [{
-          label: 'test',
-          value: 0
-        }]
-      }
-    },
+
+    props: ['selections'],
+
     data () {
       return {
-        nowIndex: ""
+        nowIndex: "",
+        selectionsData:[]
       }
     },
     methods: {
@@ -31,15 +26,27 @@
         this.nowIndex = index
         this.$emit('on-change', this.selections[index])
       }
+    },
+    mounted: function () {
+      var arr = [];
+      this.selections.forEach(function (ele, index) {
+        var item = {
+          label: ele,
+          value: index
+        }
+        arr.push(item);
+      })
+      this.selectionsData = arr;
     }
   }
 </script>
 
 <style scoped>
-  .chooser{
+  .chooser {
     display: flex;
     flex-wrap: wrap;
   }
+
   .color {
     color: #000000;
     border: 1px solid #000000;

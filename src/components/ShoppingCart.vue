@@ -26,32 +26,32 @@
       position="bottom">
       <div class="popup">
         <div style="display: flex;border-bottom: 1px solid #efeeee;height: 16vh">
-          <img class="popup-photo" :src="shoppingCartData.photo.smallmodelPhoto"/>
+          <img class="popup-photo" :src="item.url" v-for="item in shoppingCartData.smallModelPhoto"/>
           <div>
-            <div class="pupop-price"> ¥ {{shoppingCartData.price}}</div>
-            <div class="pupop-store">库存 {{shoppingCartData.stock}}件</div>
+            <div class="pupop-price"> ¥ {{shoppingCartData.productPrice * shoppingCartData.productRate}}</div>
+            <div class="pupop-store">库存 {{shoppingCartData.productStock}}件</div>
             <div class="pupop-select">{{selectedText}}</div>
             <div><i @click="popupVisible=false" class="fa fa-times close" aria-hidden="true"></i></div>
           </div>
         </div>
-        <div v-if="colorLists.length>0" style="border-bottom: 1px solid #f5f5f5;">
+        <div v-if="shoppingCartData.productColor" style="border-bottom: 1px solid #f5f5f5;">
           <div style="padding: 10px;color: #6b6b6b">
             颜色
           </div>
           <div>
             <chooser
-              :selections="colorLists"
+              :selections="shoppingCartData.productColor"
               @on-change="onParamChange('color', $event)">
             </chooser>
           </div>
         </div>
-        <div v-if="sizeLists.length>0" style="border-bottom: 1px solid #f5f5f5;">
+        <div v-if="shoppingCartData.productSize" style="border-bottom: 1px solid #f5f5f5;">
           <div style="padding: 10px;color: #6b6b6b">
             尺码
           </div>
           <div>
             <chooser
-              :selections="sizeLists"
+              :selections="shoppingCartData.productSize"
               @on-change="onParamChange('size', $event)">
             </chooser>
           </div>
@@ -89,39 +89,13 @@
     },
     data() {
       return {
-        cartNum:0,
+        cartNum: 0,
         heartFlag: true,
         popupVisible: false,
         popupButtonText: 1,
-        colorLists: [{
-          label: '188A-05&12337B-05【黑色】',
-          value: 0
-        }, {
-          label: '188A-05&12337B-05【白色】',
-          value: 1
-        }, {
-          label: '【男款礼品套盒】',
-          value: 2
-        }, {
-          label: '【女款礼品套盒】',
-          value: 3
-        }],
-        sizeLists: [{
-          label: 'S',
-          value: 0
-        }, {
-          label: 'X',
-          value: 1
-        }, {
-          label: 'XL',
-          value: 2
-        }, {
-          label: 'XXL',
-          value: 3
-        }],
         selectedText: "请选择颜色 尺码",
-        selectedColor: {},
-        selectedSize: {},
+        selectedColor: "",
+        selectedSize: "",
         selectedNum: 1
 
       }
@@ -139,12 +113,12 @@
           this.selectedNum = val;
         }
         // 提示用户选择商品
-        if (this.selectedColor.label && !this.selectedSize.label) {
-          this.selectedText = "请选择尺码";
-        } else if (!this.selectedColor.label && this.selectedSize.label) {
-          this.selectedText = "请选择颜色";
-        } else if (this.selectedColor.label && this.selectedSize.label) {
-          this.selectedText = "已选择" + this.selectedColor.label + " " + this.selectedSize.label;
+        if (this.selectedColor && !this.selectedSize) {
+          this.selectedText = "请选择: 尺码";
+        } else if (!this.selectedColor && this.selectedSize) {
+          this.selectedText = "请选择: 颜色";
+        } else if (this.selectedColor && this.selectedSize) {
+          this.selectedText = "已选择: " + this.selectedColor + " " + this.selectedSize;
         } else {
           this.selectedText = "请选择颜色 尺码";
         }
@@ -162,20 +136,17 @@
          * 1 点的购物车，显示加入成功
          * 2 是确定 跳转到 订单详情页去支付
          */
-
-        this.shoppingCartData.selectedColor = this.selectedColor.label;
-        this.shoppingCartData.selectedSize = this.selectedSize.label;
-        this.shoppingCartData.photo = this.shoppingCartData.photo.smallmodelPhoto;
+        this.shoppingCartData.selectedColor = this.selectedColor;
+        this.shoppingCartData.selectedSize = this.selectedSize;
         this.shoppingCartData.selectedNum = this.selectedNum;
         // 跳转到订单
-        if (!this.selectedColor.label || !this.selectedSize.label) {
+        if (!this.selectedColor || !this.selectedSize) {
           Toast(this.selectedText);
           return;
         }
         if (id == "1") {
           // TODO 购物车实现 这里是调用接口
           this.cartNum++;
-//          console.log(this.shoppingCartData)
           this.popupVisible = false;
         } else if (id == "2") {
           this.$router.push({name: "orderlistpage", params: {shoppingCartData: [this.shoppingCartData]}})
@@ -211,7 +182,7 @@
     .popup-photo {
       width: 30vw;
       height: 30vw;
-      background: red;
+      border: 2px solid #dddddd;
       position: relative;
       top: -6vh;
       left: 4vh;

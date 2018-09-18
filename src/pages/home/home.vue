@@ -12,6 +12,7 @@
   import Swipper from '../../components/swipper.vue'
   import Hot4Panel from '../../components/Hot4Panel.vue'
   import ShowWrapGoods from '../../components/ShowWrapGoods.vue'
+  import qs from 'qs';
   export default {
     name: '',
     components: {
@@ -23,103 +24,7 @@
       return {
         showWrapGoodsDatas: {
           "logo": require('../../assets/images/home/logo.png'),
-          goodsLists: [{
-            id: "1",
-            name: "阿迪达斯2018新夏天男阿尔法椰子上衣",
-            price: "100.00",
-            marketPrice: "120.00",
-            stock: "10",
-            description:"热价 阿迪达斯2018新夏天男阿尔法椰子上衣",
-            photo:{
-              smallmodelPhoto: require('../../assets/images/home/adidas-shirt/small.png'),
-              supermodelPhoto:require('../../assets/images/home/adidas-shirt/adidas.jpg'),
-              detailphoto:[{
-                id:0,
-                name:"",
-                src: require('../../assets/images/home/adidas-shirt/1.jpg'),
-              },{
-                id:1,
-                name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/T2.jpg"
-              },{
-                id:2,
-                name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
-              }]
-            },
-          },{
-            id: "2",
-            name: "奥氏 春夏季新款专业健身房背心女性感显瘦跑步运动瑜伽服套装",
-            price: "49.00",
-            marketPrice: "59.00",
-            stock: "10",
-            description:"奥氏 春夏季新款专业健身房背心女性感显瘦跑步运动瑜伽服套装",
-            photo:{
-              smallmodelPhoto: require('../../assets/images/home/yoga/yogasmall.jpg'),
-              supermodelPhoto:require('../../assets/images/home/yoga/bigyoga.jpg'),
-              detailphoto:[{
-                id:0,
-                name:"",
-                src:require('../../assets/images/home/yoga/yoga1.jpg')
-              },{
-                id:1,
-                name:"",
-                src:require('../../assets/images/home/yoga/yoga2.jpg')
-              },{
-                id:2,
-                name:"",
-                src:require('../../assets/images/home/yoga/yoga3.jpg')
-              }]
-            },
-          }, {
-            id: "1",
-            name: "阿迪达斯2018新夏天男阿尔法椰子350白跑步鞋CG4762AC8273 CG4563",
-            price: "458.00",
-            marketPrice: "568.00",
-            stock: "10",
-            description:"阿迪达斯2018新夏天男阿尔法椰子350白跑步鞋CG4762AC8273 CG4563",
-            photo:{
-              smallmodelPhoto: require('../../assets/images/home/shoes/shoes.png'),
-              supermodelPhoto:require('../../assets/images/home/adidas-shirt/adidas.jpg'),
-              detailphoto:[{
-                id:0,
-                name:"",
-                src: require('../../assets/images/home/adidas-shirt/1.jpg'),
-              },{
-                id:1,
-                name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/T2.jpg"
-              },{
-                id:2,
-                name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
-              }]
-            },
-          },{
-            id: "1",
-            name: "阿迪达斯2018新夏天男阿尔法椰子350白跑步鞋CG4762AC8273 CG4563",
-            price: "458.00",
-            marketPrice: "568.00",
-            stock: "10",
-            description:"阿迪达斯2018新夏天男阿尔法椰子350白跑步鞋CG4762AC8273 CG4563",
-            photo:{
-              smallmodelPhoto: require('../../assets/images/home/shoes/slipper.png'),
-              supermodelPhoto:require('../../assets/images/home/adidas-shirt/adidas.jpg'),
-              detailphoto:[{
-                id:0,
-                name:"",
-                src: require('../../assets/images/home/adidas-shirt/1.jpg'),
-              },{
-                id:1,
-                name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/T2.jpg"
-              },{
-                id:2,
-                name:"",
-                src:"http://peidwdhmp.bkt.clouddn.com/bottom.png"
-              }]
-            },
-          }]
+          goodsLists:[],
         },
         hot4PanelDatas: {
           "1": require('../../assets/images/hot4Panel/1.jpg'),
@@ -143,16 +48,15 @@
     methods: {},
 
     mounted: function () {
-//      console.log(1)
-    },
-    created:function () {
-      // 加载视图前让nav-tab显示出来，离开隐藏标题
-//      this.$parent.isShow = true;
-    },
-    destroyed: function () {
-    },
+      var that = this;
+      /**
+       * 获取首页商品模块
+       */
+      that.$http.get('buyer/product/list', {}).then(function (res) {
+        that.showWrapGoodsDatas.goodsLists = res.data.data[0].products;
+      })
 
-
+    }
   }
 </script>
 <style lang="scss" scoped>

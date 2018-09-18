@@ -8,11 +8,12 @@
         cancel-text="取消"
         placeholder="搜索">
       </mt-search>
-      <ly-tab
-        v-model="selectedId"
-        :items="items"
-        @change="handleChange"
-        :options="options">
+
+      <ly-tab v-if="items.length>0"
+              v-model="selectedId"
+              :items="items"
+              @change="handleChange"
+              :options="options">
       </ly-tab>
     </div>
     <router-view class="view"></router-view>
@@ -45,32 +46,7 @@
           'Other'
         ],
         selectedId: 0,
-        items: [
-          {
-            id: "/navbar/home",
-            label: '首页'
-          },
-          {
-            id: "/navbar/clothes",
-            label: '服饰箱包'
-          },
-          {
-            id: "/navbar/relaxfood",
-            label: '休闲零食'
-          },
-          {
-            id: "/navbar",
-            label: '水果生鲜'
-          },
-          {
-            id: "/navbar",
-            label: '百货家居'
-          },
-          {
-            id: "/navbar",
-            label: '数码家电'
-          }
-        ],
+        items: [],
         options: {
           activeColor: '#ffffff',
         },
@@ -79,23 +55,29 @@
     methods: {
       handleChange(item, index){
         this.$store.state.index = index;
-        this.$router.push(item.id);
+        this.$router.push(item.path);
       }
     },
     beforeMount: function () {
       this.selectedId = this.$store.state.index;
     },
+    mounted: function () {
+      var that = this;
+      that.$http.get('buyer/product/list', {}).then(function (res) {
+        res.data.data.forEach(function (ele) {
+          var item = {
+            path: ele.path,
+            label: ele.name
+          }
+          that.items.push(item);
+        })
+      })
+    },
     computed: {
       filterResult() {
         return this.defaultResult.filter(value => new RegExp(this.value, 'i').test(value));
       }
-    },
-    updated:function () {
-
-
-
     }
-
   }
 </script>
 
@@ -105,11 +87,15 @@
     position: fixed;
     z-index: 1;
   }
-  .ly-tab{
-    background-color:#000000;
+
+  .ly-tab {
+    background-color: #000000;
     color: #ffffff;
   }
-  .view{
-    position: relative;top: 14vh;margin-bottom: 8vh;
+
+  .view {
+    position: relative;
+    top: 14vh;
+    margin-bottom: 8vh;
   }
 </style>

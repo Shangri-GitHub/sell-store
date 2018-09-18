@@ -9,13 +9,15 @@ import App from './App'
 import router from './router'
 import LyTab from 'ly-tab'
 import './css/my-mint.scss';
+import utils from './utils/Utils'
 import store from './store/store'
 
 
+Vue.prototype.$http = utils.httpInit();
+Vue.prototype.$WebSocket = utils.webSocketInit;
 Vue.config.productionTip = false
 Vue.use(MintUI)
 Vue.use(LyTab)
-
 
 
 new Vue({

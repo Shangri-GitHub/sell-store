@@ -97,7 +97,7 @@
           selectedNum: "1"
         }, {
           selectValue: false,
-          photo: require('../../assets/images/home/yoga/yogasmall.jpg'),
+          photo: require('../../assets/images/home/yoga/yogasmall.jpeg'),
           name: " 奥氏 春夏季新款专业健身房背心女性感显瘦跑步运动瑜伽服套装",
           selectedColor: "黑色",
           selectedSize: "S",

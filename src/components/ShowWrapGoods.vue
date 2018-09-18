@@ -6,13 +6,13 @@
     <div style="display: flex;flex-wrap: wrap;margin-top: 4px;">
       <div class="goods-items" v-for="goodsList in showWrapGoodsDatas.goodsLists" @click="handleClick(goodsList)">
         <div class="goods-items-photo">
-          <img class="photo" :src="goodsList.photo.smallmodelPhoto" alt="">
+          <img class="photo" :src="item.url" alt="" v-for="item in goodsList.smallModelPhoto">
         </div>
         <div class="goods-items-label" style="-webkit-box-orient: vertical">
           {{goodsList.name}}
         </div>
         <div class="goods-items-price">
-          ¥{{goodsList.price}} <span class="text-through">¥{{goodsList.marketPrice}}</span>
+          ¥{{goodsList.price * goodsList.rate}} <span class="text-through">¥{{goodsList.price}}</span>
         </div>
       </div>
     </div>
@@ -27,12 +27,11 @@
     },
     methods: {
       handleClick(goodsList){
-        this.$router.push({name:"detailsofgoods",params:{id:goodsList.id}});
+        this.$router.push({name: "detailsofgoods", params: {id: goodsList.id}});
       }
     },
     props: ['showWrapGoodsDatas'],
     mounted: function () {
-
     }
   }
 </script>
