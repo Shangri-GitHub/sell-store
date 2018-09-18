@@ -13,7 +13,7 @@
         <div>
           购物车
         </div>
-        <mt-badge v-if="cartNum>0" size="small" type="error">{{cartNum}}</mt-badge>
+        <mt-badge v-if="cartNums.length>0" size="small" type="error">{{cartNums.length}}</mt-badge>
       </div>
       <div class="cart-item2" @click="getPopupVisible(1)">
         加入购物车
@@ -89,7 +89,7 @@
     },
     data() {
       return {
-        cartNum: 0,
+        cartNum:0,
         heartFlag: true,
         popupVisible: false,
         popupButtonText: 1,
@@ -145,17 +145,27 @@
           return;
         }
         if (id == "1") {
-          // TODO 购物车实现 这里是调用接口
-          this.cartNum++;
+          var params = {
+            productId: this.shoppingCartData.productId,
+            productQuantity: this.selectedNum,
+            productColor: this.selectedColor,
+            productSize: this.selectedSize
+          }
+          var that = this;
+          that.$http.post('seller/cart/save', params).then(function (res) {
+            that.$emit('showCartNums', null)
+
+          })
           this.popupVisible = false;
         } else if (id == "2") {
           this.$router.push({name: "orderlistpage", params: {shoppingCartData: [this.shoppingCartData]}})
         }
       }
     },
-    props: ['shoppingCartData'],
+    props: ['cartNums','shoppingCartData'],
     mounted: function () {
-    }
+//      this.cartNum = this.cartNums;
+    },
   }
 </script>
 

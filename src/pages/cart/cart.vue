@@ -21,21 +21,21 @@
         </div>
         <!--图片-->
         <div style="display:flex;align-items: center">
-          <img class="item" :src="item.photo">
+          <img class="item" :src="photo.url" v-for="photo in item.smallModelPhoto">
         </div>
         <div style="padding: 10px 10px 10px 0 ">
           <div>
-            {{item.name}}
+            {{item.productName}}
           </div>
           <div style="color: #8a8a8a;font-size: .8rem">
-            {{item.selectedColor + "-" + item.selectedSize}}
+            {{item.productColor + "-" + item.productSize}}
           </div>
           <div style="display: flex;justify-content: space-between;align-items: center">
             <div style="color: red;font-size: 1.2rem">¥{{item.price}}<span
-              style="color: #8a8a8a;margin-left: 8px;font-size: .9rem">¥{{item.price * 1.2}}</span>
+              style="color: #8a8a8a;margin-left: 8px;font-size: .9rem">¥{{item.productPrice * item.productRate}}</span>
             </div>
             <div>
-              <counter @on-change="onParamChange(item, $event)"></counter>
+              <counter :numbers="item.productQuantity" @on-change="onParamChange(item, $event)"></counter>
             </div>
           </div>
         </div>
@@ -87,35 +87,30 @@
         selecAll: false,
         popupVisible: true,
         total: 0,
-        items: [{
-          selectValue: false,
-          photo: require('../../assets/images/home/adidas-shirt/small.png'),
-          name: " 中长款格子衬衫连衣裙女秋装2018新款长秋suykol少女裙子",
-          selectedColor: "黑色",
-          selectedSize: "XXL",
-          price: "155",
-          selectedNum: "1"
-        }, {
-          selectValue: false,
-          photo: require('../../assets/images/home/yoga/yogasmall.jpeg'),
-          name: " 奥氏 春夏季新款专业健身房背心女性感显瘦跑步运动瑜伽服套装",
-          selectedColor: "黑色",
-          selectedSize: "S",
-          price: "40",
-          selectedNum: "1"
-        }]
+        items: []
       }
     },
     props: ['sourceData'],
     methods: {
+      getShappingCartList  () {
+        // 购物车页面查询接口
+        var that = this;
+        that.$http.get('seller/cart/list', {}).then(function (res) {
+          that.items = res.data.data;
+          that.selectOne();
+          if (that.items.length == 0) {
+            that.selecAll = false;
+          }
+        })
+      },
       selectOne(){
         var money = 0;
         this.items.forEach(function (ele) {
           if (ele.selectValue) {
-            money += ele.price * ele.selectedNum;
+            money += ele.productPrice * ele.productQuantity * ele.productRate;
           }
         });
-        this.total = money;
+        this.total = money.toFixed(2);
       },
       selectAll(){
         this.items.forEach(ele => ele.selectValue = this.selecAll);
@@ -126,33 +121,32 @@
         this.textFlag = !this.textFlag;
       },
       shoppingCartHandler(){
-        var arr = [],arr1=[];
+        // arr 未选中 arr1 已选中
+        var arr = [], arr1 = [];
         this.items.forEach(function (ele) {
             if (!ele.selectValue) {
               arr.push(ele);
-            }else {
+            } else {
               arr1.push(ele);
             }
           }
         );
-        this.items = arr;
         if (this.textFlag) {
-          if(arr1.length==0){
+          if (arr1.length == 0) {
             Toast("请选择需要结算的商品");
             return
           }
           this.$router.push({name: "orderlistpage", params: {shoppingCartData: arr1}})
         } else {
           // 删除商品操作
-          if (this.items.length == 0) {
-            this.selecAll = false;
-          }
+          var that = this;
+          that.$http.post('seller/cart/deleteByCartId', arr1).then(function (res) {
+            that.getShappingCartList();
+          })
         }
-
-
       },
       onParamChange (item, val) {
-        item.selectedNum = val;
+        item.productQuantity = val;
         this.selectOne();
       },
 
@@ -171,8 +165,7 @@
       } else {
         document.getElementsByClassName("mint-popup-bottom")[0].style.zIndex = 0;
       }
-
-
+      this.getShappingCartList();
     }
   }
 </script>

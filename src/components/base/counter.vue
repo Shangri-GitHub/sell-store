@@ -18,11 +18,15 @@
       min: {
         type: Number,
         default: 1
+      },
+      numbers:{
+        type: Number,
+        default: 1
       }
     },
     data () {
       return {
-        number: this.min
+        number: this.numbers
       }
     },
     watch: {
@@ -56,7 +60,7 @@
         }
         this.number ++
       }
-    }
+    },
   }
 </script>
 

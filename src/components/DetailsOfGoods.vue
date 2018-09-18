@@ -16,7 +16,8 @@
     <!--价格-->
     <div style="width: 96%;margin:0 auto">
       <div class="detail-price">
-        <div style="font-size: 1.8rem">¥{{detailsOfGoodslistData.productPrice * detailsOfGoodslistData.productRate}}</div>
+        <div style="font-size: 1.8rem">¥{{detailsOfGoodslistData.productPrice * detailsOfGoodslistData.productRate}}
+        </div>
         <div class="sale">
           <span>优惠促销</span>
         </div>
@@ -49,7 +50,7 @@
         </p>
       </footer>
     </div>
-    <shopping-cart :shoppingCartData=detailsOfGoodslistData></shopping-cart>
+    <shopping-cart :cartNums="cartNum" :shoppingCartData="detailsOfGoodslistData" @showCartNums = "showCartNums"></shopping-cart>
   </div>
 </template>
 
@@ -58,34 +59,49 @@
   export default {
     name: '',
     components: {
-      ShoppingCart
+      ShoppingCart,
     },
     data() {
       return {
+        cartNum:{},
         detailsOfGoodslistData: {},
       }
     },
     methods: {
       back(){
         this.$router.back();//返回上一层
+      },
+      showCartNums(){
+        /**
+         * 出现的问题，改变字组件的值，报错props里的值已经声明过，因为是双向绑定的
+         * 子组件呼唤父组件重新传值
+         */
+         var that = this;
+        that.$http.get('seller/cart/list', {}).then(function (res) {
+          that.cartNum= res.data.data;
+        })
       }
     },
     mounted: function () {
       // 跳转到页面的顶端
       window.scroll(0, 0);
-      // 详情参数
-
     },
     beforeMount: function () {
       var that = this;
+
+      // TODO 购物车的传值
+      this.showCartNums();
       /**
        * 根据商品的id查看详情
        */
+      // 购物车的数目
       that.$http.post('seller/product/findProductById', {
-        productId:this.$route.params.id,
+        productId: this.$route.params.id,
       }).then(function (res) {
         that.detailsOfGoodslistData = res.data.data;
       })
+
+
     }
   }
 </script>
