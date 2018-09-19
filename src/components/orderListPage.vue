@@ -11,7 +11,7 @@
       <div><i style="font-size: 1.6rem;padding: 0 10px" class="fa fa-map-marker" aria-hidden="true"></i></div>
       <div>
         <div style="display:flex;justify-content: space-between">
-          <div>张三</div>
+          <div>小明</div>
           <div>13899213450</div>
         </div>
         <div>收货地址：北京市朝阳区来广营甲一号朝来科技园18好院3号楼</div>
@@ -57,7 +57,7 @@
     <!--去付款-->
     <div class="pay">
       <div>合计金额:<span style="margin:0 10px;color: red;font-size: 1.2rem">¥{{total}}</span></div>
-      <div class="btn">
+      <div class="btn" @click="payOrderList">
         去付款
       </div>
     </div>
@@ -77,14 +77,30 @@
     methods: {
       back(){
         this.$router.back();//返回上一层
+      },
+      // 付款
+      payOrderList(){
+        var that = this;
+        var params = {
+          name: "小明",
+          phone: "15992344221",
+          address: "北京市朝阳区来广营甲一号朝来科技园18好院3号楼",
+          openId: "oTgZpwU0PXwHZXueju_xLi7g4OOo",
+          items: this.shoppingCartDatas.map(function (ele) {
+            return {productId: ele.productId, productQuantity: ele.productQuantity}
+          })
+        }
+        that.$http.post('buyer/order/create', params).then(function (res) {
+          console.log(res)
+          // TODO 唤起微信支付
+        })
+
+
+
       }
     },
     mounted: function () {
       window.scroll(0, 0);
-      /**
-       * 这里从购物车传过来的值有一些字段对应不上
-       * 所以这里需要重新赋值
-       */
       this.shoppingCartDatas = this.$route.params.shoppingCartData;
       var total = 0
       this.shoppingCartDatas.forEach(function (ele) {
