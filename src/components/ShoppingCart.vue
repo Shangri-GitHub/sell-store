@@ -136,25 +136,18 @@
          * 1 点的购物车，显示加入成功
          * 2 是确定 跳转到 订单详情页去支付
          */
-        this.shoppingCartData.selectedColor = this.selectedColor;
-        this.shoppingCartData.selectedSize = this.selectedSize;
-        this.shoppingCartData.selectedNum = this.selectedNum;
         // 跳转到订单
         if (!this.selectedColor || !this.selectedSize) {
           Toast(this.selectedText);
           return;
         }
+        this.shoppingCartData.productColor = this.selectedColor;
+        this.shoppingCartData.productSize = this.selectedSize;
+        this.shoppingCartData.productQuantity = this.selectedNum;
         if (id == "1") {
-          var params = {
-            productId: this.shoppingCartData.productId,
-            productQuantity: this.selectedNum,
-            productColor: this.selectedColor,
-            productSize: this.selectedSize
-          }
           var that = this;
-          that.$http.post('seller/cart/save', params).then(function (res) {
+          that.$http.post('seller/cart/save', this.shoppingCartData).then(function (res) {
             that.$emit('showCartNums', null)
-
           })
           this.popupVisible = false;
         } else if (id == "2") {

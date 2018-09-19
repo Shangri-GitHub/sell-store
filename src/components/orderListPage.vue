@@ -31,12 +31,12 @@
         </div>
         <div style="padding: 10px">
           <div style="font-size: .9rem">{{item.productName}}[交易快照]</div>
-          <div style="color:#a2a2a2;font-size: .8rem">颜色分类：{{item.selectedColor}} 尺寸：{{item.selectedSize}}
+          <div style="color:#a2a2a2;font-size: .8rem">颜色分类：{{item.productColor}} 尺寸：{{item.productSize}}
           </div>
           <div style="color:#f7a755;font-size: .8rem">发货时间：卖家承诺72小时</div>
           <div style="display: flex;justify-content: space-between;align-items: center">
             <div style="color:red;font-size: 1.2rem">¥{{(item.productRate * item.productPrice).toFixed(2)}}</div>
-            <div>x{{item.selectedNum}}</div>
+            <div>x{{item.productQuantity}}</div>
           </div>
         </div>
       </div>
@@ -47,8 +47,8 @@
         </mt-cell>
         <mt-cell title="买家留言" value="选填：填写内容已和卖家协商确认"></mt-cell>
         <mt-cell title="">
-          <span style="color: #000;font-size: .8rem">共{{item.selectedNum}}件商品 小记：<span
-            style="color: red;font-size: 1rem">¥{{(item.selectedNum * item.productRate * item.productPrice).toFixed(2)}}元</span></span>
+          <span style="color: #000;font-size: .8rem">共{{item.productQuantity}}件商品 小记：<span
+            style="color: red;font-size: 1rem">¥{{(item.productQuantity * item.productRate * item.productPrice).toFixed(2)}}元</span></span>
         </mt-cell>
       </div>
 
@@ -81,10 +81,14 @@
     },
     mounted: function () {
       window.scroll(0, 0);
+      /**
+       * 这里从购物车传过来的值有一些字段对应不上
+       * 所以这里需要重新赋值
+       */
       this.shoppingCartDatas = this.$route.params.shoppingCartData;
       var total = 0
       this.shoppingCartDatas.forEach(function (ele) {
-        total += ele.selectedNum * ele.productPrice * ele.productRate;
+        total += ele.productQuantity * ele.productPrice * ele.productRate;
       })
       this.total = total.toFixed(2);
     }
