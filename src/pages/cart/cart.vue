@@ -136,7 +136,8 @@
             Toast("请选择需要结算的商品");
             return
           }
-          this.$router.push({name: "orderlistpage", params: {shoppingCartData: arr1}})
+          this.$store.state.shoppingCartData = arr1;
+          this.$router.push({name: "orderlistpage"});
         } else {
           // 删除商品操作
           var that = this;

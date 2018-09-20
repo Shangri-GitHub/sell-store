@@ -1,6 +1,14 @@
 $background-black: #000000;
 $default-text: #ffffff;
 
+.mint-switch-input:checked + .mint-switch-core {
+  border-color: #f12525;
+  background-color: #f12525;
+}
+.mint-checkbox-input:checked + .mint-checkbox-core {
+  background-color: #f12525;
+  border-color: #f12525;
+}
 .mint-search {
   height: 100%;
 }
@@ -22,4 +30,5 @@ $default-text: #ffffff;
 }
 .mint-toast{
   z-index: 5000;
+
 }

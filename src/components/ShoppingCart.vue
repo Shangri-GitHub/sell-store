@@ -151,7 +151,11 @@
           })
           this.popupVisible = false;
         } else if (id == "2") {
-          this.$router.push({name: "orderlistpage", params: {shoppingCartData: [this.shoppingCartData]}})
+          this.$store.state.shoppingCartData = [this.shoppingCartData];
+//          this.$router.push({name: "orderlistpage", params: {shoppingCartData:[this.shoppingCartData]}});
+          this.$router.push({name: "orderlistpage"});
+
+
         }
       }
     },

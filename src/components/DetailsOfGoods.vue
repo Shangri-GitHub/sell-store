@@ -88,8 +88,6 @@
     },
     beforeMount: function () {
       var that = this;
-
-      // TODO 购物车的传值
       this.showCartNums();
       /**
        * 根据商品的id查看详情

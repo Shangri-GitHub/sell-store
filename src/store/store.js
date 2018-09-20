@@ -5,6 +5,7 @@ Vue.use(vuex);
 export default new vuex.Store({
   state:{
     show:false,
-    index:0
+    index:0,
+    shoppingCartData:[]
   }
 })

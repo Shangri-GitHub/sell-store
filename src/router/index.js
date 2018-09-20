@@ -10,9 +10,9 @@ import home from '../pages/home/home.vue'
 import relaxfood from '../pages/home/relax-food.vue'
 import clothes from '../pages/home/clothes.vue'
 import shoppingcart from '../pages/home/shopping-cart.vue'
-
 import detail from '../pages/discover/detail.vue'
-
+import selectAddress from '../components/address/selectAddress.vue'
+import modifyAddress from '../components/address/modifyAddress.vue'
 
 Vue.use(Router)
 
@@ -84,6 +84,16 @@ export default new Router({
       name:"shoppingcart",
       path: '/shoppingcart',
       component: shoppingcart
+    },
+    {
+      name:"selectAddress",
+      path: '/selectAddress',
+      component: selectAddress
+    },
+    {
+      name:"modifyAddress",
+      path: '/modifyAddress',
+      component: modifyAddress
     }
 
   ]

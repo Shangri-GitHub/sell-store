@@ -7,7 +7,7 @@
       </div>
     </mt-header>
     <!--地址-->
-    <div class="address">
+    <div class="address" @click="selectAddress">
       <div><i style="font-size: 1.6rem;padding: 0 10px" class="fa fa-map-marker" aria-hidden="true"></i></div>
       <div>
         <div style="display:flex;justify-content: space-between">
@@ -75,6 +75,9 @@
       }
     },
     methods: {
+      selectAddress(){
+        this.$router.push( "selectAddress")
+      },
       back(){
         this.$router.back();//返回上一层
       },
@@ -101,7 +104,7 @@
     },
     mounted: function () {
       window.scroll(0, 0);
-      this.shoppingCartDatas = this.$route.params.shoppingCartData;
+      this.shoppingCartDatas = this.$store.state.shoppingCartData;
       var total = 0
       this.shoppingCartDatas.forEach(function (ele) {
         total += ele.productQuantity * ele.productPrice * ele.productRate;
