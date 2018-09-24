@@ -69,7 +69,7 @@
     },
     methods: {
       back(){
-        this.$router.back();//返回上一层
+        this.$router.push("/navbar/home");//返回上一层
       },
       showCartNums(){
         /**
@@ -83,6 +83,7 @@
       }
     },
     mounted: function () {
+
       // 跳转到页面的顶端
       window.scroll(0, 0);
     },

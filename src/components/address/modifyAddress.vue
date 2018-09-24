@@ -8,20 +8,22 @@
     </mt-header>
     <!--详情-->
     <div class="content">
-      <mt-field label="收货人" placeholder="请输入姓名" v-model="form.name"></mt-field>
-      <mt-field label="联系电话" placeholder="请输入手机号" type="tel" v-model="form.phone"></mt-field>
+      <mt-field label="收货人" placeholder="请输入姓名" v-model="form.buyerName"></mt-field>
+      <mt-field label="联系电话" placeholder="请输入手机号" type="tel" v-model="form.buyerPhone"></mt-field>
       <div @click="popupVisible = !popupVisible">
-        <mt-cell title="所在地区" is-link><span :style="{color:(form.region=='请选择'?'#888':'#000')}">{{form.region}}</span>
+        <mt-cell title="所在地区" is-link><span :style="{color:(form.buyerRegion=='请选择'?'#888':'#000')}">{{form.buyerRegion}}</span>
         </mt-cell>
       </div>
       <mt-field label="详细地址" placeholder="请输入详细地址信息，如道路、门牌号、小区、楼栋号、单元室等" type="textarea" rows="3"
-                v-model="form.address"></mt-field>
-      <mt-field label="设置默认地址" placeholder="">
-        <mt-switch v-model="form.value"></mt-switch>
-      </mt-field>
-
+                v-model="form.buyerAddress"></mt-field>
+      <!--<mt-field v-if="" label="设置默认地址" placeholder="">-->
+      <!--<mt-switch v-model="form.default"></mt-switch>-->
+      <!--</mt-field>-->
       <div class="button" @click="saveAddress">
         保存
+      </div>
+      <div v-if="$route.params.addressId" class="deleteButton" @click="deleteAddress">
+        删除
       </div>
 
     </div>
@@ -48,7 +50,6 @@
     name: '',
     data() {
       return {
-
         popupVisible: false,
         onChangeAddress: "",
         myAddressSlots: [
@@ -80,21 +81,44 @@
             textAlign: 'center'
           }
         ],
-        form:{
-          value: false,
-          name: "",
-          phone: "",
-          region:"请选择",
-          address: "",
+        form: {
+          buyerName: "",
+          buyerPhone: "",
+          buyerRegion: "请选择",
+          buyerAddress: "",
         },
       }
     },
     methods: {
+      deleteAddress(){
+        var that = this;
+        that.$http.post('/address/deleteByAddressId', this.form).then(function (res) {
+          if (res.data.code == 0) {
+            that.$router.push("/selectAddress")
+          }
+        })
+      },
       saveAddress(){
-        console.log(1)
+        /**
+         * 默认地址只能是一个；所以判断当前是不是默认地址
+         * 保存当前的地址
+         */
+        var that = this;
+        that.$http.post('/address/save', this.form).then(function (res) {
+          if (res.data.code == 0) {
+            that.$router.push("/selectAddress")
+          } else {
+            // 校验地址不能为空
+
+          }
+
+        })
+
+
       },
       addressOk(){
-        this.form.region = this.onChangeAddress;
+        this.form.buyerRegion = this.onChangeAddress;
+        this.form.defaultAddress = this.default;
       },
       onMyAddressChange(picker, values) {
         if (myaddress[values[0]]) { //这个判断类似于v-if的效果（可以不加，但是vue会报错，很不爽）
@@ -114,24 +138,11 @@
         this.myAddressSlots[0].defaultIndex = 0
       });
       // 编辑带过来等参数
-//      this.form = this.$route.params.a;
-//
-//      console.log(this.form)
-
-
+      if (this.$route.params) {
+        this.form = this.$route.params;
+      }
     },
     beforeMount: function () {
-      var that = this;
-      /**
-       * 根据商品的id查看详情
-       */
-      // 购物车的数目
-//      that.$http.post('seller/product/findProductById', {
-//        productId: this.$route.params.id,
-//      }).then(function (res) {
-//        that.detailsOfGoodslistData = res.data.data;
-//      })
-
 
     }
   }
@@ -147,8 +158,8 @@
     }
     .content {
       margin-top: 40px;
-      .button {
-        margin: 20px auto;
+      .button, .deleteButton {
+        margin: 16px auto;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -156,6 +167,9 @@
         height: 7vh;
         background: black;
         color: #ffffff;
+      }
+      .deleteButton{
+        background: rgb(241, 37, 37);
       }
     }
     .addNewAddress {

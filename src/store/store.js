@@ -6,6 +6,8 @@ export default new vuex.Store({
   state:{
     show:false,
     index:0,
-    shoppingCartData:[]
+    shoppingCartData:[],
+    // 选择地址后跳转的bug
+    recordUrl:''
   }
 })

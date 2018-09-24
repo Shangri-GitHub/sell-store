@@ -157,6 +157,10 @@
     },
     mounted: function () {
       window.scroll(0, 0);
+
+      // 记录当前的url
+      this.$store.state.recordUrl = this.$route.fullPath;
+
       /**
        * 当购物车是首页跳转过来的，则下面的footer-bar是隐藏状态，根据this.sourceData == 1 判断
        */

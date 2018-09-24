@@ -11,10 +11,10 @@
       <div><i style="font-size: 1.6rem;padding: 0 10px" class="fa fa-map-marker" aria-hidden="true"></i></div>
       <div>
         <div style="display:flex;justify-content: space-between">
-          <div>小明</div>
-          <div>13899213450</div>
+          <div>{{address.buyerName}}</div>
+          <div>{{address.buyerPhone}}</div>
         </div>
-        <div>收货地址：北京市朝阳区来广营甲一号朝来科技园18好院3号楼</div>
+        <div>收货地址：{{address.buyerRegion}}{{address.buyerAddress}}</div>
       </div>
       <div><i style="font-size: 2rem;padding: 0 10px" class="fa fa-angle-right" aria-hidden="true"></i></div>
     </div>
@@ -72,6 +72,7 @@
       return {
         shoppingCartDatas: [],
         total: 0,
+        address:{}
       }
     },
     methods: {
@@ -79,16 +80,16 @@
         this.$router.push( "selectAddress")
       },
       back(){
-        this.$router.back();//返回上一层
+        this.$router.push(this.$store.state.recordUrl);
       },
       // 付款
       payOrderList(){
         var that = this;
         var params = {
-          name: "小明",
-          phone: "15992344221",
-          address: "北京市朝阳区来广营甲一号朝来科技园18好院3号楼",
-          openId: "oTgZpwU0PXwHZXueju_xLi7g4OOo",
+          name: address.buyerName,
+          phone: address.buyerPhone,
+          address: address.buyerRegion + address.defaultAddress,
+          openId: "oBKLg0pK5y1nQg_HXFQAqb_hBgBI",
           items: this.shoppingCartDatas.map(function (ele) {
             return {productId: ele.productId, productQuantity: ele.productQuantity}
           })
@@ -104,12 +105,37 @@
     },
     mounted: function () {
       window.scroll(0, 0);
+      var that = this;
       this.shoppingCartDatas = this.$store.state.shoppingCartData;
       var total = 0
       this.shoppingCartDatas.forEach(function (ele) {
         total += ele.productQuantity * ele.productPrice * ele.productRate;
       })
       this.total = total.toFixed(2);
+      //
+      /**
+       * 选中地址
+       * 默认为默认地址
+       * @type {Dictionary<string>}
+       */
+      // todo 获取openId
+
+      if(JSON.stringify(this.$route.params) == "{}"){
+        that.$http.post('/seller/getUserInfoByOpenId', {
+          openId: "oBKLg0pK5y1nQg_HXFQAqb_hBgBI"
+        }).then(function (res) {
+          // 查询用户所储存的地址
+          that.$http.post('/address/findByAddressId',{
+            addressId:res.data.data.addressId
+          }).then(function (res) {
+            that.address = res.data.data;
+          })
+        })
+      }else {
+        this.address = this.$route.params
+      }
+
+
     }
   }
 </script>

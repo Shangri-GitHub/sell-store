@@ -153,6 +153,8 @@
         } else if (id == "2") {
           this.$store.state.shoppingCartData = [this.shoppingCartData];
 //          this.$router.push({name: "orderlistpage", params: {shoppingCartData:[this.shoppingCartData]}});
+
+
           this.$router.push({name: "orderlistpage"});
 
 
@@ -161,7 +163,8 @@
     },
     props: ['cartNums','shoppingCartData'],
     mounted: function () {
-//      this.cartNum = this.cartNums;
+      // 记录当前的url
+      this.$store.state.recordUrl = this.$route.fullPath;
     },
   }
 </script>
