@@ -46,6 +46,8 @@
 
 <script>
   import myaddress from '../../store/adress.json' //引入省市区数据
+  import {Toast} from 'mint-ui';
+  import {MessageBox} from 'mint-ui';
   export default {
     name: '',
     data() {
@@ -92,11 +94,15 @@
     methods: {
       deleteAddress(){
         var that = this;
-        that.$http.post('/address/deleteByAddressId', this.form).then(function (res) {
-          if (res.data.code == 0) {
-            that.$router.push("/selectAddress")
-          }
-        })
+        MessageBox.confirm('确定删除该条地址吗?').then(action => {
+          that.$http.post('/address/deleteByAddressId', this.form).then(function (res) {
+            if (res.data.code == 0) {
+              that.$router.push("/selectAddress")
+            }
+          })
+        }).catch(e => {});
+
+
       },
       saveAddress(){
         /**
@@ -104,12 +110,26 @@
          * 保存当前的地址
          */
         var that = this;
+        if (!this.form.buyerName) {
+          Toast("姓名不能为空");
+          return false;
+        }
+        var reg = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+        if (!reg.test(this.form.buyerPhone)) {
+          Toast("电话号码输入不正确");
+          return false;
+        }
+        if (!this.form.buyerRegion) {
+          Toast("请选择所在区域");
+          return false;
+        }
+        if (!this.form.buyerAddress) {
+          Toast("请填写详细地址");
+          return false;
+        }
         that.$http.post('/address/save', this.form).then(function (res) {
           if (res.data.code == 0) {
             that.$router.push("/selectAddress")
-          } else {
-            // 校验地址不能为空
-
           }
 
         })
@@ -168,7 +188,7 @@
         background: black;
         color: #ffffff;
       }
-      .deleteButton{
+      .deleteButton {
         background: rgb(241, 37, 37);
       }
     }

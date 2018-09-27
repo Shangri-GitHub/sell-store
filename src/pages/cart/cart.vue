@@ -23,7 +23,7 @@
         <div style="display:flex;align-items: center">
           <img class="item" :src="photo.url" v-for="photo in item.smallModelPhoto">
         </div>
-        <div style="padding: 10px 10px 10px 0 ">
+        <div style="padding: 10px 10px 10px 0;width: 100%">
           <div>
             {{item.productName}}
           </div>
