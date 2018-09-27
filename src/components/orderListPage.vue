@@ -8,15 +8,15 @@
     </mt-header>
     <!--地址-->
     <div class="address" @click="selectAddress">
-      <div><i style="font-size: 1.6rem;padding: 0 10px" class="fa fa-map-marker" aria-hidden="true"></i></div>
-      <div>
+      <div style="width: 10vw"><i style="font-size: 1.6rem;padding: 0 10px" class="fa fa-map-marker" aria-hidden="true"></i></div>
+      <div style="width: 80vw">
         <div style="display:flex;justify-content: space-between">
           <div>{{address.buyerName}}</div>
           <div>{{address.buyerPhone}}</div>
         </div>
         <div>收货地址：{{address.buyerRegion}}{{address.buyerAddress}}</div>
       </div>
-      <div><i style="font-size: 2rem;padding: 0 10px" class="fa fa-angle-right" aria-hidden="true"></i></div>
+      <div style="width: 10vw"><i style="font-size: 2rem;padding: 0 10px" class="fa fa-angle-right" aria-hidden="true"></i></div>
     </div>
     <!--信封线-->
     <div class="envelope"></div>
@@ -120,16 +120,14 @@
        */
       // todo 获取openId
 
+      // 查询用户所储存的地址
+
+
       if(JSON.stringify(this.$route.params) == "{}"){
-        that.$http.post('/seller/getUserInfoByOpenId', {
+        that.$http.post('/address/findByAddressId',{
           openId: "oBKLg0pK5y1nQg_HXFQAqb_hBgBI"
         }).then(function (res) {
-          // 查询用户所储存的地址
-          that.$http.post('/address/findByAddressId',{
-            addressId:res.data.data.addressId
-          }).then(function (res) {
-            that.address = res.data.data;
-          })
+          that.address = res.data.data;
         })
       }else {
         this.address = this.$route.params
