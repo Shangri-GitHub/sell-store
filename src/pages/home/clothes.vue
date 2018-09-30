@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import ShowWrapGoods from '../../components/ShowWrapGoods.vue'
+  import ShowWrapGoods from '../../components/GoodsLists/ShowWrapGoodsWithThree.vue'
   export default {
     name: '',
     components: {

@@ -5,20 +5,29 @@
     <!--热图榜-->
     <hot4-panel :hot4PanelDatas="hot4PanelDatas"></hot4-panel>
     <!--商品列表-->
+    <show-goods-with-line></show-goods-with-line>
+    <show-wrap-goods-with-single></show-wrap-goods-with-single>
+    <show-wrap-goods-with-two></show-wrap-goods-with-two>
     <show-wrap-goods :showWrapGoodsDatas="showWrapGoodsDatas"></show-wrap-goods>
   </div>
 </template>
 <script>
   import Swipper from '../../components/swipper.vue'
   import Hot4Panel from '../../components/Hot4Panel.vue'
-  import ShowWrapGoods from '../../components/ShowWrapGoods.vue'
+  import ShowWrapGoods from '../../components/GoodsLists/ShowWrapGoodsWithThree.vue'
+  import ShowWrapGoodsWithSingle from '../../components/GoodsLists/ShowWrapGoodsWithSingle.vue'
+  import ShowWrapGoodsWithTwo from '../../components/GoodsLists/ShowWrapGoodsWithTwo.vue'
+  import ShowGoodsWithLine from '../../components/GoodsLists/ShowGoodsWithLine.vue'
   import qs from 'qs';
   export default {
     name: '',
     components: {
       Swipper,
       Hot4Panel,
-      ShowWrapGoods
+      ShowWrapGoods,
+      ShowWrapGoodsWithSingle,
+      ShowWrapGoodsWithTwo,
+      ShowGoodsWithLine
     },
     data() {
       return {
@@ -63,6 +72,7 @@
   .home {
     position: relative;
     top: 14vh;
+    background: #f3f3f3;
     margin-bottom: 8vh;
   }
 </style>
