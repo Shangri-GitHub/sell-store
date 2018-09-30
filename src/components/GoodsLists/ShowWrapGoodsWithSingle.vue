@@ -13,10 +13,24 @@
     <div class="list">
       <img class="photo" alt="" v-for="">
       <div style="width: 70vw;height: 30vw;padding: 10px">
-        <div style="height: 20vw">【爆款】是你适合的非啊尽快发货口号</div>
+        <div style="height: 20vw;-webkit-box-orient: vertical">【爆款】是你适合的非啊尽快发货口号</div>
         <div style="display: flex;justify-content: space-between">
           <div style="color: red;font-size: 1.1rem">¥100<span class="origin-price">¥100</span></div>
-          <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i></div>
+          <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="list">
+      <img class="photo" alt="" v-for="">
+      <div style="width: 70vw;height: 30vw;padding: 10px">
+        <div style="height: 20vw;-webkit-box-orient: vertical">【爆款】是你适合的非啊尽快发货口号</div>
+        <div style="display: flex;justify-content: space-between">
+          <div style="color: red;font-size: 1.1rem">¥100<span class="origin-price">¥100</span></div>
+          <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i>
+          </div>
         </div>
       </div>
     </div>
