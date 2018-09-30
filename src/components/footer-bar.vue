@@ -36,6 +36,7 @@
     watch: {
       selected(n, v){
         if (n == "Home") {
+          this.$store.state.index = 0;
           this.$router.push('/navbar/home');
         } else if (n == "Discover") {
           this.$router.push('/discover/detail');
