@@ -16,7 +16,7 @@
         <div style="text-align:center">
           <img class="photo" alt="" v-for="">
         </div>
-        <div class="text-title">【爆款】是你适合的非啊尽快发货口2是你适合的非啊尽快发货口23werqerqwrqwerqwrwqrwerqwerqwerw号</div>
+        <div class="text-title">【爆款】是你适合的非啊尽快发货口2是你适合的非啊恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景</div>
         <div style="display: flex;justify-content: space-between">
           <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
           <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -28,7 +28,7 @@
         <div style="text-align:center">
           <img class="photo" alt="" v-for="">
         </div>
-        <div class="text-title">【爆款】是你适合的非啊尽快发货口2是你适合的非啊尽快发货口23werqerqwrqwerqwrwqrwerqwerqwerw号</div>
+        <div class="text-title">【爆款】是你适合的非啊尽快发货口2是你适合的非啊恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景</div>
         <div style="display: flex;justify-content: space-between">
           <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
           <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -40,7 +40,7 @@
         <div style="text-align:center">
           <img class="photo" alt="" v-for="">
         </div>
-        <div class="text-title">【爆款】是你适合的非啊尽快发货口2是你适合的非啊尽快发货口23werqerqwrqwerqwrwqrwerqwerqwerw号</div>
+        <div class="text-title">【爆款】是你适合的非啊尽快发货口2是你适合的非啊恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景</div>
         <div style="display: flex;justify-content: space-between">
           <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
           <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -51,7 +51,7 @@
         <div style="text-align:center">
           <img class="photo" alt="" v-for="">
         </div>
-        <div class="text-title">【爆款】是你适合的非啊尽快发货口2是你适合的非啊尽快发货口23werqerqwrqwerqwrwqrwerqwerqwerw号</div>
+        <div class="text-title">【爆款】是你适合的非啊尽快发货口2是你适合的非啊恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景</div>
         <div style="display: flex;justify-content: space-between">
           <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
           <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i>
