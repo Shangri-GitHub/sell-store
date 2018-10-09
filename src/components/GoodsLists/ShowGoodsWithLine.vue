@@ -87,7 +87,9 @@
     .goods-line{
       display: flex;
       width: 100vw;
-      overflow-x: auto;
+      overflow: auto;
+      overflow-scrolling:touch;
+      -webkit-overflow-scrolling:touch;
       .list {
         width: 32vw;
         height: 55vw;
