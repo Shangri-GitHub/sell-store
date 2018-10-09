@@ -7,7 +7,7 @@
       </div>
       <mt-button slot="right" @click="edit">{{textFlag ? "编辑" : "完成"}}</mt-button>
     </mt-header>
-    <div style="top: 40px;position: absolute">
+    <div style="top: 40px;position: relative;margin-bottom: 20vh">
       <!--购物车商品-->
       <div style="background: white;display: flex;margin: 5px 0" v-for="item in items">
         <!--复选框-->
@@ -41,34 +41,36 @@
         </div>
       </div>
 
-      <!--去结算-->
-      <mt-popup
-        v-model="popupVisible"
-        :modal="false"
-        position="bottom">
-        <div class="popup">
-          <div style="display: flex;height: 7vh;align-items: center" @change="selectAll">
-            <label class="mint-checklist-label">
+
+    </div>
+
+    <!--去结算-->
+    <mt-popup
+      v-model="popupVisible"
+      :modal="false"
+      position="bottom">
+      <div class="popup">
+        <div style="display: flex;height: 7vh;align-items: center" @change="selectAll">
+          <label class="mint-checklist-label">
               <span class="mint-checkbox">
                  <input type="checkbox" class="mint-checkbox-input" v-model="selecAll"/>
                  <span class="mint-checkbox-core"></span>
                </span>
-            </label>
-            全选
+          </label>
+          全选
+        </div>
+        <div style="display: flex;height: 7vh;align-items: center">
+          <div v-show="textFlag" style="display: flex;color: red;margin-right: 10px">
+            总计 ¥{{total}}
           </div>
-          <div style="display: flex;height: 7vh;align-items: center">
-            <div v-show="textFlag" style="display: flex;color: red;margin-right: 10px">
-              总计 ¥{{total}}
-            </div>
-            <div class="btn" @click="shoppingCartHandler">
-              {{textFlag ? "去结算" : "删除商品"}}
-            </div>
+          <div class="btn" @click="shoppingCartHandler">
+            {{textFlag ? "去结算" : "删除商品"}}
           </div>
         </div>
+      </div>
 
-      </mt-popup>
+    </mt-popup>
 
-    </div>
 
   </div>
 </template>

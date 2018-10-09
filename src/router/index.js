@@ -11,8 +11,14 @@ import relaxfood from '../pages/home/relax-food.vue'
 import clothes from '../pages/home/clothes.vue'
 import shoppingcart from '../pages/home/shopping-cart.vue'
 import detail from '../pages/discover/detail.vue'
+import address from '../components/address/address.vue'
 import selectAddress from '../components/address/selectAddress.vue'
 import modifyAddress from '../components/address/modifyAddress.vue'
+
+
+import setting from '../pages/me/setting.vue'
+import userinfo from '../pages/me/userinfo.vue'
+import modifyUserinfo from '../pages/me/modifyUserinfo.vue'
 
 Vue.use(Router)
 
@@ -86,6 +92,11 @@ export default new Router({
       component: shoppingcart
     },
     {
+      name:"address",
+      path: '/address',
+      component: address
+    },
+    {
       name:"selectAddress",
       path: '/selectAddress',
       component: selectAddress
@@ -94,7 +105,29 @@ export default new Router({
       name:"modifyAddress",
       path: '/modifyAddress',
       component: modifyAddress
+    },
+    {
+      name:"setting",
+      path: '/setting',
+      component: setting
+    },
+    {
+      name:"userinfo",
+      path: '/userinfo',
+      component: userinfo
+    },
+    {
+      name:"modifyUserinfo",
+      path: '/modifyUserinfo',
+      component: modifyUserinfo
     }
+
+
+
+
+
+
+
 
   ]
 })
