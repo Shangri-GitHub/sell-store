@@ -11,8 +11,13 @@ import relaxfood from '../pages/home/relax-food.vue'
 import clothes from '../pages/home/clothes.vue'
 import shoppingcart from '../pages/home/shopping-cart.vue'
 import detail from '../pages/discover/detail.vue'
+import address from '../components/address/address.vue'
 import selectAddress from '../components/address/selectAddress.vue'
 import modifyAddress from '../components/address/modifyAddress.vue'
+import setting from '../pages/me/setting.vue'
+import userinfo from '../pages/me/userinfo.vue'
+import modifyUserinfo from '../pages/me/modifyUserinfo.vue'
+
 
 Vue.use(Router)
 
@@ -54,9 +59,9 @@ export default new Router({
       path: '/discover',
       component: discover,
       children: [{
-          path: 'detail',
-          component: detail
-        },
+        path: 'detail',
+        component: detail
+      },
         {
           path: 'clothes',
           component: clothes
@@ -71,30 +76,51 @@ export default new Router({
       component: me
     },
     {
-      name:"detailsofgoods",
+      name: "detailsofgoods",
       path: '/detailsofgoods/:id',
       component: detailsofgoods
     },
     {
-      name:"orderlistpage",
+      name: "orderlistpage",
       path: '/orderlistpage',
       component: orderListPage
     },
     {
-      name:"shoppingcart",
+      name: "shoppingcart",
       path: '/shoppingcart',
       component: shoppingcart
     },
     {
-      name:"selectAddress",
+      name: "address",
+      path: '/address',
+      component: address
+    },
+    {
+      name: "selectAddress",
       path: '/selectAddress',
       component: selectAddress
     },
     {
-      name:"modifyAddress",
+      name: "modifyAddress",
       path: '/modifyAddress',
       component: modifyAddress
+    },
+    {
+      name: "setting",
+      path: '/setting',
+      component: setting
+    },
+    {
+      name: "userinfo",
+      path: '/userinfo',
+      component: userinfo
+    },
+    {
+      name: "modifyUserinfo",
+      path: '/modifyUserinfo',
+      component: modifyUserinfo
     }
+
 
   ]
 })

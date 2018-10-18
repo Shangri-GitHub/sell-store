@@ -7,7 +7,7 @@
       </div>
       <mt-button slot="right" @click="edit">{{textFlag ? "编辑" : "完成"}}</mt-button>
     </mt-header>
-    <div style="top: 40px;position: absolute">
+    <div style="top: 40px;position: relative;margin-bottom: 20vh">
       <!--购物车商品-->
       <div style="background: white;display: flex;margin: 5px 0" v-for="item in items">
         <!--复选框-->
