@@ -34,24 +34,24 @@
             <div><i @click="popupVisible=false" class="fa fa-times close" aria-hidden="true"></i></div>
           </div>
         </div>
-        <div v-if="shoppingCartData.productColors" style="border-bottom: 1px solid #f5f5f5;">
+        <div v-if="shoppingCartData.productColor" style="border-bottom: 1px solid #f5f5f5;">
           <div style="padding: 10px;color: #6b6b6b">
             颜色
           </div>
           <div>
             <chooser
-              :selections="shoppingCartData.productColors"
+              :selections="shoppingCartData.productColor"
               @on-change="onParamChange('color', $event)">
             </chooser>
           </div>
         </div>
-        <div v-if="shoppingCartData.productSizes" style="border-bottom: 1px solid #f5f5f5;">
+        <div v-if="shoppingCartData.productSize" style="border-bottom: 1px solid #f5f5f5;">
           <div style="padding: 10px;color: #6b6b6b">
             尺码
           </div>
           <div>
             <chooser
-              :selections="shoppingCartData.productSizes"
+              :selections="shoppingCartData.productSize"
               @on-change="onParamChange('size', $event)">
             </chooser>
           </div>
