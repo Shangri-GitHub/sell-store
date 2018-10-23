@@ -8,15 +8,15 @@
         cancel-text="取消"
         placeholder="搜索">
       </mt-search>
-
+      <!--滚动标题栏-->
       <ly-tab v-if="items.length>0"
               v-model="selectedId"
               :items="items"
               @change="handleChange"
               :options="options">
       </ly-tab>
+      <router-view class="view"></router-view>
     </div>
-    <router-view class="view"></router-view>
   </div>
 </template>
 
@@ -87,15 +87,13 @@
     position: fixed;
     z-index: 1;
   }
-
   .ly-tab {
     background-color: #000000;
     color: #ffffff;
   }
-
   .view {
-    position: relative;
-    top: 14vh;
-    margin-bottom: 8vh;
+    height: 77vh;
+    overflow: auto;
+    background: #f3f3f3;
   }
 </style>

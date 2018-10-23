@@ -70,9 +70,6 @@
 </script>
 <style lang="scss" scoped>
   .home {
-    position: relative;
-    top: 14vh;
-    background: #f3f3f3;
-    margin-bottom: 8vh;
+
   }
 </style>
