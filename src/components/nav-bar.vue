@@ -94,16 +94,10 @@
     background-color: #000000;
     color: #ffffff;
   }
-
   .view {
     position: relative;
-    top: 90px;
-    margin-bottom: 55px;
+    top: 14vh;
+    margin-bottom: 12vh;
     background: #f3f3f3;
-    /*overflow: auto;*/
-    /*height: 77vh;*/
-    /*overflow-scrolling: touch;*/
-    /*-webkit-overflow-scrolling: touch;*/
-    /*margin-bottom: 9vh;*/
   }
 </style>

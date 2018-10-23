@@ -142,10 +142,8 @@
   .discover {
     width: 100%;
     .contain {
-      height: 85vh;
-      overflow: auto;
       margin-top: 40px;
-      /*margin-bottom: 9vh;*/
+      margin-bottom: 9vh;
       .profilePhoto {
         width: 14vw;
         height: 14vw;
