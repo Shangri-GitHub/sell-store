@@ -139,7 +139,6 @@
 </script>
 
 <style lang="scss" scoped>
-
   .discover {
     width: 100%;
     .contain {
@@ -157,9 +156,7 @@
       .box {
         width: 33vw;
         height: 33vw;
-        /*background: #ff9b97;*/
       }
     }
   }
-
 </style>
