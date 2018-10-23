@@ -17,8 +17,7 @@
       </ly-tab>
     </div>
     <router-view class="view"></router-view>
-
-
+    <div class="lastText">没有更多喽！</div>
   </div>
 </template>
 
@@ -99,5 +98,12 @@
     top: 14vh;
     margin-bottom: 12vh;
     background: #f3f3f3;
+  }
+  .lastText{
+    display: flex;
+    color: #b1b1b1;
+    justify-content: center;
+    align-items: center;
+    height: 52px;
   }
 </style>
