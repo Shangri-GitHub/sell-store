@@ -104,6 +104,6 @@
     color: #b1b1b1;
     justify-content: center;
     align-items: center;
-    height: 52px;
+    height: 80px;
   }
 </style>
