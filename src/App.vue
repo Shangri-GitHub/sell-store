@@ -2,8 +2,8 @@
   <div id="app">
     <div class="content-div" >
       <router-view/>
+      <footer-bar></footer-bar>
     </div>
-    <footer-bar></footer-bar>
   </div>
 </template>
 
@@ -35,6 +35,6 @@
   .content-div {
     /*margin-bottom: 55px;*/
     background: #f3f3f3;
-    height: 92vh;
+    /*height: 91vh;*/
   }
 </style>

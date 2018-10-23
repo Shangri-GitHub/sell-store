@@ -15,8 +15,10 @@
               @change="handleChange"
               :options="options">
       </ly-tab>
-      <router-view class="view"></router-view>
     </div>
+    <router-view class="view"></router-view>
+
+
   </div>
 </template>
 
@@ -87,13 +89,21 @@
     position: fixed;
     z-index: 1;
   }
+
   .ly-tab {
     background-color: #000000;
     color: #ffffff;
   }
+
   .view {
-    height: 77vh;
-    overflow: auto;
+    position: relative;
+    top: 90px;
+    margin-bottom: 55px;
     background: #f3f3f3;
+    /*overflow: auto;*/
+    /*height: 77vh;*/
+    /*overflow-scrolling: touch;*/
+    /*-webkit-overflow-scrolling: touch;*/
+    /*margin-bottom: 9vh;*/
   }
 </style>

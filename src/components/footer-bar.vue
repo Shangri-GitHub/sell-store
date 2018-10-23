@@ -53,7 +53,7 @@
 <style lang="css" scoped>
 
   .mint-tabbar {
-    height: 9vh;
+    height: 55px;
     background-color: #282828;
   }
 
