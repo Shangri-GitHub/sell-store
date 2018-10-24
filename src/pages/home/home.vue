@@ -55,8 +55,11 @@
       }
     },
     created() {
+
       console.log(this.$route.query.openId);
-      this.$store.state.openId = this.$route.query.openId;
+      this.$cookies.set("openId", this.$route.query.openId, 60 * 60 * 1000); //过期时间60分钟
+
+
 
       //如果url里有openid, 设置进cookie
 //      var openid = this.$route.query.openid;

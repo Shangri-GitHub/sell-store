@@ -9,7 +9,5 @@ export default new vuex.Store({
     shoppingCartData:[],
     // 选择地址后跳转的bug
     recordUrl:'',
-    //保存微信登录进去的openId
-    openId:''
   }
 })

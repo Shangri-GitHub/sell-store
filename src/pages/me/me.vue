@@ -83,7 +83,7 @@
       }
     },
     mounted: function () {
-      this.openId = this.$store.state.openId
+      this.openId = this.$cookies.get("openId");
 
 
     }

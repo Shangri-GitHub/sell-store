@@ -11,6 +11,7 @@ import LyTab from 'ly-tab'
 import './css/my-mint.scss';
 import utils from './utils/Utils'
 import store from './store/store'
+import VueCookies from 'vue-cookies'
 
 
 Vue.prototype.$http = utils.httpInit();
@@ -18,6 +19,7 @@ Vue.prototype.$WebSocket = utils.webSocketInit;
 Vue.config.productionTip = false
 Vue.use(MintUI)
 Vue.use(LyTab)
+Vue.use(VueCookies)
 
 
 new Vue({
