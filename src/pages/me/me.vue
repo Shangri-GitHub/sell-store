@@ -11,7 +11,7 @@
           <img @click="userinfo" class="photo" src="../../assets/images/discover/red/red.jpg" alt="">
         <div style="color: #ffcb73;right: 10%;position: absolute">
           <img src=""/>
-          黄金会员
+          黄金会员 {{openId}}
         </div>
       </div>
     </div>
@@ -70,7 +70,8 @@
     name: '',
     data() {
       return {
-        value: ""
+        value: "",
+        openId:''
       }
     },
     methods: {
@@ -82,6 +83,8 @@
       }
     },
     mounted: function () {
+      this.openId = this.$store.state.openId
+
 
     }
   }

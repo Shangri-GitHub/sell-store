@@ -33,7 +33,7 @@
       return {
         showWrapGoodsDatas: {
           "logo": require('../../assets/images/home/logo.png'),
-          goodsLists:[],
+          goodsLists: [],
         },
         hot4PanelDatas: {
           "1": require('../../assets/images/hot4Panel/1.jpg'),
@@ -64,6 +64,7 @@
       that.$http.get('buyer/product/list', {}).then(function (res) {
         that.showWrapGoodsDatas.goodsLists = res.data.data[0].products;
       })
+
 
     }
   }
