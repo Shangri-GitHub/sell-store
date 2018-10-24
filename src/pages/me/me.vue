@@ -83,22 +83,13 @@
       }
     },
     mounted: function () {
-      this.openId = getCookie('openId');
-
-
+      this.openId = this.$cookies.get("openId");
     }
 
 
   }
 
-  function getCookie(name) {
-    var arr;
-    var reg = new RegExp('(^| )' +name+"=([^;]*)(;|$)");
-    if(arr=document.cookie.match(reg))
-      return unescape(arr[2]);
-    else
-      return null;
-  }
+
 </script>
 
 <style lang="scss" scoped>

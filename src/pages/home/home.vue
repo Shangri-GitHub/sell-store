@@ -55,12 +55,9 @@
       }
     },
     created() {
-//      var openId = this.$route.query.openId;
+      var openId = this.$route.query.openId;
       if (true) {
-        var exp = new Date();
-        exp.setTime(exp.getTime() + 3600 * 1000);//过期时间60分钟
-        document.cookie = 'openId=111'  + ";expires=" + exp.toGMTString();
-//        this.$cookies.set("openId", openId, 60 * 60 * 1000); //过期时间60分钟
+        this.$cookies.set("openId", "123", 60 * 60 * 1000); //过期时间60分钟
       }
     },
     methods: {},
