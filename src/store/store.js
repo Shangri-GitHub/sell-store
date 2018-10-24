@@ -3,13 +3,13 @@ import vuex from 'vuex'
 Vue.use(vuex);
 
 export default new vuex.Store({
-  state: {
-    show: false,
-    index: 0,
-    shoppingCartData: [],
+  state:{
+    show:false,
+    index:0,
+    shoppingCartData:[],
     // 选择地址后跳转的bug
-    recordUrl: '',
+    recordUrl:'',
     //保存微信登录进去的openId
-    openId: this.$route.query.openId
+    openId:''
   }
 })

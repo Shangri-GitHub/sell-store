@@ -32,7 +32,6 @@
     },
     props: ['showWrapGoodsDatas'],
     mounted: function () {
-      console.log(this.showWrapGoodsDatas)
     }
   }
 </script>

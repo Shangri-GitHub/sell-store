@@ -55,6 +55,9 @@
       }
     },
     created() {
+      console.log(this.$route.query.openId);
+      this.$store.state.openId = this.$route.query.openId;
+
       //如果url里有openid, 设置进cookie
 //      var openid = this.$route.query.openid;
 //      if(typeof openid !== 'undefined') {
@@ -79,7 +82,6 @@
         that.showWrapGoodsDatas.goodsLists = res.data.data[0].products;
       })
 
-      console.log(this.$route.query)
 
     }
   }
