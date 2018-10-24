@@ -57,7 +57,7 @@
     created() {
       var openId = this.$route.query.openId;
       if (true) {
-        this.$cookies.set("openId", "123", 60 * 60 * 1000); //过期时间60分钟
+        this.$cookies.set("openId", openId, 60 * 60 * 1000); //过期时间60分钟
       }
     },
     methods: {},
