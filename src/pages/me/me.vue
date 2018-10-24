@@ -83,7 +83,7 @@
       }
     },
     mounted: function () {
-      this.openId = getCookie('openid');
+      this.openId = getCookie('openId');
 
 
     }
