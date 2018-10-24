@@ -55,23 +55,10 @@
       }
     },
     created() {
-
-      console.log(this.$route.query.openId);
-      this.$cookies.set("openId", this.$route.query.openId, 60 * 60 * 1000); //过期时间60分钟
-
-
-
-      //如果url里有openid, 设置进cookie
-//      var openid = this.$route.query.openid;
-//      if(typeof openid !== 'undefined') {
-//        var exp = new Date();
-//        exp.setTime(exp.getTime() + 3600 * 1000);//过期时间60分钟
-//        document.cookie = 'openid=' + openid + ";expires=" + exp.toGMTString();
-//      }
-//      //获取openid
-//      if(getCookie('openid') == null) {
-//        location.href = config.openidUrl + '?returnUrl=' +  encodeURIComponent(config.sellUrl + '/#/');
-//      }
+      var openId = this.$route.query.openId;
+      if (openId) {
+        this.$cookies.set("openId", openId, 60 * 60 * 1000); //过期时间60分钟
+      }
     },
     methods: {},
 
