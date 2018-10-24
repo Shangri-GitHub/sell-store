@@ -10,6 +10,6 @@ export default new vuex.Store({
     // 选择地址后跳转的bug
     recordUrl: '',
     //保存微信登录进去的openId
-    openId: window.location.hash.split("?")[1]
+    openId: this.$route.query.openId
   }
 })
