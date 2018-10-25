@@ -86,15 +86,13 @@
        * 展示用户的信息
        */
       var that = this;
-
-//      var openId = this.$cookies.get("openId");
-      var openId = "oBKLg0pK5y1nQg_HXFQAqb_hBgBI";
+      var openId = this.$cookies.get("openId");
 
       that.$http.post('seller/getUserInfoByOpenId', {
         openId: openId
       }).then(function (res) {
         that.userInfo = res.data.data;
-        console.log(res)
+        that.userInfo.headImgUrl = that.userInfo.headImgUrl.replace(/http/g, "https");
       })
 
 
