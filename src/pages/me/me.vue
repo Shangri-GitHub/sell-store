@@ -8,10 +8,10 @@
         <i @click="setting" style="color: #ffffff;font-size: 3vh" class="fa fa-cog setting" aria-hidden="true"></i>
       </div>
       <div style="display: flex;height:20vh;align-items: center;">
-          <img @click="userinfo" class="photo" src="../../assets/images/discover/red/red.jpg" alt="">
+        <img @click="userinfo" class="photo" :src="userInfo.headImgUrl" alt="">
         <div style="color: #ffcb73;right: 10%;position: absolute">
           <img src=""/>
-          黄金会员 {{openId}}
+          {{userInfo.nickname}}
         </div>
       </div>
     </div>
@@ -56,11 +56,10 @@
         title="帮助与客服" to="//github.com" is-link>
       </mt-cell>
     </div>
-
     <div style="margin-top: 15px">
       <mt-cell title="给我评分" label="描述信息" is-link></mt-cell>
     </div>
-
+    <div class="lastText"></div>
   </div>
 </template>
 
@@ -71,7 +70,7 @@
     data() {
       return {
         value: "",
-        openId:''
+        userInfo:''
       }
     },
     methods: {
@@ -83,7 +82,22 @@
       }
     },
     mounted: function () {
-      this.openId = this.$cookies.get("openId");
+      /**
+       * 展示用户的信息
+       */
+      var that = this;
+
+//      var openId = this.$cookies.get("openId");
+      var openId = "oBKLg0pK5y1nQg_HXFQAqb_hBgBI";
+
+      that.$http.post('seller/getUserInfoByOpenId', {
+        openId: openId
+      }).then(function (res) {
+        that.userInfo = res.data.data;
+        console.log(res)
+      })
+
+
     }
 
 
@@ -95,6 +109,7 @@
 <style lang="scss" scoped>
   .me {
     background: #f3f3f3;
+
     .order {
       display: flex;
       background: #fff;
@@ -145,6 +160,9 @@
         background: #fefdff;
         position: absolute;
       }
+    }
+    .lastText {
+      height: 60px;
     }
 
   }

@@ -11,7 +11,13 @@
       <mt-field
         v-if="title=='昵称'"
         placeholder=""
-        v-model="nickname">
+        v-model="userInfo.nickname">
+      </mt-field>
+
+      <mt-field
+        v-if="title=='所在地'"
+        placeholder=""
+        v-model="userInfo.country">
       </mt-field>
 
 
@@ -20,14 +26,14 @@
         label="个性签名"
         placeholder="请输入字数在40字内"
         type="textarea"
-        v-model="value"
+        v-model="userInfo.signature"
         rows="4">
       </mt-field>
 
       <mt-radio
         v-if="title=='性别'"
         title=""
-        v-model="nickname"
+        v-model="userInfo.sex"
         :options="options">
       </mt-radio>
 
@@ -45,28 +51,38 @@
 </template>
 
 <script>
+  import {Toast} from 'mint-ui';
   export default {
     name: '',
     data() {
       return {
         title: "",
-        nickname: "",
-        value:"",
         options: [{
           label: '不填写',
-          value: '0'
+          value: 0
         }, {
           label: '男',
-          value: '1'
+          value: 1
         }, {
           label: '女',
-          value: '2'
-        }]
+          value: 2
+        }],
+        userInfo: {
+          openId: ''
+        }
       }
     },
     methods: {
       save(){
-        this.$router.push("/userinfo")
+        var that = this;
+        var openId = this.$cookies.get("openId");
+        this.userInfo.openId = openId;
+        that.$http.post('seller/saveUserInfo', this.userinfo).then(function (res) {
+          if (res.data.code == 0) {
+            Toast('保存成功');
+            this.$router.push("/userinfo");
+          }
+        })
       },
       back(){
         this.$router.push("/userinfo");//返回上一层
@@ -74,8 +90,9 @@
     },
     mounted: function () {
 
-      this.title = this.$route.params.name;
-      this.nickname = this.$route.params.value;
+      this.title = this.$route.params.title;
+      this.userInfo[this.$route.params.name] = this.$route.params.value + "";
+
     }
   }
 </script>
