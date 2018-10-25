@@ -76,7 +76,7 @@
         openId: openId
       }).then(function (res) {
         that.userInfo = res.data.data;
-        that.userInfo.headImgUrl = that.userInfo.headImgUrl.replace(/http/g, "https");
+//        that.userInfo.headImgUrl = that.userInfo.headImgUrl.replace(/http/g, "https");
       })
 
     }

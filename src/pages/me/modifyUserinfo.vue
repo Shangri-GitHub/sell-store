@@ -59,7 +59,7 @@
         title: "",
         options: [{
           label: '不填写',
-          value: 0
+          value: "0"
         }, {
           label: '男',
           value: 1
@@ -76,7 +76,10 @@
       save(){
         var that = this;
         var openId = this.$cookies.get("openId");
+
         this.userInfo.openId = openId;
+        this.userInfo.sex = this.userInfo.sex-0;
+        console.log(this.userInfo);
         that.$http.post('seller/saveUserInfo', this.userInfo).then(function (res) {
           if (res.data.code == 0) {
             Toast('保存成功');
@@ -89,10 +92,8 @@
       },
     },
     mounted: function () {
-
       this.title = this.$route.params.title;
       this.userInfo[this.$route.params.name] = this.$route.params.value + "";
-
     }
   }
 </script>

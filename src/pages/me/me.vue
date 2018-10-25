@@ -92,7 +92,8 @@
         openId: openId
       }).then(function (res) {
         that.userInfo = res.data.data;
-        that.userInfo.headImgUrl = that.userInfo.headImgUrl.replace(/http/g, "https");
+        // TODO 换成https请求有点慢
+//        that.userInfo.headImgUrl = that.userInfo.headImgUrl.replace(/http/g, "https");
       })
 
 
