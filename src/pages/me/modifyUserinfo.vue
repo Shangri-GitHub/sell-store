@@ -77,7 +77,7 @@
         var that = this;
         var openId = this.$cookies.get("openId");
         this.userInfo.openId = openId;
-        that.$http.post('seller/saveUserInfo', this.userinfo).then(function (res) {
+        that.$http.post('seller/saveUserInfo', this.userInfo).then(function (res) {
           if (res.data.code == 0) {
             Toast('保存成功');
             this.$router.push("/userinfo");
