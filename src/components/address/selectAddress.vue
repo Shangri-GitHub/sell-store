@@ -123,7 +123,7 @@
     }
     .addNewAddress {
       width: 100vw;
-      height: 8vh;
+      height: 10vh;
       background: white;
       position: fixed;
       bottom: 0;

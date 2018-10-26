@@ -151,7 +151,7 @@
     .address {
       display: flex;
       align-items: center;
-      padding: 10px 0;
+      padding: 20px 0;
     }
     .envelope {
       width: 100%;
@@ -162,7 +162,7 @@
     }
     .pay {
       width: 100vw;
-      height: 8vh;
+      height: 10vh;
       background: white;
       position: fixed;
       bottom: 0;

@@ -79,7 +79,6 @@
 
         this.userInfo.openId = openId;
         this.userInfo.sex = this.userInfo.sex-0;
-        console.log(this.userInfo);
         that.$http.post('seller/saveUserInfo', this.userInfo).then(function (res) {
           if (res.data.code == 0) {
             Toast('保存成功');
@@ -112,7 +111,7 @@
     }
     .addNewAddress {
       width: 100vw;
-      height: 8vh;
+      height: 10vh;
       background: #f3f3f3;
       position: fixed;
       bottom: 0;

@@ -188,14 +188,14 @@
     }
     .popup {
       width: 100vw;
-      height: 14vh;
+      height: 15vh;
       display: flex;
       padding: 10px;
       justify-content: space-between;
       .btn {
         margin-right: 10px;
         width: 30vw;
-        height: 6vh;
+        height: 7vh;
         background: black;
         color: white;
         display: flex;

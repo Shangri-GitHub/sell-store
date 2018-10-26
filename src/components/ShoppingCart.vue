@@ -34,24 +34,24 @@
             <div><i @click="popupVisible=false" class="fa fa-times close" aria-hidden="true"></i></div>
           </div>
         </div>
-        <div v-if="shoppingCartData.productColor" style="border-bottom: 1px solid #f5f5f5;">
+        <div v-if="shoppingCartData.productColors" style="border-bottom: 1px solid #f5f5f5;">
           <div style="padding: 10px;color: #6b6b6b">
             颜色
           </div>
           <div>
             <chooser
-              :selections="shoppingCartData.productColor"
+              :selections="shoppingCartData.productColors"
               @on-change="onParamChange('color', $event)">
             </chooser>
           </div>
         </div>
-        <div v-if="shoppingCartData.productSize" style="border-bottom: 1px solid #f5f5f5;">
+        <div v-if="shoppingCartData.productSizes" style="border-bottom: 1px solid #f5f5f5;">
           <div style="padding: 10px;color: #6b6b6b">
             尺码
           </div>
           <div>
             <chooser
-              :selections="shoppingCartData.productSize"
+              :selections="shoppingCartData.productSizes"
               @on-change="onParamChange('size', $event)">
             </chooser>
           </div>
@@ -132,6 +132,7 @@
         this.popupButtonText = index;
       },
       shoppingCartHandler(id){
+
         /**
          * 1 点的购物车，显示加入成功
          * 2 是确定 跳转到 订单详情页去支付
@@ -185,7 +186,7 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 6vh;
+      height: 8vh;
       background: #000000;
       color: white
     }
@@ -229,7 +230,7 @@
 
   .cart {
     width: 100vw;
-    height: 8vh;
+    height: 10vh;
     background: white;
     position: fixed;
     bottom: 0;

@@ -194,8 +194,8 @@
     }
     .addNewAddress {
       width: 100vw;
-      height: 8vh;
-      background: #f3f3f3;
+      height: 10vh;
+      background: #ffffff;
       position: fixed;
       bottom: 0;
       z-index: 2;

@@ -33,9 +33,9 @@
 
     </div>
 
-    <div class="deleteButton" @click="logout()">
-      退出当前账户
-    </div>
+    <!--<div class="deleteButton" @click="logout()">-->
+      <!--退出当前账户-->
+    <!--</div>-->
 
 
   </div>
@@ -63,18 +63,18 @@
 
 <style lang="scss" scoped>
   .setting {
-    .deleteButton {
-      width: 100vw;
-      height: 8vh;
-      position: fixed;
-      bottom: 0;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      background: rgb(241, 37, 37);
-    }
+    /*.deleteButton {*/
+      /*width: 100vw;*/
+      /*height: 8vh;*/
+      /*position: fixed;*/
+      /*bottom: 0;*/
+      /*z-index: 2;*/
+      /*display: flex;*/
+      /*align-items: center;*/
+      /*justify-content: center;*/
+      /*color: #ffffff;*/
+      /*background: rgb(241, 37, 37);*/
+    /*}*/
   }
 
 </style>
