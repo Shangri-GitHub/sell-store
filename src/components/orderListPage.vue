@@ -106,7 +106,7 @@
           if (res.data.code == 0) {
             location.href = configs.api.BASEURL + '/pay/cteate?orderId=' + res.data.data.orderId +
 //              '&returnUrl=' + encodeURIComponent(configs.api.BASEURL + '/#/navbar/home');
-              '&returnUrl=' + configs.api.BASEURL + '/#/navbar/home';
+              '&returnUrl=https://mp.hanxing.store/#/navbar/home';
           } else {
             console.log(res.data.msg);
           }
