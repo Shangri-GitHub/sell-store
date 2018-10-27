@@ -92,8 +92,7 @@
           name: this.address.buyerName,
           phone: this.address.buyerPhone,
           address: this.address.buyerRegion + this.address.buyerAddress,
-          openId: 'oBKLg0pK5y1nQg_HXFQAqb_hBgBI',
-//          openId: this.$cookies.get("openId"),
+          openId: this.$cookies.get("openId"),
           items: this.shoppingCartDatas.map(function (ele) {
             return {productId: ele.productId, productQuantity: ele.productQuantity}
           })
