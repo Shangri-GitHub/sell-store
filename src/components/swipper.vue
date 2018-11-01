@@ -1,7 +1,7 @@
 <template>
   <!--轮播图-->
   <div class="swipe-wrapper">
-    <mt-swipe :auto="0">
+    <mt-swipe :auto="5000">
       <mt-swipe-item v-for="(imgData,index) in imgDatas" :key="index">
         <img class="item" :src="imgData.path">
       </mt-swipe-item>

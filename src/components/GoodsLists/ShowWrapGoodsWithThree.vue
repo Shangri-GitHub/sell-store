@@ -12,7 +12,7 @@
           {{goodsList.name}}
         </div>
         <div class="goods-items-price">
-          ¥{{goodsList.price * goodsList.rate}} <span class="text-through">¥{{goodsList.price}}</span>
+          ¥{{Number(goodsList.price * goodsList.rate).toFixed(2)}} <span class="text-through">¥{{goodsList.price}}</span>
         </div>
       </div>
     </div>
@@ -23,7 +23,9 @@
   export default {
     name: '',
     data() {
-      return {}
+      return {
+        productPrice:""
+      }
     },
     methods: {
       handleClick(goodsList){

@@ -32,7 +32,10 @@
           </div>
           <div style="display: flex;justify-content: space-between;align-items: center">
             <div style="color: red;font-size: 1.2rem">¥{{item.price}}<span
-              style="color: #8a8a8a;margin-left: 8px;font-size: .9rem">¥{{item.productPrice * item.productRate}}</span>
+
+
+
+              style="color: #8a8a8a;margin-left: 8px;font-size: .9rem">¥{{Number(item.productPrice * item.productRate).toFixed(2)}}</span>
             </div>
             <div>
               <counter :numbers="item.productQuantity" @on-change="onParamChange(item, $event)"></counter>
@@ -107,7 +110,7 @@
         var money = 0;
         this.items.forEach(function (ele) {
           if (ele.selectValue) {
-            money += ele.productPrice * ele.productQuantity * ele.productRate;
+            money += ele.productPrice * ele.productQuantity * ele.productRate
           }
         });
         this.total = money.toFixed(2);

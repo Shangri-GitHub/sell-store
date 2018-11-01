@@ -5,10 +5,11 @@
     <!--热图榜-->
     <hot4-panel :hot4PanelDatas="hot4PanelDatas"></hot4-panel>
     <!--商品列表-->
-    <show-goods-with-line></show-goods-with-line>
     <show-wrap-goods-with-single></show-wrap-goods-with-single>
-    <show-wrap-goods-with-two></show-wrap-goods-with-two>
     <show-wrap-goods :showWrapGoodsDatas="showWrapGoodsDatas"></show-wrap-goods>
+    <show-wrap-goods-with-two></show-wrap-goods-with-two>
+    <show-goods-with-line></show-goods-with-line>
+
   </div>
 </template>
 <script>

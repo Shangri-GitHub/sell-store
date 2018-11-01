@@ -16,7 +16,7 @@
     <!--价格-->
     <div style="width: 96%;margin:0 auto">
       <div class="detail-price">
-        <div style="font-size: 1.8rem" v-if="detailsOfGoodslistData.productPrice * detailsOfGoodslistData.productRate">¥{{detailsOfGoodslistData.productPrice * detailsOfGoodslistData.productRate}}
+        <div style="font-size: 1.8rem" v-if="detailsOfGoodslistData.productPrice * detailsOfGoodslistData.productRate">¥{{Number(detailsOfGoodslistData.productPrice * detailsOfGoodslistData.productRate).toFixed(2)}}
         </div>
         <div class="sale">
           <span>优惠促销</span>

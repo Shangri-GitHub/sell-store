@@ -28,7 +28,8 @@
         <div style="display: flex;border-bottom: 1px solid #efeeee;height: 16vh">
           <img class="popup-photo" :src="item.url" v-for="item in shoppingCartData.smallModelPhoto"/>
           <div>
-            <div class="pupop-price"> ¥ {{shoppingCartData.productPrice * shoppingCartData.productRate}}</div>
+
+            <div class="pupop-price"> ¥ {{Number(shoppingCartData.productPrice * shoppingCartData.productRate).toFixed(2)}}</div>
             <div class="pupop-store">库存 {{shoppingCartData.productStock}}件</div>
             <div class="pupop-select">{{selectedText}}</div>
             <div><i @click="popupVisible=false" class="fa fa-times close" aria-hidden="true"></i></div>
