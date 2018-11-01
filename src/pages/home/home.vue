@@ -8,7 +8,7 @@
     <show-wrap-goods-with-single></show-wrap-goods-with-single>
     <show-wrap-goods :showWrapGoodsDatas="showWrapGoodsDatas"></show-wrap-goods>
     <show-wrap-goods-with-two></show-wrap-goods-with-two>
-    <show-goods-with-line></show-goods-with-line>
+    <show-goods-with-line :showGoodsWithLineDatas="showGoodsWithLineDatas" v-if="showGoodsWithLineDatas.length>0"></show-goods-with-line>
 
   </div>
 </template>
@@ -36,6 +36,7 @@
           "logo": require('../../assets/images/home/logo.png'),
           goodsLists: [],
         },
+        showGoodsWithLineDatas: [],
         hot4PanelDatas: {
           "1": require('../../assets/images/hot4Panel/1.jpg'),
           "2": require('../../assets/images/hot4Panel/2.jpg'),
@@ -69,6 +70,7 @@
        */
       that.$http.get('buyer/product/list', {}).then(function (res) {
         that.showWrapGoodsDatas.goodsLists = res.data.data[0].products;
+        that.showGoodsWithLineDatas = res.data.data[0].products;
       })
 
 

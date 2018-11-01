@@ -1,59 +1,21 @@
 <template>
-
-
   <div class="show-goods-with-line">
     <div class="photo">
-      <img class="logo"  alt="">
+      <img class="logo" alt="">
     </div>
 
     <div class="goods-line">
-      <div class="list">
-        <div style="text-align:center">
-          <img class="photo" alt="" v-for="">
-        </div>
-        <div class="text-title" style="-webkit-box-orient: vertical">【爆款】放假设法 u 刷樊帅的健康恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景</div>
-        <div style="display: flex;justify-content: space-between">
-          <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
-        </div>
-      </div>
 
-      <div class="list">
-        <div style="text-align:center">
-          <img class="photo" alt="" v-for="">
+      <div class="list" v-for="item in showGoodsWithLineDatas">
+        <div style="text-align:center" @click="handleClick(item)">
+          <img class="photo" :src="img.url" v-for="img in item.smallModelPhoto">
         </div>
-        <div class="text-title" style="-webkit-box-orient: vertical">【爆款】放假设法 u 刷樊帅的健康恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景</div>
+        <div class="text-title" style="-webkit-box-orient: vertical">{{item.name}}</div>
         <div style="display: flex;justify-content: space-between">
-          <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
+          <div style="padding-left: 10px;color: red;font-size: 1.2rem">
+            ¥{{Number(item.price * item.rate).toFixed(2)}}<span class="origin-price">¥{{item.price}}</span></div>
         </div>
       </div>
-      <div class="list">
-        <div style="text-align:center">
-          <img class="photo" alt="" v-for="">
-        </div>
-        <div class="text-title" style="-webkit-box-orient: vertical">【爆款】放假设法 u 刷樊帅的健康恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景</div>
-        <div style="display: flex;justify-content: space-between">
-          <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
-        </div>
-      </div>
-      <div class="list">
-        <div style="text-align:center">
-          <img class="photo" alt="" v-for="">
-        </div>
-        <div class="text-title" style="-webkit-box-orient: vertical">【爆款】放假设法 u 刷樊帅的健康恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景</div>
-        <div style="display: flex;justify-content: space-between">
-          <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
-        </div>
-      </div>
-      <div class="list">
-        <div style="text-align:center">
-          <img class="photo" alt="" v-for="">
-        </div>
-        <div class="text-title" style="-webkit-box-orient: vertical">【爆款】放假设法 u 刷樊帅的健康恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景</div>
-        <div style="display: flex;justify-content: space-between">
-          <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
-        </div>
-      </div>
-
 
     </div>
   </div>
@@ -66,15 +28,19 @@
     data() {
       return {}
     },
-    methods: {},
+    methods: {
+      handleClick(goodsList){
+        this.$router.push({name: "detailsofgoods", params: {id: goodsList.id}});
+      }
+    },
+    props: ['showGoodsWithLineDatas'],
     mounted: function () {
-
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .show-goods-with-line{
+  .show-goods-with-line {
     .photo {
       height: 20vh;
       margin: 5px;
@@ -84,12 +50,12 @@
         background-size: 100% 100%;
       }
     }
-    .goods-line{
+    .goods-line {
       display: flex;
       width: 100vw;
       overflow: auto;
-      overflow-scrolling:touch;
-      -webkit-overflow-scrolling:touch;
+      overflow-scrolling: touch;
+      -webkit-overflow-scrolling: touch;
       .list {
         width: 32vw;
         height: 55vw;
