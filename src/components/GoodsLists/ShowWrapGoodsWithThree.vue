@@ -43,10 +43,9 @@
     padding: 10px 10px 0;
     background: #ffffff;
     .photo {
-      height: 20vh;
       .logo {
         width: 100%;
-        height: 20vh;
+        height: 23vh;
         background-size: 100% 100%;
       }
     }

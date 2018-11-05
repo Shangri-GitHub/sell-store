@@ -1,7 +1,7 @@
 <template>
   <div class="show-goods-with-line">
     <div class="photo">
-      <img class="logo" alt="">
+      <img class="logo" src="https://qiniu.hanxing.store/万圣节.png" alt="">
     </div>
 
     <div class="goods-line">
@@ -42,11 +42,10 @@
 <style lang="scss" scoped>
   .show-goods-with-line {
     .photo {
-      height: 20vh;
-      margin: 5px;
+      margin: 0 5px;
       .logo {
         width: 100%;
-        height: 20vh;
+        height: 23vh;
         background-size: 100% 100%;
       }
     }
@@ -71,6 +70,7 @@
           -webkit-line-clamp: 2;
           overflow: hidden;
           font-size: .9rem;
+          padding: 0 5px;
         }
         .origin-price {
           font-size: 0.8rem;

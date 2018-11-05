@@ -76,6 +76,7 @@
         -webkit-line-clamp: 2;
         overflow: hidden;
         font-size: .9rem;
+        padding: 0 5px;
       }
       .origin-price {
         font-size: 0.8rem;

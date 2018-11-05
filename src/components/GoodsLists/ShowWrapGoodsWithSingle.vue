@@ -49,7 +49,7 @@
     mounted: function () {
       // 首页展示3个商品，点击更多展示全部
       var data = JSON.parse(JSON.stringify(this.showWrapGoodsWithSingleDatas));
-      data.length = 3;
+      data.length = 2;
       this.showWrapGoodsWithSingleLimitDatas = data;
     }
   }
