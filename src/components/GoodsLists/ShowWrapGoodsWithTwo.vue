@@ -7,68 +7,27 @@
         </div>
         <div class="sub-title">HOT SELLING THIS WEEK</div>
       </div>
-      <div class="more">更多>></div>
+      <div @click="showMoreProduct" class="more">更多>></div>
     </div>
 
     <div style="display: flex;flex-wrap: wrap;margin-top: 4px;">
 
-      <div class="list">
+      <!--展示商品两列的列表-->
+      <div @click="handleClick(item)"  class="list" v-for="item in showWrapGoodsWithTwoLimitDatas">
         <div style="text-align:center">
-          <img class="photo" alt="" v-for="">
+          <img class="photo" :src="img.url" v-for="img in item.smallModelPhoto">
         </div>
         <div class="text-title" style="-webkit-box-orient: vertical">
-          【爆款】是你适合的非啊尽快发货口2是你适合的非啊恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景
+          {{item.productName}}
         </div>
         <div style="display: flex;justify-content: space-between">
-          <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
+          <div style="padding-left: 10px;color: red;font-size: 1.2rem">
+            ¥{{Number(item.productPrice * item.productRate).toFixed(2)}}<span class="origin-price">¥{{item.productPrice}}</span>
+          </div>
           <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i>
           </div>
         </div>
       </div>
-
-      <div class="list">
-        <div style="text-align:center">
-          <img class="photo" alt="" v-for="">
-        </div>
-        <div class="text-title" style="-webkit-box-orient: vertical">
-          【爆款】是你适合的非啊尽快发货口2是你适合的非啊恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景
-        </div>
-        <div style="display: flex;justify-content: space-between">
-          <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
-          <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="list">
-        <div style="text-align:center">
-          <img class="photo" alt="" v-for="">
-        </div>
-        <div class="text-title" style="-webkit-box-orient: vertical">
-          【爆款】是你适合的非啊尽快发货口2是你适合的非啊恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景
-        </div>
-        <div style="display: flex;justify-content: space-between">
-          <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
-          <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-
-      <div class="list">
-        <div style="text-align:center">
-          <img class="photo" alt="" v-for="">
-        </div>
-        <div class="text-title" style="-webkit-box-orient: vertical">
-          【爆款】是你适合的非啊尽快发货口2是你适合的非啊恢复健康撒的发挥技术的结合房间打开后发觉卡手机壳韩娟啊黄山的风景
-        </div>
-        <div style="display: flex;justify-content: space-between">
-          <div style="padding-left: 10px;color: red;font-size: 1.2rem">¥100<span class="origin-price">¥100</span></div>
-          <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-
 
     </div>
 
@@ -79,11 +38,23 @@
   export default {
     name: '',
     data() {
-      return {}
+      return {
+        showWrapGoodsWithTwoLimitDatas: []
+      }
     },
-    methods: {},
+    methods: {
+      handleClick(goodsList){
+        this.$router.push({name: "detailsofgoods", params: {id: goodsList.productId}});
+      },
+      showMoreProduct(){
+        console.log(this.showWrapGoodsWithTwoLimitDatas);
+      }
+    },
+    props: ['showWrapGoodsWithTwoDatas'],
     mounted: function () {
-
+      var data = JSON.parse(JSON.stringify(this.showWrapGoodsWithTwoDatas));
+      data.length = 4;
+      this.showWrapGoodsWithTwoLimitDatas = data;
     }
   }
 </script>

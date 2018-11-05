@@ -8,9 +8,8 @@
         <i @click="setting" style="color: #ffffff;font-size: 3vh" class="fa fa-cog setting" aria-hidden="true"></i>
       </div>
       <div style="display: flex;height:20vh;align-items: center;">
-        <img @click="userinfo" class="photo" :src="userInfo.headImgUrl" alt="">
+        <img v-if="userInfo" @click="userinfo" class="photo" :src="userInfo.headImgUrl" alt="">
         <div style="color: #ffcb73;right: 10%;position: absolute">
-          <img src=""/>
           {{userInfo.nickname}}
         </div>
       </div>
@@ -70,7 +69,9 @@
     data() {
       return {
         value: "",
-        userInfo:''
+        userInfo: {
+          headImgUrl: ''
+        }
       }
     },
     methods: {
@@ -91,15 +92,13 @@
       that.$http.post('seller/getUserInfoByOpenId', {
         openId: openId
       }).then(function (res) {
-        that.userInfo = res.data.data;
-        // TODO 换成https请求有点慢
+        if (res.data.code == 0) {
+          that.userInfo = res.data.data;
+          // TODO 换成https请求有点慢
 //        that.userInfo.headImgUrl = that.userInfo.headImgUrl.replace(/http/g, "https");
+        }
       })
-
-
     }
-
-
   }
 
 

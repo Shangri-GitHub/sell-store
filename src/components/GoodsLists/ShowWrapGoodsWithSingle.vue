@@ -7,28 +7,17 @@
         </div>
         <div class="sub-title">TODAY PREFERRED</div>
       </div>
-      <div class="more">更多>></div>
+      <div @click="showMoreProduct" class="more">更多>></div>
     </div>
 
-    <div class="list">
-      <img class="photo" alt="" v-for="">
+    <!--展示列表-->
+    <div @click="handleClick(item)" class="list" v-for="item in showWrapGoodsWithSingleLimitDatas">
+      <img class="photo" :src="img.url" v-for="img in item.smallModelPhoto">
       <div style="width: 70vw;height: 30vw;padding: 10px">
-        <div style="height: 20vw;-webkit-box-orient: vertical">【爆款】是你适合的非啊尽快发货口号</div>
+        <div style="height: 20vw;-webkit-box-orient: vertical">{{item.productName}}</div>
         <div style="display: flex;justify-content: space-between">
-          <div style="color: red;font-size: 1.1rem">¥100<span class="origin-price">¥100</span></div>
-          <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="list">
-      <img class="photo" alt="" v-for="">
-      <div style="width: 70vw;height: 30vw;padding: 10px">
-        <div style="height: 20vw;-webkit-box-orient: vertical">【爆款】是你适合的非啊尽快发货口号</div>
-        <div style="display: flex;justify-content: space-between">
-          <div style="color: red;font-size: 1.1rem">¥100<span class="origin-price">¥100</span></div>
+          <div style="color: red;font-size: 1.1rem">¥{{Number(item.productPrice * item.productRate).toFixed(2)}}<span
+            class="origin-price">¥{{item.productPrice}}</span></div>
           <div><i style="color: red;font-size: 1.6rem;padding: 0 10px" class="fa fa-plus-circle" aria-hidden="true"></i>
           </div>
         </div>
@@ -42,11 +31,26 @@
   export default {
     name: '',
     data() {
-      return {}
+      return {
+        showWrapGoodsWithSingleLimitDatas: []
+      }
     },
-    methods: {},
-    mounted: function () {
+    methods: {
+      handleClick(goodsList){
+        this.$router.push({name: "detailsofgoods", params: {id: goodsList.productId}});
 
+      },
+      showMoreProduct(){
+
+        console.log(this.showWrapGoodsWithSingleDatas);
+      }
+    },
+    props: ['showWrapGoodsWithSingleDatas'],
+    mounted: function () {
+      // 首页展示3个商品，点击更多展示全部
+      var data = JSON.parse(JSON.stringify(this.showWrapGoodsWithSingleDatas));
+      data.length = 3;
+      this.showWrapGoodsWithSingleLimitDatas = data;
     }
   }
 </script>

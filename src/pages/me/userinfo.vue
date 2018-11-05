@@ -9,8 +9,9 @@
     <div style="margin-top: 40px;">
       <mt-cell
         title="头像" value="">
+
         <span>
-           <img slot="icon" :src="userInfo.headImgUrl" style="border-radius: 50%" width="40"
+           <img v-if="userInfo.headImgUrl" slot="icon" :src="userInfo.headImgUrl" style="border-radius: 50%" width="40"
                 height="40">
         </span>
       </mt-cell>
@@ -75,7 +76,7 @@
       that.$http.post('seller/getUserInfoByOpenId', {
         openId: openId
       }).then(function (res) {
-        that.userInfo = res.data.data;
+          that.userInfo = res.data.data;
 //        that.userInfo.headImgUrl = that.userInfo.headImgUrl.replace(/http/g, "https");
       })
 
