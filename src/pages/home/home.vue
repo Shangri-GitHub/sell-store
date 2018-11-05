@@ -7,10 +7,12 @@
     <!--商品列表-->
     <show-wrap-goods-with-single v-if="showWrapGoodsWithSingleDatas.length>0"
                                  :showWrapGoodsWithSingleDatas="showWrapGoodsWithSingleDatas"></show-wrap-goods-with-single>
-    <show-wrap-goods :showWrapGoodsDatas="showWrapGoodsDatas"></show-wrap-goods>
-    <show-wrap-goods-with-two :showWrapGoodsWithTwoDatas="showWrapGoodsWithTwoDatas" v-if="showWrapGoodsWithTwoDatas.length>0"></show-wrap-goods-with-two>
     <show-goods-with-line v-if="showGoodsWithLineDatas.length>0"
                           :showGoodsWithLineDatas="showGoodsWithLineDatas"></show-goods-with-line>
+
+    <show-wrap-goods-with-two :showWrapGoodsWithTwoDatas="showWrapGoodsWithTwoDatas" v-if="showWrapGoodsWithTwoDatas.length>0"></show-wrap-goods-with-two>
+    <show-wrap-goods :showWrapGoodsDatas="showWrapGoodsDatas"></show-wrap-goods>
+
   </div>
 </template>
 <script>

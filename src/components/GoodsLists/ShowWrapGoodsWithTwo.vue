@@ -1,19 +1,19 @@
 <template>
   <div class="showGoodWithTwo">
-    <div class="title">
+    <div @click="showMoreProduct" class="title">
       <div>
         <div class="title-primary">
           本周热卖
         </div>
         <div class="sub-title">HOT SELLING THIS WEEK</div>
       </div>
-      <div @click="showMoreProduct" class="more">更多>></div>
+      <div class="more">更多>></div>
     </div>
 
     <div style="display: flex;flex-wrap: wrap;margin-top: 4px;">
 
       <!--展示商品两列的列表-->
-      <div @click="handleClick(item)"  class="list" v-for="item in showWrapGoodsWithTwoLimitDatas">
+      <div @click="handleClick(item)" class="list" v-for="item in showWrapGoodsWithTwoLimitDatas">
         <div style="text-align:center">
           <img class="photo" :src="img.url" v-for="img in item.smallModelPhoto">
         </div>
@@ -47,7 +47,7 @@
         this.$router.push({name: "detailsofgoods", params: {id: goodsList.productId}});
       },
       showMoreProduct(){
-        console.log(this.showWrapGoodsWithTwoLimitDatas);
+        this.$router.push({name: "showMoreProductsPage", params: {type: "week"}});
       }
     },
     props: ['showWrapGoodsWithTwoDatas'],

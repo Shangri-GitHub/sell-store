@@ -107,7 +107,6 @@
 <style lang="scss" scoped>
   .me {
     background: #f3f3f3;
-
     .order {
       display: flex;
       background: #fff;

@@ -1,6 +1,6 @@
 <template>
   <div class="goods">
-    <div class="photo">
+    <div @click="showMoreProduct"  class="photo" v-if="showWrapGoodsDatas.logo">
       <img class="logo" :src="showWrapGoodsDatas.logo" alt="">
     </div>
     <div style="display: flex;flex-wrap: wrap;margin-top: 4px;">
@@ -9,10 +9,10 @@
           <img class="photo" :src="item.url" alt="" v-for="item in goodsList.smallModelPhoto">
         </div>
         <div class="goods-items-label" style="-webkit-box-orient: vertical">
-          {{goodsList.name}}
+          {{goodsList.productName}}
         </div>
         <div class="goods-items-price">
-          ¥{{Number(goodsList.price * goodsList.rate).toFixed(2)}} <span class="text-through">¥{{goodsList.price}}</span>
+          ¥{{Number(goodsList.productPrice * goodsList.productRate).toFixed(2)}} <span class="text-through">¥{{goodsList.productPrice}}</span>
         </div>
       </div>
     </div>
@@ -28,8 +28,11 @@
       }
     },
     methods: {
+      showMoreProduct(){
+        this.$router.push({name: "showMoreProductsPage", params: {type: "WithThree"}});
+      },
       handleClick(goodsList){
-        this.$router.push({name: "detailsofgoods", params: {id: goodsList.id}});
+        this.$router.push({name: "detailsofgoods", params: {id: goodsList.productId}});
       }
     },
     props: ['showWrapGoodsDatas'],

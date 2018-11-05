@@ -1,13 +1,13 @@
 <template>
   <div class="goodsWithRow">
-    <div class="title">
+    <div @click="showMoreProduct" class="title">
       <div>
         <div class="title-primary">
           今日优选
         </div>
         <div class="sub-title">TODAY PREFERRED</div>
       </div>
-      <div @click="showMoreProduct" class="more">更多>></div>
+      <div class="more">更多>></div>
     </div>
 
     <!--展示列表-->
@@ -41,8 +41,7 @@
 
       },
       showMoreProduct(){
-
-        console.log(this.showWrapGoodsWithSingleDatas);
+        this.$router.push({name: "showMoreProductsPage", params: {type: "today"}});
       }
     },
     props: ['showWrapGoodsWithSingleDatas'],

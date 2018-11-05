@@ -14,6 +14,7 @@ import detail from '../pages/discover/detail.vue'
 import address from '../components/address/address.vue'
 import selectAddress from '../components/address/selectAddress.vue'
 import modifyAddress from '../components/address/modifyAddress.vue'
+import showMoreProductsPage from '../components/showMoreProductsPage.vue'
 import setting from '../pages/me/setting.vue'
 import userinfo from '../pages/me/userinfo.vue'
 import modifyUserinfo from '../pages/me/modifyUserinfo.vue'
@@ -119,7 +120,14 @@ export default new Router({
       name: "modifyUserinfo",
       path: '/modifyUserinfo',
       component: modifyUserinfo
+    },
+    {
+      name: "showMoreProductsPage",
+      path: '/showMoreProductsPage/:type',
+      component: showMoreProductsPage
     }
+
+
 
 
   ]
