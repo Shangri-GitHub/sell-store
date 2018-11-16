@@ -1,7 +1,7 @@
 <template>
   <div class="show-goods-with-line">
     <div @click="showMoreProduct" class="photo">
-      <img class="logo" src="https://qiniu.hanxing.store/万圣节.png" alt="">
+      <img class="logo" src="http://qiniu.hanxing.store/万圣节.png" alt="">
     </div>
 
     <div class="goods-line">
