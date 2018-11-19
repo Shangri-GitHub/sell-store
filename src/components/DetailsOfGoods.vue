@@ -69,7 +69,8 @@
     },
     methods: {
       back(){
-        this.$router.push("/navbar/home");//返回上一层
+//        this.$router.push("/navbar/home");//返回上一层
+        this.$router.back();//返回上一层
       },
       showCartNums(){
         /**
