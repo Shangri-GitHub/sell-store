@@ -39,7 +39,7 @@
           this.$store.state.index = 0;
           this.$router.push('/navbar/home');
         } else if (n == "Discover") {
-          this.$router.push('/discover/detail');
+          this.$router.push('/discover');
         } else if (n == "Cart") {
           this.$router.push('/cart');
         } else if (n == "Me") {

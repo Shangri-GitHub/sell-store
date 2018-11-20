@@ -10,7 +10,7 @@ import home from '../pages/home/home.vue'
 import relaxfood from '../pages/home/relax-food.vue'
 import clothes from '../pages/home/clothes.vue'
 import shoppingcart from '../pages/home/shopping-cart.vue'
-import detail from '../pages/discover/detail.vue'
+import addNewMoment from '../pages/discover/addNewMoment.vue'
 import address from '../components/address/address.vue'
 import selectAddress from '../components/address/selectAddress.vue'
 import modifyAddress from '../components/address/modifyAddress.vue'
@@ -64,10 +64,6 @@ export default new Router({
       path: '/discover',
       component: discover,
       children: [{
-        path: 'detail',
-        component: detail
-      },
-        {
           path: 'clothes',
           component: clothes
         }]
@@ -129,7 +125,11 @@ export default new Router({
       name: "showMoreProductsPage",
       path: '/showMoreProductsPage/:type',
       component: showMoreProductsPage
+    },
+    {
+      name: "addNewMoment",
+      path: '/addNewMoment',
+      component: addNewMoment
     }
-
   ]
 })

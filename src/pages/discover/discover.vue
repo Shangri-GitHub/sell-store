@@ -14,7 +14,7 @@
 
 
           <div style="display: flex;">
-              <img class="profilePhoto" src="../../assets/images/discover/beaytiful/beautiful.jpg" alt="">
+            <img class="profilePhoto" src="../../assets/images/discover/beaytiful/beautiful.jpg" alt="">
             <div style="width: 60vw;margin: 16px 0">
               <div>OCEANPARK WITH U</div>
               <div style="color: #9a9a9a">26.3万粉丝</div>
@@ -29,9 +29,9 @@
           <div style="padding: 8px">#上新装# 换上秋裤，双手往裤子口袋一插，一切都是那么自然~</div>
           <div style="display: flex;flex-direction: column;justify-content: space-between;height: 100vw">
             <div style="display: flex;justify-content: space-between">
-                <img class="box" src="../../assets/images/discover/beaytiful/beautiful_01.jpg" alt="">
-                <img class="box" src="../../assets/images/discover/beaytiful/beautiful_02.jpg" alt="">
-                <img class="box" src="../../assets/images/discover/beaytiful/beautiful_03.jpg" alt="">
+              <img class="box" src="../../assets/images/discover/beaytiful/beautiful_01.jpg" alt="">
+              <img class="box" src="../../assets/images/discover/beaytiful/beautiful_02.jpg" alt="">
+              <img class="box" src="../../assets/images/discover/beaytiful/beautiful_03.jpg" alt="">
             </div>
             <div style="display: flex;justify-content: space-between">
               <img class="box" src="../../assets/images/discover/beaytiful/beautiful_04.jpg" alt="">
@@ -67,7 +67,7 @@
 
 
           <div style="display: flex;">
-              <img class="profilePhoto" src="../../assets/images/discover/red/red.jpg" alt="">
+            <img class="profilePhoto" src="../../assets/images/discover/red/red.jpg" alt="">
             <div style="width: 60vw;margin: 16px 0">
               <div>早安樊樊 </div>
               <div style="color: #9a9a9a">12.2万粉丝</div>
@@ -117,6 +117,10 @@
         </div>
 
       </div>
+      <!--新增按钮-->
+      <div class="addNewMoment" @click="addNewMoment">
+        <i class="fa fa-pencil-square-o icon" aria-hidden="true"></i>
+      </div>
     </div>
   </div>
 </template>
@@ -129,7 +133,11 @@
     data() {
       return {}
     },
-    methods: {},
+    methods: {
+      addNewMoment(){
+        this.$router.push('/addNewMoment');
+      }
+    },
     mounted: function () {
       // 跳转到页面的顶端
       window.scroll(0, 0);
@@ -141,6 +149,23 @@
 <style lang="scss" scoped>
   .discover {
     width: 100%;
+    .addNewMoment {
+      width: 15vw;
+      height: 15vw;
+      background: black;
+      border-radius: 50%;
+      position: fixed;
+      top: 75%;
+      right: 6vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      .icon {
+        color: white;
+        font-size: 1.8rem;
+      }
+    }
     .contain {
       margin-top: 40px;
       margin-bottom: 9vh;
