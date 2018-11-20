@@ -12,12 +12,21 @@
 <script>
   export default {
     data() {
-      return {}
+      return {
+        imgDatas: [{
+          id: '2',
+          path: 'http://qiniu.hanxing.store/banner2.jpg'
+        }, {
+          id: '1',
+          path: 'http://qiniu.hanxing.store/banner1.jpg'
+        }, {
+          id: '3',
+          path: 'http://qiniu.hanxing.store/banner3.jpg'
+        }]
+      }
     },
-    props: ['imgDatas'],
     methods: {},
     mounted: function () {
-//      console.log(this.imgDatas);
     }
   }
 </script>

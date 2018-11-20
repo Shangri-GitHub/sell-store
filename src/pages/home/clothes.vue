@@ -19,7 +19,7 @@
     data() {
       return {
         showWrapGoodsDatas: {
-          "logo": require('../../assets/images/home/logo.png'),
+          "logo": 'http://qiniu.hanxing.store/adidasWithThree.png',
           goodsLists: []
         },
       }

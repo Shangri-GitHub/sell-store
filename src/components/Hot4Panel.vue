@@ -40,7 +40,7 @@
 
 <style lang="scss" scoped>
   .popular {
-    padding: 5px 0px 0;
+    padding: 3px 0px 0;
     display: flex;
     height: 30vh;
     .popular-item-1 {

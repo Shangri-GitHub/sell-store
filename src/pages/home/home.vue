@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <!--轮播图-->
-    <swipper :imgDatas="imgDatas"></swipper>
+    <swipper></swipper>
     <!--热图榜-->
     <hot4-panel></hot4-panel>
     <!--商品列表-->
@@ -37,24 +37,14 @@
     data() {
       return {
         showWrapGoodsDatas: {
-          "logo": require('../../assets/images/home/logo.png'),
+          "logo": 'http://qiniu.hanxing.store/adidasWithThree.png',
           goodsLists: [],
         },
         showGoodsWithLineDatas: [],
         showWrapGoodsWithSingleDatas: [],
         showWrapGoodsWithTwoDatas: [],
 
-        imgDatas: [
-          {
-            id: '2',
-            path: require('../../assets/images/banner/1.jpg')
-          }, {
-            id: '0',
-            path: require('../../assets/images/banner/water.png')
-          }, {
-            id: '1',
-            path: require('../../assets/images/banner/coffee.jpg')
-          },],
+
       }
     },
     created() {
@@ -98,7 +88,6 @@
       })
       /**
        * 获取本周热卖
-       * 暂时交易量比较少，开启的是查询一年的量
        */
       that.$http.post('seller/productDetail/findOrderDetailByCondition', {
         startDate: moment().startOf('month').format(),
