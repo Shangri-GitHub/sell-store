@@ -16,13 +16,7 @@
               :options="options">
       </ly-tab>
     </div>
-<!--{{$router}}   -->
-    <!--<keep-alive>-->
-      <!--<router-view class="view" v-if="$router.meta.keepAlive"></router-view>-->
-    <!--</keep-alive>-->
-
     <router-view class="view"></router-view>
-
     <div class="lastText">没有更多了！</div>
   </div>
 </template>
