@@ -3,7 +3,7 @@
     <!--轮播图-->
     <swipper :imgDatas="imgDatas"></swipper>
     <!--热图榜-->
-    <hot4-panel :hot4PanelDatas="hot4PanelDatas"></hot4-panel>
+    <hot4-panel></hot4-panel>
     <!--商品列表-->
     <show-wrap-goods-with-single v-if="showWrapGoodsWithSingleDatas.length>0"
                                  :showWrapGoodsWithSingleDatas="showWrapGoodsWithSingleDatas"></show-wrap-goods-with-single>
@@ -43,12 +43,7 @@
         showGoodsWithLineDatas: [],
         showWrapGoodsWithSingleDatas: [],
         showWrapGoodsWithTwoDatas: [],
-        hot4PanelDatas: {
-          "1": require('../../assets/images/hot4Panel/1.jpg'),
-          "2": require('../../assets/images/hot4Panel/2.jpg'),
-          "3": require('../../assets/images/hot4Panel/3.jpg'),
-          "4": require('../../assets/images/hot4Panel/4.jpg')
-        },
+
         imgDatas: [
           {
             id: '2',

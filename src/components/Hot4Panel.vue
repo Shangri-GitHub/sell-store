@@ -23,10 +23,16 @@
   export default {
     name: '',
     data() {
-      return {}
+      return {
+        hot4PanelDatas: {
+          "1": 'http://qiniu.hanxing.store/hotpanel1.jpg',
+          "2": 'http://qiniu.hanxing.store/hotpanel2.jpg',
+          "3": 'http://qiniu.hanxing.store/hotpanel3.jpg',
+          "4": 'http://qiniu.hanxing.store/hotpanel4.jpg'
+        },
+      }
     },
     methods: {},
-    props: ['hot4PanelDatas'],
     mounted: function () {
     }
   }
@@ -35,11 +41,11 @@
 <style lang="scss" scoped>
   .popular {
     padding: 5px 0px 0;
-    width: 100%;
     display: flex;
     height: 30vh;
     .popular-item-1 {
-      width: 40vw;
+      width: 38vw;
+      border: 1px solid #fff;
       .item {
         width: 40vw;
         height: 30vh;
@@ -49,18 +55,20 @@
     .popular-item-2 {
       width: 60vw;
       height: 15vh;
+      border: 1px solid #fff;
       .item {
         width: 60vw;
         height: 15vh;
         background-size: 100% 100%;
       }
     }
-    .popular-item-3,.popular-item-4 {
+    .popular-item-3, .popular-item-4 {
       height: 15vh;
       .item {
         width: 30vw;
         height: 15vh;
         background-size: 100% 100%;
+        border: 1px solid #fff;
       }
     }
   }
