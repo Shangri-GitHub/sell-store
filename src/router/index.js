@@ -23,14 +23,13 @@ import modifyUserinfo from '../pages/me/modifyUserinfo.vue'
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',  // 默认hash
+  mode: 'history',  // 默认hash
   // history: true,
   // scrollBehavior (to, from, savedPosition) {
   //   console.log(to)
   //   console.log(from)
   //   console.log(savedPosition)
   //   console.log(window.scrollY)
-  //
   // },
   routes: [
     {
@@ -41,6 +40,10 @@ export default new Router({
     {
       path: '/navbar',
       component: navbar,
+      meta: {
+        title: 'home',
+        keepAlive: true
+      },
       children: [
         {
           path: 'relaxfood',
@@ -49,6 +52,7 @@ export default new Router({
         {
           path: 'home',
           component: home,
+
         },
         {
           path: 'clothes',
@@ -126,9 +130,6 @@ export default new Router({
       path: '/showMoreProductsPage/:type',
       component: showMoreProductsPage
     }
-
-
-
 
   ]
 })

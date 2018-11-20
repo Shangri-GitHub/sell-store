@@ -30,8 +30,9 @@ new Vue({
   template: '<App/>'
 })
 
-router.afterEach((to, from) => {
-  // console.log(to)
-  // console.log(from)
+// router.afterEach((to, from) => {
+//   // console.log(to)
+//   // console.log(from)
+//
+// })
 
-})

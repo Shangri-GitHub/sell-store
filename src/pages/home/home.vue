@@ -10,7 +10,8 @@
     <show-goods-with-line v-if="showGoodsWithLineDatas.length>0"
                           :showGoodsWithLineDatas="showGoodsWithLineDatas"></show-goods-with-line>
 
-    <show-wrap-goods-with-two :showWrapGoodsWithTwoDatas="showWrapGoodsWithTwoDatas" v-if="showWrapGoodsWithTwoDatas.length>0"></show-wrap-goods-with-two>
+    <show-wrap-goods-with-two :showWrapGoodsWithTwoDatas="showWrapGoodsWithTwoDatas"
+                              v-if="showWrapGoodsWithTwoDatas.length>0"></show-wrap-goods-with-two>
     <show-wrap-goods :showWrapGoodsDatas="showWrapGoodsDatas"></show-wrap-goods>
 
   </div>
@@ -68,6 +69,17 @@
       }
     },
     methods: {},
+    // 纪录页面返回的位置
+    beforeRouteLeave (to, from, next) {
+      this.$store.state.savePosition = window.scrollY;
+      next();
+    },
+    updated () {
+      this.$nextTick(function () {
+        // 跳转到刚刚页面纪录的位置
+        window.scroll(0, this.$store.state.savePosition)
+      })
+    },
     mounted: function () {
       var that = this;
       /**

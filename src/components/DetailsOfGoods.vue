@@ -69,8 +69,8 @@
     },
     methods: {
       back(){
-//        this.$router.push("/navbar/home");//返回上一层
-        this.$router.back();//返回上一层
+        this.$router.push("/navbar/home");//返回上一层
+//        this.$router.back();//返回上一层
       },
       showCartNums(){
         /**
@@ -84,9 +84,7 @@
       }
     },
     mounted: function () {
-
-      // 跳转到页面的顶端
-      window.scroll(0, 0);
+      window.scroll(0,0)
     },
     beforeMount: function () {
       var that = this;
@@ -132,6 +130,9 @@
     }
     .show-big-photo {
       margin-top: 40px;
+      /*width: 100vw;*/
+      /*height: 60vh;*/
+      /*background-color: white;*/
       .item {
         width: 100vw;
       }
