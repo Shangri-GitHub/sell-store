@@ -18,7 +18,7 @@
       </mt-field>
 
       <!--上传图片-->
-      <croppa v-model="myCroppa"></croppa>
+      <!--<croppa v-model="myCroppa"></croppa>-->
 
 
     </div>
