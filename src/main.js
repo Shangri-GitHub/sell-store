@@ -20,7 +20,7 @@ Vue.config.productionTip = false
 Vue.use(MintUI)
 Vue.use(LyTab)
 Vue.use(VueCookies)
-// Vue.use(Croppa);
+Vue.use(Croppa);
 
 new Vue({
   el: '#app',

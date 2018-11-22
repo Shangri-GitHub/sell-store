@@ -18,7 +18,7 @@
       </mt-field>
 
       <!--上传图片-->
-      <!--<croppa v-model="myCroppa"></croppa>-->
+      <croppa v-model="myCroppa"></croppa>
 
 
     </div>
@@ -39,6 +39,11 @@
       }
     },
     methods: {
+      uploadCroppedImage() {
+        this.myCroppa.generateBlob(
+          function (blob) {
+          }, 'image/jpeg', 0.8); // 80% compressed jpeg file
+      },
       back(){
         this.$router.back();
       },
