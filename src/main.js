@@ -20,7 +20,7 @@ Vue.config.productionTip = false
 Vue.use(MintUI)
 Vue.use(LyTab)
 Vue.use(VueCookies)
-
+Vue.use(Croppa);
 
 new Vue({
   el: '#app',
@@ -30,9 +30,5 @@ new Vue({
   template: '<App/>'
 })
 
-// router.afterEach((to, from) => {
-//   // console.log(to)
-//   // console.log(from)
-//
-// })
+
 

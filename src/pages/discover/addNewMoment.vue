@@ -17,6 +17,10 @@
         rows="4">
       </mt-field>
 
+      <!--上传图片-->
+      <croppa v-model="myCroppa"></croppa>
+
+
     </div>
 
 
@@ -30,10 +34,20 @@
       return {
         moment: {
           content: ''
-        }
+        },
+        myCroppa: {},
       }
     },
     methods: {
+      uploadCroppedImage() {
+        this.myCroppa.generateBlob(
+          blob => {
+            // write code to upload the cropped image file (a file is a blob)
+          },
+          'image/jpeg',
+          0.8
+        ); // 80% compressed jpeg file
+      },
       back(){
         this.$router.back();
       },
