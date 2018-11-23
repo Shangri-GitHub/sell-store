@@ -14,7 +14,6 @@
         <input class="inputNone" type="file" multiple accept="image/*" ref="file" @change="selectImgs()">
       </div>
     </div>
-
     <!-- PhotoSwipe插件需要的元素， 一定要有类名 pswp -->
     <div class="pswp" ref="pswb" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="pswp__bg"></div>
@@ -49,16 +48,11 @@
         </div>
       </div>
     </div>
-
-
   </div>
-
 </template>
 
 <script>
   import {Toast} from "mint-ui";
-
-
   export default {
     name: '',
     data() {
@@ -70,14 +64,10 @@
     methods: {
       // 图片预览区
       previewPhotoSwipe(index, imagesData){
-        debugger
         var pswpElement = document.querySelectorAll('.pswp')[0];
 
         // build items array
-        var items = [
-
-
-        ];
+        var items = [];
 
         imagesData.forEach(function (ele) {
           items.push({
