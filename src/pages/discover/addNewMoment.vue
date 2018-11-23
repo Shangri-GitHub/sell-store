@@ -61,10 +61,7 @@
       publishMoment(){
         var that = this;
 
-        Indicator.open({
-          text: '发布中...',
-          spinnerType: 'fading-circle'
-        });
+
         // 上传七牛云服务器
         this.getQiniuSuccessImageDatas();
         // 发布动态的接口
@@ -80,7 +77,10 @@
           Toast("所发布内容不能为空哦！");
           return;
         }
-
+        Indicator.open({
+          text: '发布中...',
+          spinnerType: 'fading-circle'
+        });
         that.$http.post('moment/publishMoment', this.moment).then(function (res) {
           if (res.data.code == 0) {
             Indicator.close();
@@ -117,6 +117,7 @@
               },
               error(err){
                 Toast("上传失败！请稍后再试");
+
               },
               complete(res){
                 /**

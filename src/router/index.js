@@ -23,14 +23,8 @@ import modifyUserinfo from '../pages/me/modifyUserinfo.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',  // 默认hash
+  // mode: 'history',  // 默认hash
   // history: true,
-  // scrollBehavior (to, from, savedPosition) {
-  //   console.log(to)
-  //   console.log(from)
-  //   console.log(savedPosition)
-  //   console.log(window.scrollY)
-  // },
   routes: [
     {
       path: '*',
