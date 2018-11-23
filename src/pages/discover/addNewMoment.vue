@@ -29,7 +29,7 @@
 
 <script>
   import Config from "../../config";
-  import {Toast,Indicator} from "mint-ui";
+  import {Toast, Indicator} from "mint-ui";
   import Upload from '../../components/moment/Upload.vue'
   export default {
     name: '',
@@ -60,8 +60,8 @@
        *
        */
       publishMoment(){
-        var that = this;
 
+        var that = this;
 
         // 上传七牛云服务器
         this.getQiniuSuccessImageDatas();
@@ -70,11 +70,13 @@
         this.imageDatas.forEach(function (ele) {
           var item = {
             name: ele.name,
-            src: Config.qiniu.URL + ele.name
+            src: Config.qiniu.URL + ele.name,
+            width: ele.width,
+            height: ele.height
           }
           that.moment.images.push(item);
         })
-        if(this.moment.content=="" && this.moment.images.length==0){
+        if (this.moment.content == "" && this.moment.images.length == 0) {
           Toast("所发布内容不能为空哦！");
           return;
         }

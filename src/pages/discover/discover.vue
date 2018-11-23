@@ -122,10 +122,13 @@
         var items = [];
         //处理预览的照片
         imagesData.forEach(function (ele) {
+
+          //获取图片原始的宽度和高度
+
           items.push( {
             src: ele.src,
-            w: 1200,
-            h: 900
+            w: ele.width ||1200,
+            h: ele.height ||900
           })
         })
 

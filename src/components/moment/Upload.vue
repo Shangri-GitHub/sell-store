@@ -65,15 +65,13 @@
       // 图片预览区
       previewPhotoSwipe(index, imagesData){
         var pswpElement = document.querySelectorAll('.pswp')[0];
-
         // build items array
         var items = [];
-
         imagesData.forEach(function (ele) {
           items.push({
             src: ele.src,
-            w: 1200,
-            h: 900
+            w: ele.width,
+            h: ele.height
           })
         })
 
@@ -106,12 +104,23 @@
         for (let i = 0, len = fileList.length; i < len; i++) {
           var reader = new FileReader();
           reader.onload = function (e) {
-            var item = {
-              name: fileList[i].name,
-              src: e.target.result,
-              file: fileList[i]
-            }
-            that.imagesData.push(item);
+            //  获取图片的宽高
+
+            var image = new Image();
+            image.src = e.target.result;
+            image.onload = function () {
+              var item = {
+                name: fileList[i].name,
+                src: e.target.result,
+                file: fileList[i],
+                width:this.width,
+                height:this.height
+              }
+              that.imagesData.push(item);
+            };
+
+
+
           }
           reader.readAsDataURL(fileList[i]);
         }
