@@ -70,8 +70,8 @@
         imagesData.forEach(function (ele) {
           items.push({
             src: ele.src,
-            w: ele.width,
-            h: ele.height
+            w: ele.width || 1200,
+            h: ele.height || 900
           })
         })
 
@@ -113,8 +113,8 @@
                 name: fileList[i].name,
                 src: e.target.result,
                 file: fileList[i],
-                width:this.width,
-                height:this.height
+                width:this.width*0.8,
+                height:this.height*0.8
               }
               that.imagesData.push(item);
             };

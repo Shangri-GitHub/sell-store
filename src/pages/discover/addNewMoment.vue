@@ -63,6 +63,10 @@
 
         var that = this;
 
+        Indicator.open({
+          text: '发布中...',
+          spinnerType: 'fading-circle'
+        });
         // 上传七牛云服务器
         this.getQiniuSuccessImageDatas();
         // 发布动态的接口
@@ -80,14 +84,11 @@
           Toast("所发布内容不能为空哦！");
           return;
         }
-        Indicator.open({
-          text: '发布中...',
-          spinnerType: 'fading-circle'
-        });
+
         that.$http.post('moment/publishMoment', this.moment).then(function (res) {
           if (res.data.code == 0) {
-            Indicator.close();
-            that.$router.push("/discover");
+//            Indicator.close();
+//            that.$router.push("/discover");
           }
         })
 
@@ -99,11 +100,13 @@
       getQiniuSuccessImageDatas () {
 
         var that = this;
+
+
         // 获取upToken
         that.$http.get("qiniu/getUpToken").then(function (res) {
           that.uptoken = res.data.data.upToken;
           // 上传至服务器
-          that.imageDatas.forEach(function (ele) {
+          that.imageDatas.forEach(function (ele, index) {
             var putExtra = {
               fname: "",
               params: {},
@@ -126,9 +129,13 @@
                 /**
                  * 存储上传成功返回来的数据
                  */
+                if (index == that.imageDatas.length - 1) {
+                  Indicator.close();
+                  that.$router.push("/discover");
+                }
               }
             }
-            var observable = qiniu.upload(ele.file, ele.name, that.uptoken, putExtra, config)
+            var observable = qiniu.upload(ele.file, ele.name + "-" + new Date().toLocaleTimeString(), that.uptoken, putExtra, config)
             observable.subscribe(observer);
           })
         })
