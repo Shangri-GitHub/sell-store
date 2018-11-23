@@ -21,7 +21,8 @@
         发布动态
       </div>
     </div>
-
+    <!--底部掩盖-->
+    <div class="addNewAddress"></div>
 
   </div>
 </template>
@@ -153,6 +154,14 @@
       height: 7vh;
       background: black;
       color: #ffffff;
+    }
+    .addNewAddress {
+      width: 100vw;
+      height: 10vh;
+      background: #ffffff;
+      position: fixed;
+      bottom: 0;
+      z-index: 2;
     }
   }
 </style>

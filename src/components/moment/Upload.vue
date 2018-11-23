@@ -6,7 +6,7 @@
         <div class="close">
           <i @click="removeImg(index)" class="fa fa-times times-circle" aria-hidden="true"></i>
         </div>
-        <img style="width: 33vw;height: 33vw" :src="item.src">
+        <img @click="previewPhotoSwipe(index,imagesData)" style="width: 33vw;height: 33vw" :src="item.src">
       </div>
       <!--选择一个照片-->
       <div class="selectPhoto" v-if="this.imagesData.length < 9">
@@ -14,19 +14,92 @@
         <input class="inputNone" type="file" multiple accept="image/*" ref="file" @change="selectImgs()">
       </div>
     </div>
+
+    <!-- PhotoSwipe插件需要的元素， 一定要有类名 pswp -->
+    <div class="pswp" ref="pswb" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="pswp__bg"></div>
+      <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+          <div class="pswp__top-bar">
+            <div class="pswp__counter"></div>
+            <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+            <div class="pswp__preloader">
+              <div class="pswp__preloader__icn">
+                <div class="pswp__preloader__cut">
+                  <div class="pswp__preloader__donut"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+            <div class="pswp__share-tooltip"></div>
+          </div>
+          <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+          </button>
+          <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+          </button>
+          <div class="pswp__caption">
+            <div class="pswp__caption__center"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
+
 </template>
 
 <script>
   import {Toast} from "mint-ui";
+
+
   export default {
     name: '',
     data() {
       return {
+        slides: [],
         imagesData: []
       }
     },
     methods: {
+      // 图片预览区
+      previewPhotoSwipe(index, imagesData){
+        debugger
+        var pswpElement = document.querySelectorAll('.pswp')[0];
+
+        // build items array
+        var items = [
+
+
+        ];
+
+        imagesData.forEach(function (ele) {
+          items.push({
+            src: ele.src,
+            w: 1200,
+            h: 900
+          })
+        })
+
+        // define options (if needed)
+        var options = {
+          // optionName: 'option value'
+          // for example:
+          index: index // start at first slide
+        };
+
+        // Initializes and opens PhotoSwipe
+        var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+        gallery.init();
+
+
+      },
       // 取消上传
       removeImg(index){
         this.imagesData.splice(index, 1);
@@ -46,7 +119,7 @@
             var item = {
               name: fileList[i].name,
               src: e.target.result,
-              file:fileList[i]
+              file: fileList[i]
             }
             that.imagesData.push(item);
           }

@@ -10,11 +10,11 @@
       </mt-header>
       <div class="contain">
         <!--内容-->
-        <div style="background: white;margin-bottom: 10px" v-for="(item,index)  in momentDatas">
+        <div style="background: white;margin-bottom: 10px" v-for="(items,index)  in momentDatas">
           <div style="display: flex;">
-            <img class="profilePhoto" :src="item.picture">
+            <img class="profilePhoto" :src="items.picture">
             <div style="width: 60vw;margin: 16px 0">
-              <div>{{item.nickname}}</div>
+              <div>{{items.nickname}}</div>
               <div style="color: #9a9a9a;font-size: 0.8rem">新人</div>
             </div>
 
@@ -24,16 +24,15 @@
               </div>
             </div>
           </div>
-          <div style="padding: 8px">{{item.content}}</div>
+          <div style="padding: 8px">{{items.content}}</div>
 
 
           <!--暂时是针对九张图片处理 四张图片还没做处理-->
           <div class="photo-wall">
-            <div class="box" v-for="(item,index)  in item.images">
-              <img style="width: 33vw;height: 33vw" :src="item.src">
+            <div class="box" v-for="(item,index)  in items.images">
+              <img style="width: 33vw;height: 33vw" :src="item.src" @click="previewPhotoSwipe(index,items.images)">
             </div>
           </div>
-
 
           <div style="display: flex;justify-content: space-between">
             <div style="padding: 8px">
@@ -42,11 +41,11 @@
             <div style="display: flex;align-items: center;padding: 8px">
               <div style="padding-right: 10px">
                 <i class="fa fa-commenting-o" aria-hidden="true"></i>
-                {{item.commentList.length}}
+                {{items.commentList.length}}
               </div>
               <div>
                 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                {{item.thumbsUp}}
+                {{items.thumbsUp}}
               </div>
 
             </div>
@@ -60,6 +59,44 @@
       <div class="addNewMoment" @click="addNewMoment">
         <i class="fa fa-pencil-square-o icon" aria-hidden="true"></i>
       </div>
+
+
+      <!-- PhotoSwipe插件需要的元素， 一定要有类名 pswp -->
+      <div class="pswp" ref="pswb" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+          <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+          </div>
+          <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+              <div class="pswp__counter"></div>
+              <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+              <div class="pswp__preloader">
+                <div class="pswp__preloader__icn">
+                  <div class="pswp__preloader__cut">
+                    <div class="pswp__preloader__donut"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+              <div class="pswp__share-tooltip"></div>
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+              <div class="pswp__caption__center"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </template>
@@ -75,6 +112,38 @@
       }
     },
     methods: {
+
+      // 图片预览区
+      previewPhotoSwipe(index,imagesData){
+
+        var pswpElement = document.querySelectorAll('.pswp')[0];
+
+        // build items array
+        var items = [];
+        //处理预览的照片
+        imagesData.forEach(function (ele) {
+          items.push( {
+            src: ele.src,
+            w: 1200,
+            h: 900
+          })
+        })
+
+
+        // define options (if needed)
+        var options = {
+//           optionName: 'option value',
+          // for example:
+          index:  index   // start at first slide
+        };
+
+        // Initializes and opens PhotoSwipe
+        var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+        gallery.init();
+
+
+
+      },
       addNewMoment(){
         this.$router.push('/addNewMoment');
       }
