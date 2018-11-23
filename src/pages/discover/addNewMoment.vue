@@ -135,7 +135,7 @@
                 }
               }
             }
-            var observable = qiniu.upload(ele.file, ele.name + "-" + new Date().toLocaleTimeString(), that.uptoken, putExtra, config)
+            var observable = qiniu.upload(ele.file, ele.name, that.uptoken, putExtra, config)
             observable.subscribe(observer);
           })
         })

@@ -110,15 +110,14 @@
             image.src = e.target.result;
             image.onload = function () {
               var item = {
-                name: fileList[i].name,
+                name: fileList[i].name + "-" + new Date().toLocaleTimeString(),
                 src: e.target.result,
                 file: fileList[i],
-                width:this.width*0.8,
-                height:this.height*0.8
+                width: this.width * 0.8,
+                height: this.height * 0.8
               }
               that.imagesData.push(item);
             };
-
 
 
           }
