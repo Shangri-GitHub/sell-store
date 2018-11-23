@@ -63,10 +63,6 @@ export default new Router({
     {
       path: '/discover',
       component: discover,
-      children: [{
-          path: 'clothes',
-          component: clothes
-        }]
     },
     {
       path: '/cart',

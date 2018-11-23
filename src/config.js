@@ -8,6 +8,9 @@ export default{
   },
   api: {
     BASEURL:  process.env.API_ROOT  //"http://127.0.0.1:8080/sell/"
+  },
+  qiniu:{
+    URL:"http://qiniu.hanxing.store/"
   }
 
 }
