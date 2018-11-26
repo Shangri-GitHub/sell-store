@@ -40,16 +40,29 @@
             </div>
             <div style="display: flex;align-items: center;padding: 8px">
               <div style="padding-right: 10px">
-                <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                <i class="fa fa-commenting-o" @click="Comment(items)" aria-hidden="true"></i>
                 {{items.commentList.length}}
               </div>
               <div>
                 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                 {{items.thumbsUp}}
               </div>
-
             </div>
           </div>
+          <!--评论区列表-->
+          <div style="background:#f3f3f3;padding:10px;">
+            <div style="display: flex;border-bottom: 1px solid #e4e4e4;padding: 5px 0"
+                 v-for="commentList in items.commentList">
+              <div style="width: 12vw;height: 12vw">
+                <img style="width: 12vw;height: 12vw;" :src="commentList.picture" alt="">
+              </div>
+              <div style="padding: 0 10px">
+                <div style="color: #4561a2;"> {{commentList.nickname}}</div>
+                <div>{{commentList.content}}</div>
+              </div>
+            </div>
+          </div>
+
 
         </div>
 
@@ -60,6 +73,14 @@
         <i class="fa fa-pencil-square-o icon" aria-hidden="true"></i>
       </div>
 
+      <!--评论-->
+      <mt-popup
+        class="popup"
+        v-model="popupVisible"
+        :modal="true"
+        position="bottom">
+        <input class="commentArea" v-model="content" type="text" @keyup.enter="CommitComment($event)">
+      </mt-popup>
 
       <!-- PhotoSwipe插件需要的元素， 一定要有类名 pswp -->
       <div class="pswp" ref="pswb" tabindex="-1" role="dialog" aria-hidden="true">
@@ -108,13 +129,41 @@
     components: {},
     data() {
       return {
+        momentId: "",
         momentDatas: [],
+        content: '',
+        popupVisible: false,
       }
     },
     methods: {
 
+      Comment(item){
+        // 打开手机的键盘事件
+        console.log(item)
+        this.popupVisible = true;
+        this.momentId = item.momentId
+      },
+
+      CommitComment(){
+
+        var that = this;
+        var param = {
+          openId: this.$cookies.get("openId"),
+          content: this.content,
+          momentId: this.momentId
+        }
+        that.$http.post('commentList/saveCommentList', param).then(function (res) {
+
+          if (res.data.code == 0) {
+            that.popupVisible = false;
+            that.findByCreateTimeBetweenAndPage();
+          }
+        })
+
+
+      },
       // 图片预览区
-      previewPhotoSwipe(index,imagesData){
+      previewPhotoSwipe(index, imagesData){
 
         var pswpElement = document.querySelectorAll('.pswp')[0];
 
@@ -125,10 +174,10 @@
 
           //获取图片原始的宽度和高度
 
-          items.push( {
+          items.push({
             src: ele.src,
-            w: ele.width ||1200,
-            h: ele.height ||900
+            w: ele.width || 1200,
+            h: ele.height || 900
           })
         })
 
@@ -137,39 +186,48 @@
         var options = {
 //           optionName: 'option value',
           // for example:
-          index:  index   // start at first slide
+          index: index   // start at first slide
         };
 
         // Initializes and opens PhotoSwipe
-        var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+        var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
         gallery.init();
 
 
-
-      },
-      addNewMoment(){
-        this.$router.push('/addNewMoment');
       }
-    },
-    mounted: function () {
-      var that = this;
-      // 跳转到页面的顶端
-      window.scroll(0, 0);
+      ,
+      addNewMoment()
+      {
+        this.$router.push('/addNewMoment');
+      },
+
       /**
        * 查找所有的朋友圈
        */
-      var params = {
-        start: 1,
-        size: 1000
-      }
-      that.$http.post('moment/findByCreateTimeBetweenAndPage', params).then(function (res) {
+      findByCreateTimeBetweenAndPage(){
+        var that = this;
 
-        if (res.data.code == 0) {
-          that.momentDatas = res.data.data.data;
+        var params = {
+          start: 1,
+          size: 1000
         }
-      })
+        that.$http.post('moment/findByCreateTimeBetweenAndPage', params).then(function (res) {
+          if (res.data.code == 0) {
+            that.momentDatas = res.data.data.data;
+          }
+        })
+      }
 
-    },
+
+    }
+    ,
+    mounted: function () {
+      // 跳转到页面的顶端
+      window.scroll(0, 0);
+      this.findByCreateTimeBetweenAndPage()
+
+    }
+    ,
     computed: {}
   }
 </script>
@@ -177,6 +235,26 @@
 <style lang="scss" scoped>
   .discover {
     width: 100%;
+    input:focus {
+      outline: none;
+      border: none;
+      outline-offset: 0;
+      padding: 5px;
+    }
+    .popup {
+      width: 101vw;
+      height: 10vh;
+      background: #eeeeee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .commentArea {
+        width: 90%;
+        height: 5vh;
+        font-size: 1rem;
+      }
+    }
+
     .addNewMoment {
       width: 15vw;
       height: 15vw;
