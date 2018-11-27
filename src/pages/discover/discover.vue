@@ -35,8 +35,8 @@
           </div>
 
           <div style="display: flex;justify-content: space-between">
-            <div style="padding: 8px">
-              <!--阅读量 {{item.readCount}}-->
+            <div style="padding: 8px;font-size: 0.8rem;color:#585858">
+              {{items.createTime}}
             </div>
             <div style="display: flex;align-items: center;padding: 8px">
               <div style="padding-right: 10px">
@@ -44,22 +44,32 @@
                 {{items.commentList.length}}
               </div>
               <div>
-                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                <i :class="items.thumbsUpBySelf ==0 ?'fa fa-thumbs-o-up':'fa fa-thumbs-up '" aria-hidden="true"
+                   @click="Thumber(items)"></i>
                 {{items.thumbsUp}}
               </div>
             </div>
           </div>
           <!--评论区列表-->
           <div style="background:#f3f3f3;padding:10px;">
+
+            <div style="border-bottom: 1px solid #e4e4e4;padding-bottom: 10px">
+              <img style="width: 12vw;height: 12vw;" :src="thumb.picture" alt="" v-for="thumb in items.thumbLists">
+            </div>
+
             <div style="display: flex;border-bottom: 1px solid #e4e4e4;padding: 5px 0"
                  v-for="commentList in items.commentList">
               <div style="width: 12vw;height: 12vw">
                 <img style="width: 12vw;height: 12vw;" :src="commentList.picture" alt="">
               </div>
+
               <div style="padding: 0 10px">
-                <div style="color: #4561a2;"> {{commentList.nickname}}</div>
+                <div style="color: #4561a2;font-size: 0.8rem"> {{commentList.nickname}}</div>
                 <div>{{commentList.content}}</div>
               </div>
+
+              <div style="font-size: 0.6rem;position: absolute;right: 2vw;color: #525252">{{commentList.createTime}}</div>
+
             </div>
           </div>
 
@@ -132,20 +142,48 @@
         momentId: "",
         momentDatas: [],
         content: '',
+        thumbUpByself: false,
         popupVisible: false,
       }
     },
     methods: {
+      // 点赞的方法
+      Thumber(item){
+        var that = this;
+        item.thumbsUpBySelf = (item.thumbsUpBySelf == 0 ? 1 : 0);
+        if (item.thumbsUpBySelf == 1) {
+          // 点赞
+          var param = {
+            openId: this.$cookies.get("openId"),
+            momentId: item.momentId
+          }
+          that.$http.post('/moment/ThumbList/saveThumbList', param).then(function (res) {
+            if (res.data.code == 0) {
+              that.findByCreateTimeBetweenAndPage();
+            }
+          })
+        } else if (item.thumbsUpBySelf == 0) {
+          // 取消点赞
+          var param = {
+            openId: this.$cookies.get("openId"),
+            momentId: item.momentId
+          }
+          that.$http.post('/moment/ThumbList/deleteThumbListByOpenId', param).then(function (res) {
+            if (res.data.code == 0) {
+              that.findByCreateTimeBetweenAndPage();
+            }
+          })
+        }
+      },
 
       Comment(item){
         // 打开手机的键盘事件
-        console.log(item)
         this.popupVisible = true;
-        this.momentId = item.momentId
+        this.momentId = item.momentId;
+        this.content ="";
       },
 
       CommitComment(){
-
         var that = this;
         var param = {
           openId: this.$cookies.get("openId"),
@@ -153,7 +191,6 @@
           momentId: this.momentId
         }
         that.$http.post('commentList/saveCommentList', param).then(function (res) {
-
           if (res.data.code == 0) {
             that.popupVisible = false;
             that.findByCreateTimeBetweenAndPage();
@@ -173,7 +210,6 @@
         imagesData.forEach(function (ele) {
 
           //获取图片原始的宽度和高度
-
           items.push({
             src: ele.src,
             w: ele.width || 1200,
